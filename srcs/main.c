@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/29 12:44:34 by amelihov          #+#    #+#             */
-/*   Updated: 2018/07/06 18:53:29 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/07/10 12:46:40 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@ int			main(int argc, char *argv[])
 	t_drawer		*drawer;
 	t_scene			**scenes;
 
-	if (argc > 2)
+	if (argc != 2)
 		return (print_usage());
-	if (argc == 2)
+//	if (argc == 2)
 		scenes = get_scenes_from_file(argv[1]);
-	else
-		scenes = get_default_scenes();
+//	else
+//		scenes = get_default_scenes();
 	if (!scenes)
 		return (err_print(PROGNAME": "));
 	drawer = drawer_new();

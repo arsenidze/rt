@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/05 22:49:16 by amelihov          #+#    #+#             */
-/*   Updated: 2018/07/05 22:49:18 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/07/10 12:50:06 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "libft.h"
 #include <stdlib.h>
 
-t_object	*object_new(t_vect3d k[3], void *var_arg[])
+t_object	*object_new(t_vect3d k[3], int is_glass, void *var_arg[])
 {
 	t_object	*new_obj;
 
@@ -26,6 +26,7 @@ t_object	*object_new(t_vect3d k[3], void *var_arg[])
 	new_obj->get_normal = var_arg[2];
 	new_obj->delete_primitive = var_arg[3];
 	ft_memcpy(new_obj->k, k, sizeof(t_vect3d) * 3);
+	new_obj->is_glass = is_glass;
 	return (new_obj);
 }
 

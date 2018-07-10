@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 09:15:52 by amelihov          #+#    #+#             */
-/*   Updated: 2018/07/05 23:18:04 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/07/10 12:18:54 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void			render_scene(t_pixel *pixels, t_scene *scene,
 		while (i < TEX_W)
 		{
 			ray_dir = get_ray_dir(scene->camera, i, j);
-			color = trace_ray(scene, ray_dir);
+			color = trace_ray(scene, scene->camera->pos, ray_dir, 0);
 			if (userinput->step_in_pixels > 1)
 				fill_square_of_pixels(pixels,
 					(t_square){.top = j, .left = i,

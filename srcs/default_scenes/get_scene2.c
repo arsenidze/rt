@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/10 22:14:41 by amelihov          #+#    #+#             */
-/*   Updated: 2018/07/06 16:11:40 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/07/10 12:49:33 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,13 @@ t_scene	*get_scene2(void)
 	camera = camera_new(vect3d(1000, 0, 0), vect3d(-1, 0, 0), vect3d(0, 0, 1));
 	objects[0] = object_new(
 	VECT3D_3(vect3d(0.2, 0.2, 0.2), vect3d(0.3, 0.2, 0.2), vect3d(1, 1, 1)),
-		PRIMITIVE(plane, vect3d(0, 0, -100), vect3d(0, 0, 1)));
+		0, PRIMITIVE(plane, vect3d(0, 0, -100), vect3d(0, 0, 1)));
 	objects[1] = object_new(
 	VECT3D_3(vect3d(0.05, 0.1, 0.2), vect3d(0.05, 0.1, 0.2), vect3d(0, 0, 0)),
-		PRIMITIVE(plane, vect3d(-200, 0, 0), vect3d(1, 0, 0)));
+		0, PRIMITIVE(plane, vect3d(-200, 0, 0), vect3d(1, 0, 0)));
 	objects[2] = object_new(
 	VECT3D_3(vect3d(0.05, 0.1, 0.2), vect3d(0.05, 0.1, 0.2), vect3d(0, 0, 0)),
-		PRIMITIVE(cylinder, vect3d(0, -200, 0), vect3d(0, 0, 1), 40));
+		0, PRIMITIVE(cylinder, vect3d(0, -200, 0), vect3d(0, 0, 1), 40));
 	lights[0] = light_new(vect3d(500, 600, 200), VECT3D_3(vect3d(1, 1, 1),
 		vect3d(1, 1, 1), vect3d(1, 1, 1)));
 	scene = scene_new(camera, objects, lights);

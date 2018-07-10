@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 20:58:54 by amelihov          #+#    #+#             */
-/*   Updated: 2018/07/05 23:16:21 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/07/10 22:09:53 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,80 @@
 #include "apply_light.h"
 #include "intersection.h"
 
-#define BACKGROUND_COLOR COLOR(0x00000000)
+float mix(const float a, const float b, const float mix)
+{
+    return (b * mix + a * (1 - mix));
+}
 
-t_color	trace_ray(t_scene *scene, t_vect3d ray_dir)
+t_vect3d	get_refraction_ray(t_vect3d ray_dir, t_vect3d normal)
+{
+	float		ior;
+	float		eta;
+	float		cosi;
+	float		k;
+
+//	ior = 1.1f;
+//	if (vect3d_dot(ray_dir, normal) > 0)
+//	{
+//		normal = -normal;
+//		eta = ior;
+//	}
+//	else
+//		eta = 1.0f / ior;
+//	cosi = -vect3d_dot(normal, ray_dir);
+//	k = 1 - eta * eta * (1 - cosi * cosi);
+//	return (vect3d_mult_on_scalar(ray_dir, eta)
+//			+ vect3d_mult_on_scalar(normal, eta * cosi - sqrt(k)));
+
+	ior = 1.1f;
+	if (vect3d_dot(ray_dir, normal) > 0)
+	{
+		normal = -normal;
+		eta = ior;
+	}
+	else
+		eta = 1.0f / ior;
+	cosi = vect3d_dot(normal, ray_dir);
+	k = 1 - eta * eta * (1 - cosi * cosi);
+	if (k < 0)
+		return (vect3d(0, 0, 0));
+	return (vect3d_mult_on_scalar(-ray_dir, eta)
+			+ vect3d_mult_on_scalar(normal, -eta * cosi - sqrt(k)));
+}
+
+#define BACKGROUND_COLOR COLOR(0x00000000)
+//#define BACKGROUND_COLOR COLOR(0x44444400)
+
+t_color	trace_ray(t_scene *scene, t_vect3d orig, t_vect3d ray_dir, int depth)
 {
 	t_intersection	intersection;
 	t_color			res_color;
 
-	if (find_closest_intersection(scene, scene->camera->pos, ray_dir,
+	if (find_closest_intersection(scene, orig, ray_dir,
 		&intersection))
 	{
+		(void)depth;
+		if (intersection.hit_object->is_glass 
+				&& depth < MAX_RAY_DEPTH)
+		{
+			//handle_reflection(scene, depth + 1);
+			t_color	reflection_col;
+
+			reflection_col = COLOR(0);
+			reflection_col = trace_ray(scene, intersection.dest,
+					vect3d_norm(vect3d_reflect(ray_dir, intersection.normal)),
+								depth + 1);
+			float facingratio = -vect3d_dot(ray_dir, intersection.normal);
+			float fresneleffect = mix(pow(1 - facingratio, 3), 1, 0.1);
+			
+			t_color	refraction_col;
+
+			refraction_col = trace_ray(scene, intersection.dest,
+				vect3d_norm(get_refraction_ray(ray_dir, intersection.normal)),	
+								depth + 1);
+			return (COLOR_ADD(COLOR_MULT(reflection_col, fresneleffect),
+					COLOR_MULT(refraction_col, (1 - fresneleffect))));
+		}
 		res_color = apply_light(scene, &intersection);
 		return (res_color);
 	}

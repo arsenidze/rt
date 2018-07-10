@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/09 18:11:34 by amelihov          #+#    #+#             */
-/*   Updated: 2018/07/05 21:46:31 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/07/10 12:07:45 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ t_vect3d	vect3d_cross(t_vect3d v1, t_vect3d v2);
 double		vect3d_cos(t_vect3d v1, t_vect3d v2);
 double		vect3d_cos_normed(t_vect3d v1, t_vect3d v2);
 t_vect3d	vect3d_clamp(t_vect3d v, double a, double b);
+t_vect3d	vect3d_reflect(t_vect3d ray, t_vect3d normal);
 short		vect3d_is_in_range(t_vect3d v, double a, double b);
 short		vect3d_is_in_range_abs(t_vect3d v, double a, double b);
 t_vect3d	vect3d_mult_on_matrix(t_vect3d v, t_vect3d m[3]);

@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/05 22:23:36 by amelihov          #+#    #+#             */
-/*   Updated: 2018/07/06 14:21:45 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/07/10 18:51:35 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,13 @@ typedef struct	s_square
 	int	size;
 }				t_square;
 
+#define MAX_RAY_DEPTH	5
+
 void			render_scene(t_pixel *pixels, t_scene *scene,
 				t_userinput *userinput);
 short			find_closest_intersection(t_scene *scene, t_vect3d start,
 				t_vect3d ray_dir, t_intersection *intersection);
-t_color			trace_ray(t_scene *scene, t_vect3d ray_dir);
+t_color			trace_ray(t_scene *scene, t_vect3d orig, t_vect3d ray_dir,
+				int depth);
 
 #endif

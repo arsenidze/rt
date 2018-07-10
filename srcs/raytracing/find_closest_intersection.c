@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/04 12:15:19 by amelihov          #+#    #+#             */
-/*   Updated: 2018/07/05 23:13:41 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/07/10 12:18:58 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,6 @@
 #include "intersection.h"
 
 #define IS_INTERSECT_OBJ(s, r, o, i) o->intersection(o->primitive,s,r,i)
-
-/*
-**	function 'find_closest_intersection' don't fill 'normal' field in
-**	out 'intersection' parameter for optimization purpose.
-*/
 
 short	find_closest_intersection(t_scene *scene, t_vect3d start,
 		t_vect3d ray_dir, t_intersection *intersection)
@@ -49,5 +44,8 @@ short	find_closest_intersection(t_scene *scene, t_vect3d start,
 		}
 		i++;
 	}
+	if (was_intersect)
+		intersection->normal = GET_NORMAL(intersection->hit_object,
+												intersection->dest);
 	return (was_intersect);
 }

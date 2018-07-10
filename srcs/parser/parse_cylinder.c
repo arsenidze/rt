@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 16:20:13 by amelihov          #+#    #+#             */
-/*   Updated: 2018/07/05 23:00:47 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/07/10 12:50:34 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,6 @@ t_object		*parse_cylinder(char *line, t_vect3d components[3])
 		return (parse_cylinder_failure(PARSER_CYLINDER_RADIUS_FAIL));
 	if (!is_correct_eol(&line[i]))
 		return (parse_cylinder_failure(PARSER_CYLINDER_EOL_FAIL));
-	return (object_new(components, PRIMITIVE(cylinder, pos,
+	return (object_new(components, 0, PRIMITIVE(cylinder, pos,
 		vect3d_norm(axis), radius)));
 }

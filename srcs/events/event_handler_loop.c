@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/05 15:01:14 by amelihov          #+#    #+#             */
-/*   Updated: 2018/07/06 14:49:06 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/07/10 19:54:06 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ short	cam_actions(int key, t_userinput *ui, t_scene **scenes)
 {
 	if (key == SDL_SCANCODE_SPACE)
 		camera_move(scenes[ui->scene_index]->camera, DELTA_CAM_STEP);
-	else if (key == SDL_SCANCODE_RSHIFT)
+	else if (key == SDL_SCANCODE_M)
 		camera_move(scenes[ui->scene_index]->camera, -DELTA_CAM_STEP);
 	else if (key == SDL_SCANCODE_KP_8)
 		camera_rotate_oy(scenes[ui->scene_index]->camera, DELTA_CAM_ANGEL);

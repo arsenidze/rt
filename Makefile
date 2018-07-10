@@ -6,11 +6,11 @@
 #    By: amelihov <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/29 13:43:11 by amelihov          #+#    #+#              #
-#    Updated: 2018/07/06 18:57:41 by amelihov         ###   ########.fr        #
+#    Updated: 2018/07/10 12:44:19 by amelihov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = RTv1
+NAME = RT
 
 CC     = gcc
 LD     = $(CC)
@@ -88,6 +88,7 @@ SRC = \
 	vect3d_mult_on_scalar.c\
 	vect3d_norm.c\
 	vect3d_sq_len.c\
+	vect3d_reflect.c\
 
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 	
@@ -127,7 +128,7 @@ LIBFT_FLAGS = -lft -L $(LIB_DIR)/libft/
 SDL_INC 	= ./lib/Frameworks/SDL2.framework/Headers/
 SDL_FLAGS	= -F ./lib/Frameworks -framework SDL2 -rpath ./lib/Frameworks
 
-CFLAGS = -Wall -Wextra -Werror -O3
+CFLAGS = -Wall -Wextra -Werror -g
 HFLAGS = -I $(INC_DIR) -I $(LIBFT_INC) -I $(SDL_INC) 
 LFLAGS = $(LIBFT_FLAGS) $(SDL_FLAGS) 
 
@@ -154,6 +155,9 @@ fclean: clean
 	/bin/rm -f $(NAME)
 	/bin/rm -rf $(OBJ_DIR)
 	make fclean -C $(LIB_DIR)/libft/
+
+r: all
+	./$(NAME) scenes/scene3
 
 re: fclean all
 

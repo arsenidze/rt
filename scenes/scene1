@@ -1,0 +1,10 @@
+5
+1
+scene:
+	camera: pos[500, 400, 200], dir[-1, -1, 0], up[0, 0, 1];
+	object: ambient[0.4, 0.4, 0], diffuse[0.4, 0.4, 0], specular[0.9, 0.9, 0.9], primitive[cylinder], pos[-50, -100, 0], axis[0, 0, 1], radius[50];
+	object: ambient[0.1, 0.3, 0.3], diffuse[0.1, 0.3, 0], specular[0.4, 0.4, 0.4], primitive[sphere], pos[0, -50, 0], radius[100];
+	object: ambient[0.3, 0.3, 0], diffuse[0.3, 0.3, 0], specular[0, 0, 0], primitive[sphere], pos[0, 50, 0], radius[100];
+	object: ambient[0.1, 0.2, 0.3], diffuse[0.1, 0.2, 0.3], specular[0.1, 0.1, 0.1], primitive[plane], pos[0, 0, -10], normal[0, 0, 1];
+	object: ambient[1, 0.3, 0.3], diffuse[1, 0.3, 0.3], specular[0.1, 0.1, 0.1], primitive[cone], pos[-800, -1000, 300], axis[0, 0.5, 1], slope[1];
+	light: pos[500, -200, 0], ambient[1, 1, 1], diffuse[1, 1, 1], specular[1, 1, 1];

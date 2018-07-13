@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/09 18:11:34 by amelihov          #+#    #+#             */
-/*   Updated: 2018/07/10 12:07:45 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/07/13 11:06:16 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,6 @@ t_vect3d	vect3d_mult_on_matrix(t_vect3d v, t_vect3d m[3]);
 void		vect3d_fill_rotate_ox_matrix(t_vect3d m[3], double angel);
 void		vect3d_fill_rotate_oy_matrix(t_vect3d m[3], double angel);
 void		vect3d_fill_rotate_oz_matrix(t_vect3d m[3], double angel);
+int			vect3d_print(t_vect3d v);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/10 19:07:09 by amelihov          #+#    #+#             */
-/*   Updated: 2018/07/06 14:14:46 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/07/11 17:38:14 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 
 typedef struct	s_intersection
 {
+	int			inside;
 	t_vect3d	orig;
 	t_vect3d	dest;
 	t_vect3d	ray_dir;

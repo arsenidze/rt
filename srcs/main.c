@@ -6,10 +6,11 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/29 12:44:34 by amelihov          #+#    #+#             */
-/*   Updated: 2018/07/10 12:46:40 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/07/13 12:35:39 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "rtv1_defines.h"
 #include "drawer.h"
 #include "scene_ptr_arr.h"
 #include "default_scenes.h"
@@ -30,13 +31,10 @@ int			main(int argc, char *argv[])
 
 	if (argc != 2)
 		return (print_usage());
-//	if (argc == 2)
-		scenes = get_scenes_from_file(argv[1]);
-//	else
-//		scenes = get_default_scenes();
+	scenes = get_scenes_from_file(argv[1]);
 	if (!scenes)
 		return (err_print(PROGNAME": "));
-	drawer = drawer_new();
+	drawer = drawer_new(WIN_W, WIN_H, argv[0]);
 	if (!drawer)
 		return (err_print(PROGNAME": "));
 	event_handler_loop(drawer, scenes);

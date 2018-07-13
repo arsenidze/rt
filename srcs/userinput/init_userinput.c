@@ -1,32 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   userinput.h                                        :+:      :+:    :+:   */
+/*   userinput.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/15 17:12:21 by amelihov          #+#    #+#             */
-/*   Updated: 2018/07/12 21:02:39 by amelihov         ###   ########.fr       */
+/*   Created: 2018/07/12 20:32:47 by amelihov          #+#    #+#             */
+/*   Updated: 2018/07/13 11:57:26 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef USERINPUT_H
-# define USERINPUT_H
+#include "userinput.h"
 
-typedef unsigned char	t_byte;
-
-typedef struct			s_userinput
+void	init_userinput(t_userinput *userinput, int nobjects, int nscenes)
 {
-	t_byte	quit;
-	t_byte	is_antialiasing;
-	int		scene_index;
-	int		object_index;
-	int		step_in_pixels;
-	int		nscenes;
-	int		nobjects;
-}						t_userinput;
-
-void					init_userinput(t_userinput *userinput,
-						int nobjects, int nscenes);
-
-#endif
+	*userinput = (t_userinput){
+		.quit = 0,
+		.scene_index = 0,
+		.object_index = 0,
+		.step_in_pixels = 1,
+		.nscenes = nscenes,
+		.nobjects = nobjects,
+		.is_antialiasing = 0
+	};
+}

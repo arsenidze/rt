@@ -1,22 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   drawer_render.c                                    :+:      :+:    :+:   */
+/*   parallelism.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/18 20:34:08 by amelihov          #+#    #+#             */
-/*   Updated: 2018/07/13 12:24:54 by amelihov         ###   ########.fr       */
+/*   Created: 2018/07/13 12:54:37 by amelihov          #+#    #+#             */
+/*   Updated: 2018/07/13 14:48:39 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "drawer.h"
+#ifndef PARALLELISM_H
+# define PARALLELISM_H
 
-void	drawer_render(t_drawer *drawer)
+#include "drawer.h"
+//drawer->canvas
+
+#define NTHREADS	2
+
+typedef struct s_scene		t_scene;
+typedef struct s_canvas		t_canvas;
+typedef struct s_userinput	t_userinput;
+
+void						render_scene_parallel(t_scene *scene,
+							t_canvas canvas,
+							const t_userinput *userinput);
+
+typedef struct	s_thread_arg
 {
-	SDL_UpdateTexture(drawer->texture, NULL, drawer->canvas.pixels,
-		sizeof(t_pixel) * drawer->canvas.w);
-	SDL_RenderClear(drawer->renderer);
-	SDL_RenderCopy(drawer->renderer, drawer->texture, NULL, NULL);
-	SDL_RenderPresent(drawer->renderer);
-}
+	t_scene				*scene;
+	t_canvas			canvas;
+	const t_userinput	*userinput;
+}				t_thread_arg;
+
+#endif

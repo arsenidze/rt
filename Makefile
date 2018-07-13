@@ -6,7 +6,7 @@
 #    By: amelihov <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/29 13:43:11 by amelihov          #+#    #+#              #
-#    Updated: 2018/07/10 12:44:19 by amelihov         ###   ########.fr        #
+#    Updated: 2018/07/13 14:32:50 by amelihov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,8 @@ SRC = \
 	clampi.c\
 	get_positive_root.c\
 	square.c\
+	get_rand.c\
+	init_userinput.c\
 	object.c\
 	object_ptr_arr_delete.c\
 	object_ptr_arr_size.c\
@@ -89,6 +91,8 @@ SRC = \
 	vect3d_norm.c\
 	vect3d_sq_len.c\
 	vect3d_reflect.c\
+	vect3d_print.c\
+	render_scene_parallel.c\
 
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 	
@@ -120,6 +124,7 @@ INC = \
 	userinput.h\
 	vect3d.h\
 	parser_private.h\
+	parallelism.h\
 
 LIBFT = $(LIB_DIR)/libft/libft.a
 LIBFT_INC = $(LIB_DIR)/libft/includes/
@@ -174,6 +179,9 @@ vpath %.c $(SRC_DIR)/primitives
 vpath %.c $(SRC_DIR)/raytracing
 vpath %.c $(SRC_DIR)/scene
 vpath %.c $(SRC_DIR)/vect3d
+vpath %.c $(SRC_DIR)/userinput
+vpath %.c $(SRC_DIR)/parallelism
+
 vpath %.h $(INC_DIR)
 vpath %.h $(SRC_DIR)/parser
 

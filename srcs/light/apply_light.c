@@ -6,11 +6,10 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/09 23:21:16 by amelihov          #+#    #+#             */
-/*   Updated: 2018/07/10 12:19:29 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/07/11 20:24:02 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "color.h"
 #include "scene.h"
 #include "intersection.h"
 #include "raytracing.h"
@@ -58,7 +57,7 @@ static t_vect3d	get_specular(t_light *light,
 	return (vect3d(0, 0, 0));
 }
 
-t_color			apply_light(t_scene *scene, t_intersection *inter)
+t_vect3d	apply_light(t_scene *scene, t_intersection *inter)
 {
 	t_vect3d		total;
 	int				i;
@@ -84,5 +83,5 @@ t_color			apply_light(t_scene *scene, t_intersection *inter)
 		total += get_specular(scene->lights[i], inter, ray_to_light, sq_dist);
 	}
 	total = vect3d_clamp(total, 0., 1.);
-	return (COLOR_RGBA(255 * total[0], 255 * total[1], 255 * total[2], 0));
+	return (total);
 }

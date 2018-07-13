@@ -6,10 +6,12 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/05 15:01:14 by amelihov          #+#    #+#             */
-/*   Updated: 2018/07/10 19:54:06 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/07/13 14:43:01 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
+#include <time.h>
 #include "drawer.h"
 #include "scene.h"
 #include "scene_ptr_arr.h"
@@ -17,6 +19,7 @@
 #include "sphere.h"
 #include "userinput.h"
 #include "raytracing.h"
+#include "parallelism.h"
 #include "vect3d.h"
 #include "mmath.h"
 #include "libft.h"
@@ -100,6 +103,10 @@ short	handle_key_down(int key, t_userinput *ui, t_scene **scenes)
 		ui->step_in_pixels = clampi(++ui->step_in_pixels, 1, MAX_PIXELS);
 	else if (key == SDL_SCANCODE_KP_MINUS)
 		ui->step_in_pixels = clampi(--ui->step_in_pixels, 1, MAX_PIXELS);
+	else if (key == SDL_SCANCODE_K)
+		ui->is_antialiasing = 1;
+	else if (key == SDL_SCANCODE_L)
+		ui->is_antialiasing = 0;
 	else if ((cam_actions(key, ui, scenes) || object_actions(key, ui, scenes)))
 		;
 	else
@@ -107,18 +114,25 @@ short	handle_key_down(int key, t_userinput *ui, t_scene **scenes)
 	return (NEED_REDRAW);
 }
 
-#define LOOP_QUIT	{userinput.quit = 1; break ;}
+static inline void	draw(t_drawer *drawer, t_scene *scene,
+					const t_userinput *userinput)
+{
+	render_scene_parallel(scene, drawer->canvas,  userinput);
+//	render_scene(scene, (t_canvas){drawer->canvas.pixels,
+//						.w = drawer->canvas.w, .h = drawer->canvas.h},
+//						userinput);
+	drawer_render(drawer);
+}
 
 void	event_handler_loop(t_drawer *drawer, t_scene **scenes)
 {
 	SDL_Event	event;
 	t_userinput	ui;
 
-	ui = (t_userinput){.quit = 0, .scene_index = 0, .object_index = 0,
-		.step_in_pixels = 1, .nscenes = scene_ptr_arr_size(scenes),
-		.nobjects = object_ptr_arr_size(scenes[0]->objects)};
-	render_scene(drawer->pixels, scenes[ui.scene_index], &ui);
-	drawer_render(drawer);
+	srand(time(0));
+	init_userinput(&ui, object_ptr_arr_size(scenes[0]->objects),
+						scene_ptr_arr_size(scenes));
+	draw(drawer, scenes[ui.scene_index], &ui);
 	while (!ui.quit)
 		while (SDL_PollEvent(&event))
 		{
@@ -131,8 +145,7 @@ void	event_handler_loop(t_drawer *drawer, t_scene **scenes)
 			{
 				if (handle_key_down(event.key.keysym.scancode, &ui, scenes))
 				{
-					render_scene(drawer->pixels, scenes[ui.scene_index], &ui);
-					drawer_render(drawer);
+					draw(drawer, scenes[ui.scene_index], &ui);
 				}
 			}
 		}

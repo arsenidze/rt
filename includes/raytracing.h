@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/05 22:23:36 by amelihov          #+#    #+#             */
-/*   Updated: 2018/07/13 13:33:52 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/07/14 17:25:04 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@ typedef struct	s_square
 
 //void			render_scene(t_pixel *pixels, t_scene *scene,
 //				const t_userinput *userinput);
-void			render_scene(t_scene *scene, t_canvas canvas,
+void			render_scene(const t_scene *scene, t_canvas canvas,
 				const t_userinput *userinput);
-short			find_closest_intersection(t_scene *scene, t_vect3d start,
+short			find_closest_intersection(const t_scene *scene, t_vect3d start,
 				t_vect3d ray_dir, t_intersection *intersection);
-t_vect3d		trace_ray(t_scene *scene, t_vect3d orig, t_vect3d ray_dir,
+t_vect3d		trace_ray(const t_scene *scene, t_vect3d orig, t_vect3d ray_dir,
 				int depth);
 
 #endif

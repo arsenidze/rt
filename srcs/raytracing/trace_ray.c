@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 20:58:54 by amelihov          #+#    #+#             */
-/*   Updated: 2018/07/12 20:36:17 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/07/14 14:45:56 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ t_vect3d	get_refraction_ray(t_vect3d ray_dir, t_vect3d normal, int inside)
 #define BACKGROUND_COLOR vect3d(0, 0, 0)
 //#define BACKGROUND_COLOR COLOR(0x44444400)
 
-t_vect3d	trace_ray(t_scene *scene, t_vect3d orig, t_vect3d ray_dir,
+t_vect3d	trace_ray(const t_scene *scene, t_vect3d orig, t_vect3d ray_dir,
 			int depth)
 {
 	t_intersection	intersection;

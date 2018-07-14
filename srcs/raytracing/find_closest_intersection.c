@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/04 12:15:19 by amelihov          #+#    #+#             */
-/*   Updated: 2018/07/11 17:37:56 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/07/14 14:46:22 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 #define IS_INTERSECT_OBJ(s, r, o, i) o->intersection(o->primitive,s,r,i)
 
-short	find_closest_intersection(t_scene *scene, t_vect3d start,
+short	find_closest_intersection(const t_scene *scene, t_vect3d start,
 		t_vect3d ray_dir, t_intersection *intersection)
 {
 	int			i;

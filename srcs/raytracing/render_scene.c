@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 09:15:52 by amelihov          #+#    #+#             */
-/*   Updated: 2018/07/13 14:44:26 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/07/14 17:26:57 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 //
@@ -67,7 +67,7 @@ static void		fill_square_of_pixels(t_canvas canvas, t_square square,
 }
 
 #include <stdio.h>
-static t_vect3d	handle_antialiasing(t_scene *scene, int i, int j)
+static t_vect3d	handle_antialiasing(const t_scene *scene, int i, int j)
 {
 	int			s1;
 	int			s2;
@@ -97,10 +97,10 @@ static t_vect3d	handle_antialiasing(t_scene *scene, int i, int j)
 	return (color);
 }
 #include <stdio.h>
-void			render_scene(t_scene *scene, t_canvas canvas,
+void			render_scene(const t_scene *scene, t_canvas canvas,
 				const t_userinput *userinput)
 {
-	printf("can_w: %u can_h: %u\n", canvas.w, canvas.h);
+//	printf("can_w: %u can_h: %u\n", canvas.w, canvas.h);
 	unsigned int	j;
 	unsigned int	i;
 	t_vect3d		ray_dir;
@@ -113,10 +113,13 @@ void			render_scene(t_scene *scene, t_canvas canvas,
 		while (i < canvas.w)
 		{
 			if (userinput->is_antialiasing)
-				color = handle_antialiasing(scene, i, j);
+				color = handle_antialiasing(scene,
+											i + canvas.pos_x, j + canvas.pos_y);
 			else
 			{
-				ray_dir = get_ray_dir(scene->camera, i, j);
+				ray_dir = get_ray_dir(scene->camera,
+									i + canvas.pos_x, j + canvas.pos_y);
+				//vect3d_print(ray_dir);
 				color = trace_ray(scene, scene->camera->pos, ray_dir, 0);
 			}
 			if (userinput->step_in_pixels > 1)

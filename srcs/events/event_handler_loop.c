@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/05 15:01:14 by amelihov          #+#    #+#             */
-/*   Updated: 2018/07/13 14:43:01 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/07/14 17:35:52 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,11 +117,12 @@ short	handle_key_down(int key, t_userinput *ui, t_scene **scenes)
 static inline void	draw(t_drawer *drawer, t_scene *scene,
 					const t_userinput *userinput)
 {
-	render_scene_parallel(scene, drawer->canvas,  userinput);
+	render_scene_parallel(scene, drawer->canvas, userinput);
 //	render_scene(scene, (t_canvas){drawer->canvas.pixels,
 //						.w = drawer->canvas.w, .h = drawer->canvas.h},
 //						userinput);
 	drawer_render(drawer);
+	//exit(1);
 }
 
 void	event_handler_loop(t_drawer *drawer, t_scene **scenes)

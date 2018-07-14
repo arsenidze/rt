@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/09 23:21:16 by amelihov          #+#    #+#             */
-/*   Updated: 2018/07/11 20:24:02 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/07/14 14:46:59 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static t_vect3d	get_specular(t_light *light,
 	return (vect3d(0, 0, 0));
 }
 
-t_vect3d	apply_light(t_scene *scene, t_intersection *inter)
+t_vect3d	apply_light(const t_scene *scene, t_intersection *inter)
 {
 	t_vect3d		total;
 	int				i;

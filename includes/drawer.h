@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 16:32:41 by amelihov          #+#    #+#             */
-/*   Updated: 2018/07/13 14:38:26 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/07/14 15:48:46 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ typedef struct	s_canvas
 	t_pixel	*pixels;
 	t_uint	w;
 	t_uint	h;	
+	t_uint	pos_x;
+	t_uint	pos_y;
 }				t_canvas;
 
 typedef struct	s_drawer

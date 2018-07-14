@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 16:50:50 by amelihov          #+#    #+#             */
-/*   Updated: 2018/07/13 12:24:15 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/07/14 15:53:02 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,7 @@ t_drawer		*drawer_new(unsigned int win_w, unsigned int win_h,
 	ft_memset(drawer->canvas.pixels, 0, sizeof(t_pixel) * win_w * win_h);
 	drawer->canvas.w = win_w;
 	drawer->canvas.h = win_h;
+	drawer->canvas.pos_x = 0;
+	drawer->canvas.pos_y = 0;
 	return (drawer);
 }

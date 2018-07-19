@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 09:15:52 by amelihov          #+#    #+#             */
-/*   Updated: 2018/07/14 17:26:57 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/07/18 14:23:51 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 //
@@ -31,14 +31,14 @@ static t_vect3d	get_ray_dir(t_camera *camera, double x, double y)
 	t_vect3d	ray_dir;
 	double		dir_factor;
 	double		up_factor;
-	double		left_factor;
+	double		right_factor;
 
 	dir_factor = DIST_TO_PP;
 	up_factor = -(y - WIN_H / 2);
-	left_factor = (x - WIN_W / 2);
+	right_factor = (x - WIN_W / 2);
 	ray_dir = vect3d_mult_on_scalar(camera->dir, dir_factor)
 			+ vect3d_mult_on_scalar(camera->up, up_factor)
-			+ vect3d_mult_on_scalar(camera->left, left_factor);
+			+ vect3d_mult_on_scalar(camera->right, right_factor);
 	ray_dir = vect3d_norm(ray_dir);
 	return (ray_dir);
 }

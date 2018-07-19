@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 09:54:00 by amelihov          #+#    #+#             */
-/*   Updated: 2018/05/15 19:17:53 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/07/18 14:22:32 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,6 @@ t_camera		*camera_new(t_vect3d pos, t_vect3d dir, t_vect3d up)
 	camera->pos = pos;
 	camera->dir = dir;
 	camera->up = up;
-	camera->left = vect3d_cross(dir, up);
+	camera->right = vect3d_cross(dir, up);
 	return (camera);
 }

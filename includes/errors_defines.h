@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/06 14:12:52 by amelihov          #+#    #+#             */
-/*   Updated: 2018/07/06 14:13:26 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/07/17 14:18:36 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,5 +83,11 @@
 # define PARSER_PLANE_NORMAL_FAIL		"Problem with plane normal"
 # define PARSER_PLANE_SEPARATOR_FAIL	"Problem with plane separator"
 # define PARSER_PLANE_EOL_FAIL			"Problem with plane end of line"
+
+# define PARSER_TORUS_POS_FAIL			"Problem with torus position"
+# define PARSER_TORUS_AXIS_FAIL			"Problem with torus axis"
+# define PARSER_TORUS_RADIUS_FAIL		"Problem with torus radius"
+# define PARSER_TORUS_SEPARATOR_FAIL	"Problem with torus separator"
+# define PARSER_TORUS_EOL_FAIL			"Problem with torus end of line"
 
 #endif

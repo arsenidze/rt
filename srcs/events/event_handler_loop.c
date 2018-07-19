@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/05 15:01:14 by amelihov          #+#    #+#             */
-/*   Updated: 2018/07/14 17:35:52 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/07/17 20:27:57 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	move_current_object(t_scene **scenes, t_userinput *userinput,
 }
 
 #define NEED_REDRAW			1
-#define DELTA_CAM_STEP		20
+#define DELTA_CAM_STEP		10
 #define DELTA_CAM_ANGEL		(M_PI / 180.0) * 10.0
 
 short	cam_actions(int key, t_userinput *ui, t_scene **scenes)

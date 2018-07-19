@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/13 12:54:37 by amelihov          #+#    #+#             */
-/*   Updated: 2018/07/14 17:36:13 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/07/18 22:27:36 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "drawer.h"
 //drawer->canvas
 
-#define NTHREADS	4
+#define NTHREADS	1
 
 typedef struct s_scene		t_scene;
 typedef struct s_canvas		t_canvas;

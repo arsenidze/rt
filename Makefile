@@ -6,7 +6,7 @@
 #    By: amelihov <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/29 13:43:11 by amelihov          #+#    #+#              #
-#    Updated: 2018/07/14 17:36:29 by amelihov         ###   ########.fr        #
+#    Updated: 2018/07/18 20:58:44 by amelihov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,11 +35,17 @@ SRC = \
 	light.c\
 	light_ptr_arr_delete.c\
 	main.c\
+	get_rand.c\
 	clampd.c\
 	clampi.c\
 	get_positive_root.c\
+	sign.c\
 	square.c\
-	get_rand.c\
+	cube.c\
+	solve2.c\
+	solve3.c\
+	solve4.c\
+	newton.c\
 	init_userinput.c\
 	object.c\
 	object_ptr_arr_delete.c\
@@ -60,6 +66,7 @@ SRC = \
 	parse_objects.c\
 	parse_plane.c\
 	parse_sphere.c\
+	parse_torus.c\
 	parse_vect3d.c\
 	parser_parse_scene.c\
 	skip_separator.c\
@@ -68,6 +75,7 @@ SRC = \
 	cylinder.c\
 	plane.c\
 	sphere.c\
+	torus.c\
 	find_closest_intersection.c\
 	render_scene.c\
 	trace_ray.c\
@@ -91,6 +99,7 @@ SRC = \
 	vect3d_norm.c\
 	vect3d_sq_len.c\
 	vect3d_reflect.c\
+	vect3d_rotate_around_axis.c\
 	vect3d_print.c\
 	render_scene_parallel.c\
 
@@ -115,6 +124,7 @@ INC = \
 	object_ptr_arr.h\
 	parser.h\
 	plane.h\
+	torus.h\
 	primitive.h\
 	raytracing.h\
 	rtv1_defines.h\

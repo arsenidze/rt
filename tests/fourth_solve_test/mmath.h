@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/05 19:09:18 by amelihov          #+#    #+#             */
-/*   Updated: 2018/07/16 23:11:23 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/07/17 13:43:58 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,6 @@ double	cube(double x);
 int		sign(double x);
 
 void	solve4(double c[5], double roots[4]);
+void	solve2(double c[3], double roots[2]);
 
 #endif

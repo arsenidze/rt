@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/15 15:18:21 by amelihov          #+#    #+#             */
-/*   Updated: 2018/07/15 15:39:25 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/07/17 20:14:50 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,36 +26,48 @@ short		torus_intersection(void *v_torus, t_vect3d start,
 	double		b;
 	double		c;
 	double		d;
-	double		e;
+	t_vect3d	x;
 	t_vect3d	q;
 	t_vect3d	f;
 	double		h;
 	double		j;
-	double		l;
+	double		k;
+	double		roots[4];
 
 	torus = (t_torus *)v_torus;
+	x = start - torus->pos;
 	a = (torus->r1 - torus->r0) / 2.0 + torus->r0;
 	b = (torus->r1 - torus->r0) / 2.0;
-	c = vect3d_dot(torus->pos, torus->axis);
-	d = vect3d_dot(start, torus->axis);
-	e = vect3d_dot(ray_dir, torus->axis);
-
-	q = ray_dir - vect3d_mult_on_scalar(axis, e);
-	f = start + vect3d_mult_on_scalar(axis, c - d);
+	c = vect3d_dot(x, torus->axis);
+	d = vect3d_dot(ray_dir, torus->axis);
 	
-	h = e * e + vect3d_dot(q, q);
-	j = 2 * (e * d - e * c + vect3d_dot(q, f));
-	l = d * d + c * c - 2 * d * c + vect3d_dot(f, f) + a * a - b * b;
+	q = x - vect3d_mult_on_scalar(torus->axis, c);
+	f = ray_dir - vect3d_mult_on_scalar(torus->axis, d);
+
+	h = vect3d_dot(f, f) + d * d;
+	j = 2 * (vect3d_dot(q, f) + c * d);
+	k = vect3d_dot(q, q) + c * c + a * a - b * b;
+
 	coeff[0] = h * h;
 	coeff[1] = 2 * h * j;
-	coeff[2] = j * j + 2 * h * l - 4 * a * a * vect3d_dot(q, q);
-	coeff[3] = 2 * j * l - 8 * a * a * vect3d_dot(q, f);
-	coeff[4] = l * l - 4 * a * a * vect3d_dot(f, f);
-	// t = get_positive_root(coefficients);
-	// if (t < 0)
-	// 	return (0);
-	// if (intersect_point)
-	// 	*intersect_point = start + vect3d_mult_on_scalar(ray_dir, t - EPS);
+	coeff[2] = j * j + 2 * h * k - square(2 * a) * vect3d_dot(f, f);
+	coeff[3] = 2 * j * k - square(2 * a) * 2 * vect3d_dot(q, f);
+	coeff[4] = k * k - square(2 * a) * vect3d_dot(q, q);
+	solve4(coeff, roots);
+	int	i;
+	i = -1;
+	while (++i < 4)
+		if (roots[i] < 0)
+			roots[i] = INF;
+	t = roots[0];
+	i = 1;
+	while (++i < 4)
+		if (roots[i] < t)
+			t = roots[i];
+	if (t == INF || t != t)
+		return (0);
+	 if (intersect_point)
+	 	*intersect_point = start + vect3d_mult_on_scalar(ray_dir, t - EPS);
 	return (1);
 }
 
@@ -82,7 +94,7 @@ t_vect3d	torus_get_normal(void *v_torus, t_vect3d point)
 	return (normal);
 }
 
-t_torus		*torus_new(t_vect3d pos, double axis, double r0, double r1);
+t_torus		*torus_new(t_vect3d pos, t_vect3d axis, double r0, double r1)
 {
 	t_torus	*torus;
 

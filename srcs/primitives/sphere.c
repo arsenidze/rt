@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 10:52:52 by amelihov          #+#    #+#             */
-/*   Updated: 2018/07/05 23:11:07 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/07/18 22:28:57 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <stdlib.h>
 
 #define EPS 0.001
-
+#include <stdio.h>
 short		sphere_intersection(void *v_sphere, t_vect3d start,
 			t_vect3d ray_dir, t_vect3d *intersect_point)
 {
@@ -31,7 +31,15 @@ short		sphere_intersection(void *v_sphere, t_vect3d start,
 						- 2 * vect3d_dot(start, sphere->pos)
 						+ vect3d_dot(sphere->pos, sphere->pos)
 						- (sphere->radius * sphere->radius);
-	t = get_positive_root(coefficients);
+	double t1;
+	t1 = get_positive_root(coefficients);
+	t = newton(0, coefficients, 2);
+	if (t1 > 0)
+	{
+		printf("a: %f\n", t1);
+		printf("b: %f\n", t);
+		printf("\n");
+	}
 	if (t < 0)
 		return (0);
 	if (intersect_point)

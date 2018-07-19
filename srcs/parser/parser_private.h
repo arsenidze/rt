@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/10 11:31:07 by amelihov          #+#    #+#             */
-/*   Updated: 2018/07/06 18:54:11 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/07/17 14:12:29 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,21 +30,24 @@
 /*
 **	Attribute identifiers
 */
-# define AMBNT		"ambient"
-# define DIFF		"diffuse"
-# define SPEC		"specular"
+# define AMBNT			"ambient"
+# define DIFF			"diffuse"
+# define SPEC			"specular"
 # define POS			"pos"
-# define RADIUS		"radius"
-# define AXIS		"axis"
-# define DIRECTION	"dir"
-# define UP			"up"
-# define NORMAL		"normal"
-# define PRIMIT		"primitive"
-# define SLOPE		"slope"
-# define SPHERE_ID	"sphere"
+# define RADIUS			"radius"
+# define TOR_R0			"radius0"
+# define TOR_R1			"radius1"
+# define AXIS			"axis"
+# define DIRECTION		"dir"
+# define UP				"up"
+# define NORMAL			"normal"
+# define PRIMIT			"primitive"
+# define SLOPE			"slope"
+# define SPHERE_ID		"sphere"
 # define CYLINDER_ID	"cylinder"
 # define CONE_ID		"cone"
-# define PLANE_ID	"plane"
+# define PLANE_ID		"plane"
+# define TORUS_ID		"torus"
 
 # define LEFT_BRACKET	'['
 # define RIGHT_BRACKET	']'
@@ -78,6 +81,7 @@ t_object	*parse_sphere(char *line, t_vect3d components[3]);
 t_object	*parse_cylinder(char *line, t_vect3d components[3]);
 t_object	*parse_cone(char *line, t_vect3d components[3]);
 t_object	*parse_plane(char *line, t_vect3d components[3]);
+t_object	*parse_torus(char *line, t_vect3d components[3]);
 
 short		parse_attr_of_type_vect3d(char *line, int *line_index,
 			char *attr_name, t_vect3d *res);

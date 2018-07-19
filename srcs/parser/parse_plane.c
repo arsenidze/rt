@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 16:23:20 by amelihov          #+#    #+#             */
-/*   Updated: 2018/07/10 18:57:02 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/07/17 20:21:40 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,6 @@ t_object		*parse_plane(char *line, t_vect3d components[3])
 		return (parse_plane_failure(PARSER_PLANE_NORMAL_FAIL));
 	if (!is_correct_eol(&line[i]))
 		return (parse_plane_failure(PARSER_PLANE_EOL_FAIL));
-	return (object_new(components, 1,
+	return (object_new(components, 0,
 						PRIMITIVE(plane, pos, vect3d_norm(normal))));
 }

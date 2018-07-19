@@ -16,16 +16,23 @@ void	function1()
 	t_vect3d	p;
 	t_vect3d	c;
 	t_vect3d	v;
-	t_vect3d	pc;
+	t_vect3d	x;
 	double		res;
 
-	p = start + vect3d_mult_on_scalar(ray_dir, t);
-	c = pos;
+	x = start - pos;
+	p = x + vect3d_mult_on_scalar(ray_dir, t);
+	//c = pos;
 	v = axis;
 
-	pc = c - p;
-	res = square(vect3d_dot(pc, v))
-		+ square(vect3d_len(p + vect3d_mult_on_scalar(v, vect3d_dot(pc, v)))
+	double tmp1 = square(vect3d_dot(p, v));
+	double tmp2 = square(vect3d_len(p
+				+ vect3d_mult_on_scalar(v, vect3d_dot(p, v)))
+				- ((r1 - r0) / 2.0 + r0));
+	double tmp4 = square((r1 - r0) / 2.0);
+	printf("tmp1: %f\n", tmp1);
+	printf("tmp2: %f\n", tmp2);
+	res = square(vect3d_dot(p, v))
+		+ square(vect3d_len(p + vect3d_mult_on_scalar(v, vect3d_dot(p, v)))
 			- ((r1 - r0) / 2.0 + r0))
 		- square((r1 - r0) / 2.0);
 	printf("res1: %f\n", res);
@@ -251,6 +258,7 @@ void	function2()
 	double	l;
 	t_vect3d	q;
 	t_vect3d	f;
+	t_vect3d	x;
 	double		coeff[5];
 
 	a = (r1 - r0) / 2.0 + r0;
@@ -271,7 +279,61 @@ void	function2()
 	coeff[3] = 2 * j * l - 8 * a * a * vect3d_dot(q, f);
 	coeff[4] = l * l - 4 * a * a * vect3d_dot(f, f);
 
-	//printf("%f %f %f %f %f\n", coeff[0], coeff[1], coeff[2], coeff[3], coeff[4]);
+	printf("%f %f %f %f %f\n", coeff[0], coeff[1], coeff[2], coeff[3], coeff[4]);
+	double	res;
+
+	res = coeff[0] * (t * t * t * t)
+		+ coeff[1] * (t * t * t)
+		+ coeff[2] * (t * t)
+		+ coeff[3] * (t)
+		+ coeff[4];
+	printf("my_res: %f\n", res);
+}
+
+void	function3()
+{
+	double	a;
+	double	b;
+	double	c;
+	double	d;
+	double	h;
+	double	j;
+	double	k;
+	t_vect3d	q;
+	t_vect3d	f;
+	t_vect3d	x;
+	double		coeff[5];
+
+	x = start - pos;
+	a = (r1 - r0) / 2.0 + r0;
+	b = (r1 - r0) / 2.0;
+	c = vect3d_dot(x, axis);
+	d = vect3d_dot(ray_dir, axis);
+	
+	q = x - vect3d_mult_on_scalar(axis, c);
+	f = ray_dir - vect3d_mult_on_scalar(axis, d);
+
+	h = vect3d_dot(f, f) + d * d;
+	j = 2 * (vect3d_dot(q, f) + c * d);
+	k = vect3d_dot(q, q) + c * c + a * a - b * b;
+
+	coeff[0] = h * h;
+	coeff[1] = 2 * h * j;
+	coeff[2] = j * j + 2 * h * k - square(2 * a) * vect3d_dot(f, f);
+	coeff[3] = 2 * j * k - square(2 * a) * 2 * vect3d_dot(q, f);
+	coeff[4] = k * k - square(2 * a) * vect3d_dot(q, q);
+
+	double tmp1 = c * c + 2 * c * d * t * square(d * t);
+	double tmp2 = square(vect3d_len(q + vect3d_mult_on_scalar(f, t)) - a);
+	double tmp3 = vect3d_dot(q, q) + 2 * vect3d_dot(q, f) * t
+		+ vect3d_dot(f, f) * t * t;
+	double tmp4 = tmp1 + tmp3 + a * a - b * b - 2 * a * sqrt(tmp3);
+	printf("tmp1: %f\n", tmp1);
+	printf("tmp2: %f\n", tmp2);
+	printf("tmp3: %f\n", tmp3);
+	printf("tmp4: %f\n", tmp4);
+
+	printf("%f %f %f %f %f\n", coeff[0], coeff[1], coeff[2], coeff[3], coeff[4]);
 	double	res;
 
 	res = coeff[0] * (t * t * t * t)
@@ -290,13 +352,13 @@ int main()
 	r1 = 100;
 	start = (t_vect3d){400, 0, 0};
 	ray_dir = (t_vect3d){-1, 0, 0};
-	t = 500;
+	t = 300;
 	function1();
-	function2();
-	for (double i = 300.0; i <= 600.0; i += 0.5)
-	{
-		t = i;
-		function1();
-		function2();
-	}
+	function3();
+//	for (double i = 300.0; i <= 600.0; i += 0.5)
+//	{
+//		t = i;
+//		function1();
+//		function2();
+//	}
 }

@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 20:58:54 by amelihov          #+#    #+#             */
-/*   Updated: 2018/07/14 14:45:56 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/07/17 20:35:52 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,15 +86,14 @@ t_vect3d	trace_ray(const t_scene *scene, t_vect3d orig, t_vect3d ray_dir,
 									intersection.normal, intersection.inside));
 
 			refraction_col = trace_ray(scene,
-			intersection.dest - vect3d_mult_on_scalar(intersection.normal, 0.001),
-								refract_ray,	
-								depth + 1);
-//			return (refraction_col);
+				intersection.dest
+				- vect3d_mult_on_scalar(intersection.normal, 0.001),
+				refract_ray,	
+				depth + 1);
 //			return (COLOR_ADD(COLOR_MULT(reflection_col, fresneleffect),
 //					COLOR_MULT(refraction_col, (1 - fresneleffect))));
 			return (vect3d_mult_on_scalar(reflection_col, fresneleffect)
-				+ vect3d_mult_on_scalar(refraction_col, (1 - fresneleffect))
-				* intersection.hit_object->k[K_AMBIENT]);
+				+ vect3d_mult_on_scalar(refraction_col, (1 - fresneleffect)));
 		}
 		res_color = apply_light(scene, &intersection);
 		return (res_color);

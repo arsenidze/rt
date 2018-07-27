@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 12:58:34 by amelihov          #+#    #+#             */
-/*   Updated: 2018/07/17 14:13:09 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/07/27 17:21:46 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ static t_object	*(*match_primitive_parser(char *value))(char *line,
 		return (&parse_plane);
 	if (ft_strnequ(value, TORUS_ID, ID_LEN(TORUS_ID)))
 		return (&parse_torus);
+	if (ft_strnequ(value, PARABOLOID_ID, ID_LEN(PARABOLOID_ID)))
+		return (&parse_paraboloid);
 	return (NULL);
 }
 

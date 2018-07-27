@@ -6,7 +6,7 @@
 #    By: amelihov <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/29 13:43:11 by amelihov          #+#    #+#              #
-#    Updated: 2018/07/26 14:24:22 by amelihov         ###   ########.fr        #
+#    Updated: 2018/07/27 17:26:49 by amelihov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,6 +67,7 @@ SRC = \
 	parse_plane.c\
 	parse_sphere.c\
 	parse_torus.c\
+	parse_paraboloid.c\
 	parse_vect3d.c\
 	parser_parse_scene.c\
 	skip_separator.c\
@@ -76,6 +77,7 @@ SRC = \
 	plane.c\
 	sphere.c\
 	torus.c\
+	paraboloid.c\
 	find_closest_intersection.c\
 	render_scene.c\
 	trace_ray.c\
@@ -125,6 +127,7 @@ INC = \
 	parser.h\
 	plane.h\
 	torus.h\
+	paraboloid.h\
 	primitive.h\
 	raytracing.h\
 	rtv1_defines.h\

@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 20:58:54 by amelihov          #+#    #+#             */
-/*   Updated: 2018/07/26 16:37:10 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/07/27 16:52:36 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,31 +144,6 @@ t_vect3d	trace_ray(const t_scene *scene, t_vect3d orig, t_vect3d ray_dir,
 //
 //			return (vect3d_mult_on_scalar(reflection_col, fresneleffect)
 //				+ vect3d_mult_on_scalar(refraction_col, (1 - fresneleffect)));
-		}
-		else if (intersection.hit_object->is_glass == 2
-					&& depth < MAX_RAY_DEPTH)
-		{
-			t_vect3d	diffuse_col;
-			t_vect3d	diffuse_ray;
-
-			diffuse_ray = intersection.normal + random_in_unit_sphere();
-			diffuse_col = trace_ray(scene, intersection.dest, diffuse_ray,
-									depth + 1);
-			return (vect3d_mult_on_scalar(diffuse_col, 0.5));
-		}
-		else if (intersection.hit_object->is_glass == 3
-					&& depth < MAX_RAY_DEPTH)
-		{
-			t_vect3d	metal_col;
-			t_vect3d	metal_ray;
-			double		fuzz;
-
-			fuzz = 0.5;
-			metal_ray = vect3d_reflect(ray_dir, intersection.normal)
-						+ vect3d_mult_on_scalar(random_in_unit_sphere(), fuzz);
-			metal_col = trace_ray(scene, intersection.dest, metal_ray,
-									depth + 1);
-			return (vect3d_mult_on_scalar(metal_col, 1));
 		}
 		res_color = apply_light(scene, &intersection);
 		return (res_color);

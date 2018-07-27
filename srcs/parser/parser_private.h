@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/10 11:31:07 by amelihov          #+#    #+#             */
-/*   Updated: 2018/07/17 14:12:29 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/07/27 17:23:17 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@
 # define CONE_ID		"cone"
 # define PLANE_ID		"plane"
 # define TORUS_ID		"torus"
+# define PARABOLOID_ID	"paraboloid"
 
 # define LEFT_BRACKET	'['
 # define RIGHT_BRACKET	']'
@@ -82,6 +83,7 @@ t_object	*parse_cylinder(char *line, t_vect3d components[3]);
 t_object	*parse_cone(char *line, t_vect3d components[3]);
 t_object	*parse_plane(char *line, t_vect3d components[3]);
 t_object	*parse_torus(char *line, t_vect3d components[3]);
+t_object	*parse_paraboloid(char *line, t_vect3d components[3]);
 
 short		parse_attr_of_type_vect3d(char *line, int *line_index,
 			char *attr_name, t_vect3d *res);

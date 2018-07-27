@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/06 14:12:52 by amelihov          #+#    #+#             */
-/*   Updated: 2018/07/17 14:18:36 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/07/27 17:25:23 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,5 +89,11 @@
 # define PARSER_TORUS_RADIUS_FAIL		"Problem with torus radius"
 # define PARSER_TORUS_SEPARATOR_FAIL	"Problem with torus separator"
 # define PARSER_TORUS_EOL_FAIL			"Problem with torus end of line"
+
+# define PARSER_PARABOLOID_POS_FAIL			"Problem with paraboloid position"
+# define PARSER_PARABOLOID_AXIS_FAIL		"Problem with paraboloid axis"
+# define PARSER_PARABOLOID_SLOPE_FAIL		"Problem with paraboloid slope"
+# define PARSER_PARABOLOID_SEPARATOR_FAIL	"Problem with paraboloid separator"
+# define PARSER_PARABOLOID_EOL_FAIL			"Problem with paraboloid end of line"
 
 #endif

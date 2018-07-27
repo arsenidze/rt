@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/13 16:19:50 by amelihov          #+#    #+#             */
-/*   Updated: 2018/07/18 20:57:19 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/07/26 15:32:46 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,5 @@ t_object		*parse_sphere(char *line, t_vect3d components[3])
 		return (parse_sphere_failure(PARSER_SPHERE_RADIUS_FAIL));
 	if (!is_correct_eol(&line[i]))
 		return (parse_sphere_failure(PARSER_SPHERE_EOL_FAIL));
-	return (object_new(components, 0, PRIMITIVE(sphere, pos, radius)));
+	return (object_new(components, 1, PRIMITIVE(sphere, pos, radius)));
 }

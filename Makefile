@@ -6,7 +6,7 @@
 #    By: amelihov <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/29 13:43:11 by amelihov          #+#    #+#              #
-#    Updated: 2018/07/18 20:58:44 by amelihov         ###   ########.fr        #
+#    Updated: 2018/07/26 14:24:22 by amelihov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,7 @@ SRC = \
 	solve2.c\
 	solve3.c\
 	solve4.c\
-	newton.c\
+	random_in_unit_sphere.c\
 	init_userinput.c\
 	object.c\
 	object_ptr_arr_delete.c\

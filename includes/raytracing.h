@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/05 22:23:36 by amelihov          #+#    #+#             */
-/*   Updated: 2018/07/14 17:25:04 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/07/26 14:55:46 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef struct	s_square
 	int	size;
 }				t_square;
 
-#define MAX_RAY_DEPTH	5
+#define MAX_RAY_DEPTH	4
 #define NSAMPLES 		4
 
 //void			render_scene(t_pixel *pixels, t_scene *scene,

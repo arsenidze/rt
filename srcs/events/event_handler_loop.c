@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/05 15:01:14 by amelihov          #+#    #+#             */
-/*   Updated: 2018/07/17 20:27:57 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/07/30 21:44:02 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 #include "scene.h"
 #include "scene_ptr_arr.h"
 #include "object_ptr_arr.h"
-#include "sphere.h"
 #include "userinput.h"
 #include "raytracing.h"
 #include "parallelism.h"
@@ -27,9 +26,9 @@
 void	move_current_object(t_scene **scenes, t_userinput *userinput,
 		t_vect3d step)
 {
-	((t_sphere*)(scenes[userinput->scene_index]
+	*((t_vect3d *)(scenes[userinput->scene_index]
 		->objects[userinput->object_index]
-		->primitive))->pos += step;
+		->primitive)) += step;
 }
 
 #define NEED_REDRAW			1

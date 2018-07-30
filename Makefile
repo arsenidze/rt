@@ -6,7 +6,7 @@
 #    By: amelihov <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/29 13:43:11 by amelihov          #+#    #+#              #
-#    Updated: 2018/07/27 17:26:49 by amelihov         ###   ########.fr        #
+#    Updated: 2018/07/30 20:47:16 by amelihov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ INC_DIR = ./includes
 LIB_DIR = ./lib
 
 SRC = \
+	disc.c\
 	camera.c\
 	camera_move.c\
 	camera_rotate.c\
@@ -77,6 +78,7 @@ SRC = \
 	plane.c\
 	sphere.c\
 	torus.c\
+	composed.c\
 	paraboloid.c\
 	find_closest_intersection.c\
 	render_scene.c\
@@ -127,6 +129,7 @@ INC = \
 	parser.h\
 	plane.h\
 	torus.h\
+	composed.h\
 	paraboloid.h\
 	primitive.h\
 	raytracing.h\
@@ -138,6 +141,7 @@ INC = \
 	vect3d.h\
 	parser_private.h\
 	parallelism.h\
+	disc.h\
 
 LIBFT = $(LIB_DIR)/libft/libft.a
 LIBFT_INC = $(LIB_DIR)/libft/includes/

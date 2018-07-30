@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 20:14:35 by amelihov          #+#    #+#             */
-/*   Updated: 2018/07/10 12:48:42 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/07/30 19:39:58 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "vect3d.h"
 # include "color.h"
 # include "primitive.h"
+//# include "material.h"
 
 # define GET_NORMAL(obj, p) obj->get_normal(obj->primitive, p)
 
@@ -31,6 +32,7 @@ typedef struct	s_object
 	t_vect3d	(*get_normal)(void *primitive, t_vect3d point);
 	void		(*delete_primitive)(void *primitive);
 	int			is_glass;
+//	t_material	material;
 	t_vect3d	k[3];
 }				t_object;
 

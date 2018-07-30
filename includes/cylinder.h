@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/06 14:10:59 by amelihov          #+#    #+#             */
-/*   Updated: 2018/07/06 14:11:02 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/07/30 21:24:37 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@ typedef struct	s_cylinder
 {
 	t_vect3d	pos;
 	t_vect3d	axis;
-	double		radius;
+	double		r;
+	double		r2;
+	double		h;
 }				t_cylinder;
 
 t_cylinder		*cylinder_new(t_vect3d pos, t_vect3d axis, double radius);

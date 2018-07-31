@@ -6,7 +6,7 @@
 #    By: amelihov <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/29 13:43:11 by amelihov          #+#    #+#              #
-#    Updated: 2018/07/30 20:47:16 by amelihov         ###   ########.fr        #
+#    Updated: 2018/07/31 17:38:24 by amelihov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ INC_DIR = ./includes
 LIB_DIR = ./lib
 
 SRC = \
+	equation.c\
 	disc.c\
 	camera.c\
 	camera_move.c\
@@ -142,6 +143,7 @@ INC = \
 	parser_private.h\
 	parallelism.h\
 	disc.h\
+	equation.h\
 
 LIBFT = $(LIB_DIR)/libft/libft.a
 LIBFT_INC = $(LIB_DIR)/libft/includes/

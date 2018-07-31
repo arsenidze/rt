@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 10:43:41 by amelihov          #+#    #+#             */
-/*   Updated: 2018/07/30 21:25:29 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/07/31 17:39:59 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ typedef struct	s_cone
 	t_vect3d	pos;
 	t_vect3d	axis;
 	double		k;
-	double		radius;
+	double		r;
+	double		r2;
 	double		h;
 }				t_cone;
 

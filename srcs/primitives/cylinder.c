@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/05 23:13:00 by amelihov          #+#    #+#             */
-/*   Updated: 2018/07/30 22:00:18 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/07/31 18:53:41 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,12 @@
 #include "disc.h"
 #include <stdlib.h>
 
-#define EPS 0.001
-
 static short	cylinder_cap_intersect(t_cylinder *cylinder, t_vect3d start,
 			t_vect3d ray_dir, t_vect3d *intersect_point)
 {
 	double	proj_on_axis;
 	
-	proj_on_axis = vect3d_dot(*intersect_point, cylinder->axis);
+	proj_on_axis = vect3d_dot(*intersect_point - cylinder->pos, cylinder->axis);
 	if (proj_on_axis <= 0.0)
 		return (disc_intersection(&(t_disc){cylinder->pos,
 							cylinder->axis, cylinder->r, cylinder->r2},
@@ -35,6 +33,8 @@ static short	cylinder_cap_intersect(t_cylinder *cylinder, t_vect3d start,
 	else
 		return (1);
 }
+
+#define EPS 0.001
 
 short		cylinder_intersection(void *v_cylinder, t_vect3d start,
 			t_vect3d ray_dir, t_vect3d *intersect_point)
@@ -81,7 +81,7 @@ t_vect3d	cylinder_get_normal(void *v_cylinder, t_vect3d point)
 	double		proj_on_axis;
 
 	cylinder = (t_cylinder *)v_cylinder;
-	proj_on_axis = vect3d_dot(point, cylinder->axis);
+	proj_on_axis = vect3d_dot(point - cylinder->pos, cylinder->axis);
 	if (proj_on_axis <= 0.0)
 		return (disc_get_normal(&(t_disc){cylinder->pos,
 							cylinder->axis, cylinder->r, cylinder->r2},

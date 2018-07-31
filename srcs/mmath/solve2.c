@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/17 13:44:07 by amelihov          #+#    #+#             */
-/*   Updated: 2018/07/17 13:47:35 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/07/31 19:59:38 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ void	solve2(double c[3], double roots[2])
 	discrmnt = c[B] * c[B] - 4.0 * c[A] * c[C];
 	if (discrmnt < 0)
 	{
-		roots[0] = INF;
-		roots[1] = INF;
+		roots[0] = -1.0;
+		roots[1] = -1.0;
 		return ;
 	}
 	discrmnt_sqrt = sqrt(discrmnt);
-	roots[0] = (-c[B] - discrmnt_sqrt) / (2.0 * c[A]);
-	roots[1] = (-c[B] + discrmnt_sqrt) / (2.0 * c[A]);
+	roots[0] = -c[B] / (2.0 * c[A]) - discrmnt_sqrt / (2.0 * c[A]);
+	roots[1] = -c[B] / (2.0 * c[A]) + discrmnt_sqrt / (2.0 * c[A]);
 }

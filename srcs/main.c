@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/29 12:44:34 by amelihov          #+#    #+#             */
-/*   Updated: 2018/07/30 21:12:50 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/07/31 22:50:02 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 #include "composed.h"
 #include <stdlib.h>
 #include "disc.h"
+#include "cube.h"
+#include "rect.h"
 
 #define TEST_SCENE_NOBJECTS	1
 #define TEST_SCENE_NLIGHTS		1
@@ -73,10 +75,24 @@ t_scene	**get_test_scene(void)
 //	VECT3D_3(vect3d(0.4, 0.4, 0.4), vect3d(0.4, 0.4, 0.4), vect3d(0.4, 0.4, 0.4)),
 //		0, PRIMITIVE(composed, vect3d(0, 0, 0), comp_obj, 6));
 //
+
+//	objects[0] = object_new(
+//	VECT3D_3(vect3d(0.4, 0.4, 0.4),
+//		vect3d(0.4, 0.4, 0.4), vect3d(0.4, 0.4, 0.4)),
+//		0, PRIMITIVE(disc, vect3d(0, 0, -10), vect3d(0, 0, 1), 10));
+
+
+//	objects[0] = object_new(
+//	VECT3D_3(vect3d(0.4, 0.4, 0.4),
+//		vect3d(0.4, 0.4, 0.4), vect3d(0.4, 0.4, 0.4)),
+//		0, PRIMITIVE(cube, vect3d(0, 0, 0), 10, vect3d(0, 0, 1)));
+
 	objects[0] = object_new(
 	VECT3D_3(vect3d(0.4, 0.4, 0.4),
 		vect3d(0.4, 0.4, 0.4), vect3d(0.4, 0.4, 0.4)),
-		0, PRIMITIVE(disc, vect3d(0, 0, -10), vect3d(0, 0, 1), 10));
+		0, PRIMITIVE(rect, vect3d(0, 0, 0), vect3d(0, 0, 1), vect3d(0, 1, 0),
+					vect3d(1, 0, 0), 10, 20));
+
 	lights[0] = light_new(vect3d(400, 600, 50), VECT3D_3(vect3d(1, 1, 1),
 		vect3d(1, 1, 1), vect3d(1, 1, 1)));
 	scene = scene_new(camera, objects, lights);
@@ -103,8 +119,8 @@ int			main(int argc, char *argv[])
 
 	if (argc != 2)
 		return (print_usage());
-	scenes = get_scenes_from_file(argv[1]);
-//	scenes = get_test_scene();
+//	scenes = get_scenes_from_file(argv[1]);
+	scenes = get_test_scene();
 	if (!scenes)
 		return (err_print(PROGNAME": "));
 	drawer = drawer_new(WIN_W, WIN_H, argv[0]);

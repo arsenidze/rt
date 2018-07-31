@@ -6,7 +6,7 @@
 #    By: amelihov <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/29 13:43:11 by amelihov          #+#    #+#              #
-#    Updated: 2018/07/31 17:38:24 by amelihov         ###   ########.fr        #
+#    Updated: 2018/07/31 22:58:40 by amelihov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ LIB_DIR = ./lib
 
 SRC = \
 	equation.c\
+	rect.c\
 	disc.c\
 	camera.c\
 	camera_move.c\
@@ -43,7 +44,7 @@ SRC = \
 	get_positive_root.c\
 	sign.c\
 	square.c\
-	cube.c\
+	cb.c\
 	solve2.c\
 	solve3.c\
 	solve4.c\
@@ -107,10 +108,12 @@ SRC = \
 	vect3d_rotate_around_axis.c\
 	vect3d_print.c\
 	render_scene_parallel.c\
+	cube.c\
 
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 	
 INC = \
+	rect.h\
 	apply_light.h\
 	camera.h\
 	color.h\
@@ -144,6 +147,7 @@ INC = \
 	parallelism.h\
 	disc.h\
 	equation.h\
+	cube.h\
 
 LIBFT = $(LIB_DIR)/libft/libft.a
 LIBFT_INC = $(LIB_DIR)/libft/includes/
@@ -161,9 +165,11 @@ all:
 	make $(NAME)
 
 $(NAME): $(OBJ) $(LIBFT) Makefile
+	echo "qweqe"
 	$(LD) $(OBJ) $(LFLAGS) -o $(NAME)
 
 $(OBJ_DIR)/%.o: %.c $(INC)
+	echo "asdasd"
 	$(CC) $(CFLAGS) $(HFLAGS) -c $< -o $@
 
 $(OBJ): | $(OBJ_DIR)

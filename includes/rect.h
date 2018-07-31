@@ -1,30 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   plane.h                                            :+:      :+:    :+:   */
+/*   rect.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 10:43:41 by amelihov          #+#    #+#             */
-/*   Updated: 2018/05/14 20:31:23 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/07/31 22:47:53 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PLANE_H
-# define PLANE_H
+#ifndef RECT_H
+# define RECT_H
 
 # include "vect3d.h"
 
-typedef struct	s_plane
+typedef struct	s_rect
 {
 	t_vect3d	pos;
 	t_vect3d	normal;
-}				t_plane;
+	double		w;
+	double		h;
+	t_vect3d	u;
+	t_vect3d	v;
+}				t_rect;
 
-t_plane			*plane_new(t_vect3d pos, t_vect3d normal);
-void			plane_delete(void *plane);
-short			plane_intersection(void *plane, t_vect3d start,
+t_rect			*rect_new(t_vect3d pos, t_vect3 normal, t_vect3d u,
+				t_vect3d v, double w, double h);
+void			rect_delete(void *rect);
+short			rect_intersection(void *rect, t_vect3d start,
 				t_vect3d ray_dir, t_vect3d *intersect_point);
-t_vect3d		plane_get_normal(void *plane, t_vect3d point);
+t_vect3d		rect_get_normal(void *rect, t_vect3d point);
 
 #endif

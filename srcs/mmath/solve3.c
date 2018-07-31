@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/16 15:56:53 by amelihov          #+#    #+#             */
-/*   Updated: 2018/07/16 23:06:49 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/07/31 22:19:21 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	solve3(double c[4], double x[3])
 	e.q = (2.0 * (c[B] * c[B] * c[B]) - 9.0 * c[A] * c[B] * c[C]
 		+ 27.0 * c[A] * c[A] * c[D]) / (27.0 * c[A] * c[A] * c[A]);
 	e.p = (3 * c[A] * c[C] - c[B] * c[B]) / (3 * c[A] * c[A]);
-	e.quad_discrmnt = square(e.q / 2.0) + cube(e.p / 3.0);
+	e.quad_discrmnt = square(e.q / 2.0) + cb(e.p / 3.0);
 	if (e.quad_discrmnt >= 0)
 	{
 		e.sqrt_quad_discrmnt = sqrt(e.quad_discrmnt);

@@ -6,7 +6,7 @@
 #    By: amelihov <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/29 13:43:11 by amelihov          #+#    #+#              #
-#    Updated: 2018/07/31 22:58:40 by amelihov         ###   ########.fr        #
+#    Updated: 2018/08/01 16:28:44 by amelihov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -80,7 +80,6 @@ SRC = \
 	plane.c\
 	sphere.c\
 	torus.c\
-	composed.c\
 	paraboloid.c\
 	find_closest_intersection.c\
 	render_scene.c\
@@ -108,12 +107,11 @@ SRC = \
 	vect3d_rotate_around_axis.c\
 	vect3d_print.c\
 	render_scene_parallel.c\
-	cube.c\
+	cuboid.c\
 
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 	
 INC = \
-	rect.h\
 	apply_light.h\
 	camera.h\
 	color.h\
@@ -133,7 +131,6 @@ INC = \
 	parser.h\
 	plane.h\
 	torus.h\
-	composed.h\
 	paraboloid.h\
 	primitive.h\
 	raytracing.h\
@@ -146,8 +143,9 @@ INC = \
 	parser_private.h\
 	parallelism.h\
 	disc.h\
-	equation.h\
-	cube.h\
+	cuboid.h\
+	rect.h\
+	basis.h\
 
 LIBFT = $(LIB_DIR)/libft/libft.a
 LIBFT_INC = $(LIB_DIR)/libft/includes/
@@ -160,16 +158,17 @@ CFLAGS = -Wall -Wextra -Werror -g
 HFLAGS = -I $(INC_DIR) -I $(LIBFT_INC) -I $(SDL_INC) 
 LFLAGS = $(LIBFT_FLAGS) $(SDL_FLAGS) 
 
+#testH:
+#	$(INC)
+
 all:
 	make -C $(LIB_DIR)/libft/
 	make $(NAME)
 
 $(NAME): $(OBJ) $(LIBFT) Makefile
-	echo "qweqe"
 	$(LD) $(OBJ) $(LFLAGS) -o $(NAME)
 
 $(OBJ_DIR)/%.o: %.c $(INC)
-	echo "asdasd"
 	$(CC) $(CFLAGS) $(HFLAGS) -c $< -o $@
 
 $(OBJ): | $(OBJ_DIR)

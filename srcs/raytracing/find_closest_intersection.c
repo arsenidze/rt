@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/04 12:15:19 by amelihov          #+#    #+#             */
-/*   Updated: 2018/07/14 14:46:22 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/08/01 15:26:45 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,16 @@ short	find_closest_intersection(const t_scene *scene, t_vect3d start,
 		i++;
 	}
 	if (was_intersect)
+	{
 		intersection->normal = GET_NORMAL(intersection->hit_object,
 												intersection->dest);
-	if (vect3d_dot(ray_dir, intersection->normal) > 0)
-	{
-		intersection->normal = -intersection->normal;
-		intersection->inside = 1;
+		if (vect3d_dot(ray_dir, intersection->normal) > 0)
+		{
+			intersection->normal = -intersection->normal;
+			intersection->inside = 1;
+		}
+		else
+			intersection->inside = 0;
 	}
-	else
-		intersection->inside = 0;
 	return (was_intersect);
 }

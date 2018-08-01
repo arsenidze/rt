@@ -1,32 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rect.h                                             :+:      :+:    :+:   */
+/*   cuboid.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 10:43:41 by amelihov          #+#    #+#             */
-/*   Updated: 2018/08/01 14:52:51 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/08/01 16:16:56 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RECT_H
-# define RECT_H
+#ifndef CUBOID_H
+# define CUBOID_H
 
 # include "vect3d.h"
 # include "basis.h"
+# include "rect.h"
 
-typedef struct	s_rect
+typedef struct	s_cuboid
 {
 	t_vect3d	pos;
 	t_basis		basis;
-	double		half_sides[2];
-}				t_rect;
+	double		half_sides[3];
+	t_rect		faces[6];
+}				t_cuboid;
 
-t_rect			*rect_new(t_vect3d pos, t_basis basis, double half_sides[2]);
-void			rect_delete(void *rect);
-short			rect_intersection(void *rect, t_vect3d start,
+t_cuboid		*cuboid_new(t_vect3d pos, t_basis basis, double sides[3]);
+void			cuboid_delete(void *cuboid);
+short			cuboid_intersection(void *cuboid, t_vect3d start,
 				t_vect3d ray_dir, t_vect3d *intersect_point);
-t_vect3d		rect_get_normal(void *rect, t_vect3d point);
+t_vect3d		cuboid_get_normal(void *cuboid, t_vect3d point);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/29 12:44:34 by amelihov          #+#    #+#             */
-/*   Updated: 2018/07/31 22:50:02 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/08/01 16:14:23 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 #include "composed.h"
 #include <stdlib.h>
 #include "disc.h"
-#include "cube.h"
+#include "cuboid.h"
 #include "rect.h"
 
 #define TEST_SCENE_NOBJECTS	1
@@ -43,7 +43,7 @@ t_scene	**get_test_scene(void)
 	if (!(lights = malloc(sizeof(t_light *) * (TEST_SCENE_NLIGHTS + 1))))
 		return (NULL);
 	lights[TEST_SCENE_NLIGHTS] = NULL;
-	camera = camera_new(vect3d(500, 0, 0), vect3d(-1, 0, 0), vect3d(0, 0, 1));
+	camera = camera_new(vect3d(300, 0, 0), vect3d(-1, 0, 0), vect3d(0, 0, 1));
 
 //	if (!(comp_obj = malloc(sizeof(t_object *) * 6)))
 //		return (NULL);
@@ -82,16 +82,19 @@ t_scene	**get_test_scene(void)
 //		0, PRIMITIVE(disc, vect3d(0, 0, -10), vect3d(0, 0, 1), 10));
 
 
-//	objects[0] = object_new(
-//	VECT3D_3(vect3d(0.4, 0.4, 0.4),
-//		vect3d(0.4, 0.4, 0.4), vect3d(0.4, 0.4, 0.4)),
-//		0, PRIMITIVE(cube, vect3d(0, 0, 0), 10, vect3d(0, 0, 1)));
-
 	objects[0] = object_new(
 	VECT3D_3(vect3d(0.4, 0.4, 0.4),
 		vect3d(0.4, 0.4, 0.4), vect3d(0.4, 0.4, 0.4)),
-		0, PRIMITIVE(rect, vect3d(0, 0, 0), vect3d(0, 0, 1), vect3d(0, 1, 0),
-					vect3d(1, 0, 0), 10, 20));
+		0, PRIMITIVE(cuboid, vect3d(0, 0, 0),
+			(t_basis){vect3d(1, 0, 0), vect3d(0, 1, 0), vect3d(0, 0, 1)},
+			(double[3]){30, 30, 30}));
+
+//	objects[0] = object_new(
+//	VECT3D_3(vect3d(0.4, 0.4, 0.4),
+//		vect3d(0.4, 0.4, 0.4), vect3d(0.4, 0.4, 0.4)),
+//		0, PRIMITIVE(rect, vect3d(0, 0, -10),
+//			(t_basis){vect3d(1, 0, 0), vect3d(0, 1, 0),
+//					vect3d(0, 0, 1)}, (double[]){5, 10}));
 
 	lights[0] = light_new(vect3d(400, 600, 50), VECT3D_3(vect3d(1, 1, 1),
 		vect3d(1, 1, 1), vect3d(1, 1, 1)));

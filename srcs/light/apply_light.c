@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/09 23:21:16 by amelihov          #+#    #+#             */
-/*   Updated: 2018/07/14 14:46:59 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/08/01 15:25:30 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ t_vect3d	apply_light(const t_scene *scene, t_intersection *inter)
 			> vect3d_sq_len((tmp.dest - tmp.orig)))
 				continue ;
 		inter->normal = GET_NORMAL(inter->hit_object, inter->dest);
+		//inter->normal alredy 
 		total += get_diffuse(scene->lights[i], inter, ray_to_light, sq_dist);
 		total += get_specular(scene->lights[i], inter, ray_to_light, sq_dist);
 	}

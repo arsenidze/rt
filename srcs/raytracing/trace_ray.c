@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 20:58:54 by amelihov          #+#    #+#             */
-/*   Updated: 2018/07/31 18:53:04 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/08/01 15:21:38 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,10 @@ t_vect3d	trace_ray(const t_scene *scene, t_vect3d orig, t_vect3d ray_dir,
 					refract_ray,	
 					depth + 1);
 			}
-t_vect3d	reflection_col; t_vect3d	reflect_ray = vect3d_norm(vect3d_reflect(ray_dir, intersection.normal)); reflection_col = vect3d(0, 0, 0);
+			t_vect3d	reflection_col;
+			t_vect3d	reflect_ray =
+				vect3d_norm(vect3d_reflect(ray_dir, intersection.normal));
+			reflection_col = vect3d(0, 0, 0);
 			reflection_col = trace_ray(scene, intersection.dest,
 								reflect_ray,
 								depth + 1);

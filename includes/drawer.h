@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 16:32:41 by amelihov          #+#    #+#             */
-/*   Updated: 2018/07/14 15:48:46 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/08/01 22:15:41 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,6 @@ typedef struct	s_drawer
 	SDL_Renderer	*renderer;
 	SDL_Texture		*texture;
 	t_canvas		canvas;
-	//t_pixel			*pixels;
-	//int				pitch;
 }				t_drawer;
 
 t_drawer		*drawer_new(unsigned int win_w, unsigned int win_h,

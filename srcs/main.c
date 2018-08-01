@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/29 12:44:34 by amelihov          #+#    #+#             */
-/*   Updated: 2018/08/01 16:14:23 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/08/01 22:22:02 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,11 @@
 #include "cuboid.h"
 #include "rect.h"
 
+#include "rtv1_defines.h"
+
 #define TEST_SCENE_NOBJECTS	1
 #define TEST_SCENE_NLIGHTS		1
-t_scene	**get_test_scene(void)
+t_scene	**get_test_scene(t_drawer *drawer)
 {
 	t_scene		*scene;
 	t_camera	*camera;
@@ -88,13 +90,20 @@ t_scene	**get_test_scene(void)
 		0, PRIMITIVE(cuboid, vect3d(0, 0, 0),
 			(t_basis){vect3d(1, 0, 0), vect3d(0, 1, 0), vect3d(0, 0, 1)},
 			(double[3]){30, 30, 30}));
-
+	
 //	objects[0] = object_new(
 //	VECT3D_3(vect3d(0.4, 0.4, 0.4),
 //		vect3d(0.4, 0.4, 0.4), vect3d(0.4, 0.4, 0.4)),
 //		0, PRIMITIVE(rect, vect3d(0, 0, -10),
 //			(t_basis){vect3d(1, 0, 0), vect3d(0, 1, 0),
 //					vect3d(0, 0, 1)}, (double[]){5, 10}));
+	SDL_Surface	*surface = SDL_LoadBMP(PATH_TEX"pointillist.bmp");
+	if (!surface)
+	{
+		printf("file in %s on line %d\n", __FILE__, __LINE__);
+		exit(1);
+	}
+	objects[0]->tex = SDL_CreateTextureFromSurface(drawer->renderer, surface);
 
 	lights[0] = light_new(vect3d(400, 600, 50), VECT3D_3(vect3d(1, 1, 1),
 		vect3d(1, 1, 1), vect3d(1, 1, 1)));
@@ -122,12 +131,12 @@ int			main(int argc, char *argv[])
 
 	if (argc != 2)
 		return (print_usage());
-//	scenes = get_scenes_from_file(argv[1]);
-	scenes = get_test_scene();
-	if (!scenes)
-		return (err_print(PROGNAME": "));
 	drawer = drawer_new(WIN_W, WIN_H, argv[0]);
 	if (!drawer)
+		return (err_print(PROGNAME": "));
+//	scenes = get_scenes_from_file(argv[1]);
+	scenes = get_test_scene(drawer);
+	if (!scenes)
 		return (err_print(PROGNAME": "));
 	event_handler_loop(drawer, scenes);
 	drawer_delete(drawer);

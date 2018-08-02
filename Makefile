@@ -6,7 +6,7 @@
 #    By: amelihov <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/29 13:43:11 by amelihov          #+#    #+#              #
-#    Updated: 2018/08/01 16:28:44 by amelihov         ###   ########.fr        #
+#    Updated: 2018/08/02 13:28:14 by amelihov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -146,6 +146,7 @@ INC = \
 	cuboid.h\
 	rect.h\
 	basis.h\
+	texture.h\
 
 LIBFT = $(LIB_DIR)/libft/libft.a
 LIBFT_INC = $(LIB_DIR)/libft/includes/

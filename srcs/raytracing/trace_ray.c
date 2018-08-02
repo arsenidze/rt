@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 20:58:54 by amelihov          #+#    #+#             */
-/*   Updated: 2018/08/01 15:21:38 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/08/02 17:58:26 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "apply_light.h"
 #include "intersection.h"
 #include "mmath.h"
+#include "texture.h"
 
 float mix(const float a, const float b, const float mix)
 {
@@ -76,6 +77,8 @@ void		fresnel(t_vect3d dir, t_vect3d n, float ior, float *kr)
 
 #define BACKGROUND_COLOR vect3d(0, 0, 0)
 //#define BACKGROUND_COLOR COLOR(0x44444400)
+
+#define GET_TEX_COORD(o,p,t_coord) o->get_tex_coord(o->primitive,p,t_coord)
 
 t_vect3d	trace_ray(const t_scene *scene, t_vect3d orig, t_vect3d ray_dir,
 			int depth)
@@ -142,7 +145,25 @@ t_vect3d	trace_ray(const t_scene *scene, t_vect3d orig, t_vect3d ray_dir,
 //			return (vect3d_mult_on_scalar(reflection_col, fresneleffect)
 //				+ vect3d_mult_on_scalar(refraction_col, (1 - fresneleffect)));
 		}
-		res_color = apply_light(scene, &intersection);
+		//res_color = apply_light(scene, &intersection);
+		if (!intersection.hit_object->get_tex_coord)
+		{
+			printf("fail in: %s at line: %d", __FILE__, __LINE__);
+			exit(1);
+		}
+		float tex_coord[2];
+		GET_TEX_COORD(intersection.hit_object, intersection.dest, tex_coord);
+		tex_coord[0] *= intersection.hit_object->tex.w;
+		tex_coord[1] *= intersection.hit_object->tex.h;
+		int	tex_coord1[2];
+		tex_coord1[0] = (int)tex_coord[0];
+		tex_coord1[1] = (int)tex_coord[1];
+		t_color	col;
+		col.value = TEX_GET_PIXEL(intersection.hit_object->tex, tex_coord1[0],
+				  												tex_coord1[1]);
+		res_color[X] = col.rgba[RED];
+		res_color[Y] = col.rgba[GREEN];
+		res_color[Z] = col.rgba[BLUE];
 		return (res_color);
 	}
 	return (BACKGROUND_COLOR);

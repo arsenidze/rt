@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 20:58:54 by amelihov          #+#    #+#             */
-/*   Updated: 2018/08/02 17:58:26 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/08/04 15:27:14 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,17 +153,17 @@ t_vect3d	trace_ray(const t_scene *scene, t_vect3d orig, t_vect3d ray_dir,
 		}
 		float tex_coord[2];
 		GET_TEX_COORD(intersection.hit_object, intersection.dest, tex_coord);
-		tex_coord[0] *= intersection.hit_object->tex.w;
-		tex_coord[1] *= intersection.hit_object->tex.h;
+		tex_coord[0] *= (intersection.hit_object->tex.w - 1);
+		tex_coord[1] *= (intersection.hit_object->tex.h - 1);
 		int	tex_coord1[2];
 		tex_coord1[0] = (int)tex_coord[0];
 		tex_coord1[1] = (int)tex_coord[1];
 		t_color	col;
 		col.value = TEX_GET_PIXEL(intersection.hit_object->tex, tex_coord1[0],
 				  												tex_coord1[1]);
-		res_color[X] = col.rgba[RED];
-		res_color[Y] = col.rgba[GREEN];
-		res_color[Z] = col.rgba[BLUE];
+		res_color[X] = col.rgba[RED] / 255.0;
+		res_color[Y] = col.rgba[GREEN] / 255.0;
+		res_color[Z] = col.rgba[BLUE] / 255.0;
 		return (res_color);
 	}
 	return (BACKGROUND_COLOR);

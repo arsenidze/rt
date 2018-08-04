@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/05 23:13:00 by amelihov          #+#    #+#             */
-/*   Updated: 2018/08/02 18:07:24 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/08/04 16:05:30 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,35 +101,17 @@ t_vect3d	cylinder_get_normal(void *v_cylinder, t_vect3d point)
 	return (normal);
 }
 
-t_vect3d		change_basis(t_basis basis, t_vect3d point)
-{
-	t_vect3d	new_point;
-
-	new_point[X] = vect3d_dot(basis.x, point);
-	new_point[Y] = vect3d_dot(basis.y, point);
-	new_point[Z] = vect3d_dot(basis.z, point);
-	return (new_point);
-}
-#include <stdio.h>
 void			cylinder_get_tex_coord(void *v_cylinder, t_vect3d point,
 				float coord[2])
 {
-	
 	t_cylinder	*cylinder;
 	double		phi;
-	//double		r;
 
 	cylinder = (t_cylinder *)v_cylinder;
-	point = change_basis(cylinder->basis, point - cylinder->pos);
-	//r = sqrt(square(point[X]) + square(point[Y]));
-	phi = atan(point[Y] / point[X]);
+	point = basis_get_coord_in_basis(cylinder->basis, point - cylinder->pos);
+	phi = atan2(point[Y], point[X]) + M_PI;
 	coord[X] = phi / (2.0 * M_PI);
-	coord[Y] = point[Z] / cylinder->h;
-	printf("%f %f\n", coord[X], coord[Y]);
-	vect3d_print(point);
-	printf("\n");
-//	coord[X] = 0;
-//	coord[Y] = 0;
+	coord[Y] = 1.0 - point[Z] / cylinder->h;
 }
 
 t_cylinder	*cylinder_new(t_vect3d pos, t_vect3d axis, double radius)
@@ -147,7 +129,6 @@ t_cylinder	*cylinder_new(t_vect3d pos, t_vect3d axis, double radius)
 	cylinder->basis.x = vect3d(1, 0, 0);
 	cylinder->basis.y = vect3d(0, 1, 0);
 	cylinder->basis.z = axis;
-
 
 	return (cylinder);
 }

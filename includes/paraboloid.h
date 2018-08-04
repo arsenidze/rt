@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 10:43:41 by amelihov          #+#    #+#             */
-/*   Updated: 2018/07/27 17:03:05 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/08/04 16:29:41 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,7 @@ void			paraboloid_delete(void *paraboloid);
 short			paraboloid_intersection(void *paraboloid, t_vect3d start,
 				t_vect3d ray_dir, t_vect3d *intersect_point);
 t_vect3d		paraboloid_get_normal(void *paraboloid, t_vect3d point);
+void			paraboloid_get_tex_coord(void *paraboloid, t_vect3d point,
+				float coord[2]);
 
 #endif

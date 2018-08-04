@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/01 14:50:04 by amelihov          #+#    #+#             */
-/*   Updated: 2018/08/01 14:52:02 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/08/04 15:58:22 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,7 @@ typedef struct	s_basis
 	t_vect3d	y;
 	t_vect3d	z;
 }				t_basis;
+
+t_vect3d	basis_get_coord_in_basis(t_basis basis, t_vect3d point);
 
 #endif

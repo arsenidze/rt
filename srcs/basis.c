@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   texture.h                                          :+:      :+:    :+:   */
+/*   basis.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/02 13:22:49 by amelihov          #+#    #+#             */
-/*   Updated: 2018/08/04 15:18:19 by amelihov         ###   ########.fr       */
+/*   Created: 2018/08/04 15:58:34 by amelihov          #+#    #+#             */
+/*   Updated: 2018/08/04 15:58:57 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TEXTURE_H
-# define TEXTURE_H
+#include "basis.h"
 
-#define BYTE_PER_PIX	3
-
-#define TEX_GET_PIXEL(tex,x,y) *(t_uint*)(tex.pixels+((y)*tex.h+(x))*BYTE_PER_PIX)
-
-typedef unsigned int	t_uint;
-
-typedef struct			s_texture
+t_vect3d	basis_get_coord_in_basis(t_basis basis, t_vect3d point)
 {
-	t_uint	w;
-	t_uint	h;
-	t_uint	pitch;
-	void	*pixels;
-}						t_texture;
+	t_vect3d	new_point;
 
-#endif
+	new_point[X] = vect3d_dot(basis.x, point);
+	new_point[Y] = vect3d_dot(basis.y, point);
+	new_point[Z] = vect3d_dot(basis.z, point);
+	return (new_point);
+}

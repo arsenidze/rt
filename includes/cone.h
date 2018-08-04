@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 10:43:41 by amelihov          #+#    #+#             */
-/*   Updated: 2018/07/31 17:39:59 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/08/04 17:42:41 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,12 @@
 # define CONE_H
 
 # include "vect3d.h"
+# include "basis.h"
 
 typedef struct	s_cone
 {
 	t_vect3d	pos;
+	t_basis		basis;
 	t_vect3d	axis;
 	double		k;
 	double		r;
@@ -30,5 +32,7 @@ void			cone_delete(void *cone);
 short			cone_intersection(void *cone, t_vect3d start,
 				t_vect3d ray_dir, t_vect3d *intersect_point);
 t_vect3d		cone_get_normal(void *cone, t_vect3d point);
+void			cone_get_tex_coord(void *cone, t_vect3d point,
+				float coord[2]);
 
 #endif

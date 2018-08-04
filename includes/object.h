@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 20:14:35 by amelihov          #+#    #+#             */
-/*   Updated: 2018/08/02 17:54:00 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/08/04 20:49:19 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ typedef struct	s_object
 	short		(*intersection)(void *primitive, t_vect3d start,
 				t_vect3d ray_dir, t_vect3d *intersect_point);
 	t_vect3d	(*get_normal)(void *primitive, t_vect3d point);
-	void		(*get_tex_coord)(void *primitive, t_vect3d point, float coord[2]);
+	void		(*get_tex_coord)(void *primitive, t_vect3d point,
+				float coord[2]);
 	void		(*delete_primitive)(void *primitive);
 	int			is_glass;
 //	t_material	material;

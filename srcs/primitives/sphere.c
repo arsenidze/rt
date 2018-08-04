@@ -6,13 +6,14 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 10:52:52 by amelihov          #+#    #+#             */
-/*   Updated: 2018/07/26 14:06:14 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/08/04 16:38:05 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sphere.h"
 #include "mmath.h"
 #include <stdlib.h>
+#include <math.h>
 
 #define EPS 0.001
 
@@ -55,6 +56,23 @@ t_vect3d	sphere_get_normal(void *v_sphere, t_vect3d point)
 	return (normal);
 }
 
+void			sphere_get_tex_coord(void *v_sphere, t_vect3d point,
+				float coord[2])
+{
+	t_sphere	*sphere;
+	double		phi;
+	double		theta;
+	double		r;
+
+	sphere = (t_sphere *)v_sphere;
+	point = basis_get_coord_in_basis(sphere->basis, point - sphere->pos);
+	r = sqrt(square(point[X]) + square(point[Y]) + square(point[Z]));
+	phi = atan2(point[Y], point[X]) + M_PI;
+	theta = acos(point[Z] / r);
+	coord[X] = phi / (2.0 * M_PI);
+	coord[Y] = theta / (2.0 * M_PI);
+}
+
 t_sphere	*sphere_new(t_vect3d pos, double radius)
 {
 	t_sphere	*sphere;
@@ -62,6 +80,7 @@ t_sphere	*sphere_new(t_vect3d pos, double radius)
 	if (!(sphere = malloc(sizeof(t_sphere))))
 		return (NULL);
 	sphere->pos = pos;
+	sphere->basis = (t_basis){vect3d(1, 0, 0), vect3d(0, 1, 0), vect3d(0, 0, 1)};
 	sphere->radius = radius;
 	return (sphere);
 }

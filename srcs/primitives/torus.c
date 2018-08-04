@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/15 15:18:21 by amelihov          #+#    #+#             */
-/*   Updated: 2018/07/17 20:14:50 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/08/04 16:32:17 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,14 @@ t_vect3d	torus_get_normal(void *v_torus, t_vect3d point)
 	normal = point - mid;
 	normal = vect3d_norm(normal);
 	return (normal);
+}
+
+void			torus_get_tex_coord(void *v_torus, t_vect3d point,
+				float coord[2])
+{
+	(void)v_torus;
+	(void)point;
+	(void)coord;
 }
 
 t_torus		*torus_new(t_vect3d pos, t_vect3d axis, double r0, double r1)

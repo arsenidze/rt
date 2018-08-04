@@ -6,13 +6,14 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 10:52:52 by amelihov          #+#    #+#             */
-/*   Updated: 2018/08/01 12:56:13 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/08/04 17:38:18 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "plane.h"
 #include "mmath.h"
 #include <stdlib.h>
+#include <math.h>
 
 #define EPS 0.001
 
@@ -50,6 +51,17 @@ t_vect3d	plane_get_normal(void *v_plane, t_vect3d point)
 	return (plane->normal);
 }
 
+void			plane_get_tex_coord(void *v_plane, t_vect3d point,
+				float coord[2])
+{
+	t_plane		*plane;
+
+	plane = (t_plane *)v_plane;
+	point = basis_get_coord_in_basis(plane->basis, point - plane->pos);
+	coord[X] = fabs(fmod(point[X], 500.0)) / 500.0;
+	coord[Y] = fabs(fmod(point[Y], 500.0)) / 500.0;
+}
+
 t_plane			*plane_new(t_vect3d pos, t_vect3d normal)
 {
 	t_plane	*plane;
@@ -57,6 +69,7 @@ t_plane			*plane_new(t_vect3d pos, t_vect3d normal)
 	if (!(plane = malloc(sizeof(t_plane))))
 		return (NULL);
 	plane->pos = pos;
+	plane->basis = (t_basis){vect3d(1, 0, 0), vect3d(0, 1, 0), normal};
 	plane->normal = normal;
 	return (plane);
 }

@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 10:52:52 by amelihov          #+#    #+#             */
-/*   Updated: 2018/07/27 17:27:09 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/08/04 16:30:53 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,14 @@ t_vect3d	paraboloid_get_normal(void *v_paraboloid, t_vect3d point)
 			- vect3d_mult_on_scalar(paraboloid->axis, m + paraboloid->k);
 	normal = vect3d_norm(normal);
 	return (normal);
+}
+
+void			paraboloid_get_tex_coord(void *v_paraboloid, t_vect3d point,
+				float coord[2])
+{
+	(void)v_paraboloid;
+	(void)point;
+	(void)coord;
 }
 
 t_paraboloid	*paraboloid_new(t_vect3d pos, t_vect3d axis, double k)

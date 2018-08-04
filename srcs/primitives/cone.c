@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/05 23:09:23 by amelihov          #+#    #+#             */
-/*   Updated: 2018/07/31 20:56:44 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/08/04 20:49:08 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "disc.h"
 #include "equation.h"
 #include <stdlib.h>
+#include <math.h>
 
 typedef struct	s_ray
 {
@@ -124,6 +125,21 @@ t_vect3d	cone_get_normal(void *v_cone, t_vect3d point)
 	return (normal);
 }
 
+void			cone_get_tex_coord(void *v_cone, t_vect3d point,
+				float coord[2])
+{
+	t_cone		*cone;
+	double		phi;
+
+	cone = (t_cone *)v_cone;
+
+	cone = (t_cone *)v_cone;
+	point = basis_get_coord_in_basis(cone->basis, point - cone->pos);
+	phi = atan2(point[Y], point[X]) + M_PI;
+	coord[X] = phi / (2.0 * M_PI);
+	coord[Y] = 1.0 - point[Z] / cone->h;
+}
+
 t_cone		*cone_new(t_vect3d pos, t_vect3d axis, double k)
 {
 	t_cone	*cone;
@@ -131,6 +147,7 @@ t_cone		*cone_new(t_vect3d pos, t_vect3d axis, double k)
 	if (!(cone = malloc(sizeof(t_cone))))
 		return (NULL);
 	cone->pos = pos;
+	cone->basis = (t_basis){vect3d(1, 0, 0), vect3d(0, 1, 0), axis};
 	cone->axis = axis;
 	cone->k = k;
 

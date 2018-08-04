@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/29 12:44:34 by amelihov          #+#    #+#             */
-/*   Updated: 2018/08/02 17:58:13 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/08/04 17:42:06 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,14 @@
 //
 #include "scene.h"
 #include "plane.h"
-#include "composed.h"
 #include <stdlib.h>
 #include "disc.h"
 #include "cuboid.h"
 #include "rect.h"
 #include "cylinder.h"
 #include "texture.h"
+#include "sphere.h"
+#include "cone.h"
 
 #include "rtv1_defines.h"
 
@@ -69,12 +70,15 @@ t_scene	**get_test_scene(void)
 //					vect3d(0, 0, 1)}, (double[]){5, 10}));
 
 
+//	objects[0] = object_new(
+//	VECT3D_3(vect3d(0.4, 0.4, 0.4),
+//		vect3d(0.4, 0.4, 0.4), vect3d(0.4, 0.4, 0.4)),
+//		0, PRIMITIVE(cylinder, vect3d(0, 0, 0), vect3d(0, 0, 1), 10));
+
 	objects[0] = object_new(
 	VECT3D_3(vect3d(0.4, 0.4, 0.4),
 		vect3d(0.4, 0.4, 0.4), vect3d(0.4, 0.4, 0.4)),
-		0, PRIMITIVE(cylinder, vect3d(0, 0, 0), vect3d(0, 0, 1), 10));
-
-	objects[0]->get_tex_coord = cylinder_get_tex_coord;
+		0, PRIMITIVE(cone, vect3d(0, 0, 0), vect3d(0, 0, 1), 1));
 
 	SDL_Surface	*surface = SDL_LoadBMP(PATH_TEX"pointillist.bmp");
 	if (!surface)
@@ -88,6 +92,21 @@ t_scene	**get_test_scene(void)
 	objects[0]->tex.pitch = surface->pitch;
 	objects[0]->tex.pixels = malloc(surface->h * surface->pitch);
 	ft_memcpy(objects[0]->tex.pixels, surface->pixels, surface->h * surface->pitch);
+//	for (int i = 0; i < 600; i++)
+//	{
+//		for (int j = 0; j < 600; j++)
+//		{
+//			printf("%x ", *(unsigned int *)(objects[0]->tex.pixels + i * 1800 + j * 3));
+//		}
+//		printf("\n");
+//	}
+//	t_color	col1;
+//	//col1.value = *(unsigned int *)(objects[0]->tex.pixels);
+//	col1.value = 0xAABBCCDD;
+//	printf("%x\n", col1.rgba[RED]);
+//	printf("%x\n", col1.rgba[GREEN]);
+//	printf("%x\n", col1.rgba[BLUE]);
+//	exit(1);
 	SDL_UnlockSurface(surface);
 	SDL_FreeSurface(surface);
 	lights[0] = light_new(vect3d(400, 600, 50), VECT3D_3(vect3d(1, 1, 1),

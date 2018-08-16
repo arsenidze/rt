@@ -1,0 +1,28 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   black_white.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/08/09 21:48:57 by amelihov          #+#    #+#             */
+/*   Updated: 2018/08/09 21:55:47 by amelihov         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "filter.h"
+#include <math.h>
+
+t_color	gen_bw(t_color clr)
+{
+	t_color t;
+	double bw;
+
+	t = clr;
+	bw = sqrt((t.rgba[BLUE] * t.rgba[BLUE] + t.rgba[GREEN] * t.rgba[GREEN]
+		+ t.rgba[RED] * t.rgba[RED]) / 3.0);
+	t.rgba[BLUE] = (unsigned char)bw;
+	t.rgba[GREEN] = (unsigned char)bw;
+	t.rgba[RED] = (unsigned char)bw;
+	return (t);
+}

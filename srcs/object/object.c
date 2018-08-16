@@ -6,34 +6,41 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/05 22:49:16 by amelihov          #+#    #+#             */
-/*   Updated: 2018/07/10 12:50:06 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/08/15 14:50:05 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "object.h"
-#include "libft.h"
-#include <stdlib.h>
+#include "ray.h"
 
-t_object	*object_new(t_vect3d k[3], int is_glass, void *var_arg[])
+short		object_intersection(const t_object *object, t_ray ray,
+			t_vect3d *intersect_point)
 {
-	t_object	*new_obj;
-
-	if (!(new_obj = malloc(sizeof(t_object))))
-		return (NULL);
-	if (!(new_obj->primitive = var_arg[0]))
-		return (NULL);
-	new_obj->intersection = var_arg[1];
-	new_obj->get_normal = var_arg[2];
-	new_obj->delete_primitive = var_arg[3];
-	ft_memcpy(new_obj->k, k, sizeof(t_vect3d) * 3);
-	new_obj->is_glass = is_glass;
-	return (new_obj);
+	t_ray	shifted_ray;
+	short	is_isect;
+//	double	angels[3];
+//
+//	angels[0] = vect3d_dot(object->basis.x, vect3d(1, 0, 0));
+//	angels[1] = vect3d_dot(object->basis.y, vect3d(0, 1, 0));
+//	angels[2] = vect3d_dot(object->basis.z, vect3d(0, 0, 1));
+	shifted_ray.o = ray.o - object->pos;
+	shifted_ray.d = ray.d;
+	is_isect = object->shape.intersection(object->shape.primitive,
+		object->basis, shifted_ray, intersect_point);
+	if (is_isect)
+		*intersect_point += object->pos;
+	return (is_isect);
 }
 
-void		object_delete(t_object *object)
+t_vect3d	object_get_normal(const t_object *object, t_vect3d point)
 {
-	if (!object)
-		return ;
-	object->delete_primitive(object->primitive);
-	free(object);
+	return (object->shape.get_normal(object->shape.primitive, object->basis,
+		point - object->pos));
+}
+
+void		object_get_tex_coord(const t_object *object, t_vect3d point,
+			float coord[2])
+{
+	object->shape.get_tex_coord(object->shape.primitive, object->basis,
+		point - object->pos, coord);
 }

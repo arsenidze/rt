@@ -6,55 +6,49 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/04 12:15:19 by amelihov          #+#    #+#             */
-/*   Updated: 2018/08/01 15:26:45 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/08/14 18:20:00 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scene.h"
-#include "vect3d.h"
-#include "object.h"
+#include "ray.h"
 #include "intersection.h"
+#include "object.h"
+#include "vect3d.h"
 
-#define IS_INTERSECT_OBJ(s, r, o, i) o->intersection(o->primitive,s,r,i)
-
-short	find_closest_intersection(const t_scene *scene, t_vect3d start,
-		t_vect3d ray_dir, t_intersection *intersection)
+short	find_closest_intersection(const t_scene *scene, t_ray ray,
+		t_intersection *isect)
 {
-	int			i;
-	t_object	*curr_object;
-	t_vect3d	intersect_point;
-	short		was_intersect;
+	unsigned int	i;
+	t_object		*curr_object;
+	t_vect3d		isect_point;
+	short			is_isect;
 
-	was_intersect = 0;
-	intersection->orig = start;
-	intersection->dest = vect3d(0, 0, 0);
-	intersection->ray_dir = ray_dir;
+	is_isect = 0;
+	isect->ray = ray;
 	i = 0;
-	while (scene->objects[i])
+	while (i < scene->objects.size)
 	{
-		curr_object = scene->objects[i];
-		if (IS_INTERSECT_OBJ(start, ray_dir, curr_object, &intersect_point)
-			&& (!was_intersect
-				|| vect3d_sq_len(intersect_point - start)
-					< vect3d_sq_len(intersection->dest - start)))
+		curr_object = &scene->objects.data[i];
+		if (OBJ_IS_INTERSECT(curr_object, ray, &isect_point) && (!is_isect
+			|| vect3d_sq_len(isect_point - ray.o)
+				< vect3d_sq_len(isect->dest - ray.o)))
 		{
-			was_intersect = 1;
-			intersection->dest = intersect_point;
-			intersection->hit_object = curr_object;
+			is_isect = 1;
+			isect->dest = isect_point;
+			isect->hit_object = curr_object;
 		}
 		i++;
 	}
-	if (was_intersect)
+	if (is_isect)
 	{
-		intersection->normal = GET_NORMAL(intersection->hit_object,
-												intersection->dest);
-		if (vect3d_dot(ray_dir, intersection->normal) > 0)
+		isect->normal = OBJ_GET_NORMAL(isect->hit_object, isect->dest);
+		isect->inside = 0;
+		if (vect3d_dot(ray.d, isect->normal) > 0)
 		{
-			intersection->normal = -intersection->normal;
-			intersection->inside = 1;
+			isect->normal = -isect->normal;
+			isect->inside = 1;
 		}
-		else
-			intersection->inside = 0;
 	}
-	return (was_intersect);
+	return (is_isect);
 }

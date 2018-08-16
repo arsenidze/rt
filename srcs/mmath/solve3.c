@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/16 15:56:53 by amelihov          #+#    #+#             */
-/*   Updated: 2018/07/31 22:19:21 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/08/12 12:23:31 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,13 @@ typedef struct	s_equation3
 
 #define IS_ZERO(a) (fabs(a) < 1e-5)
 
-void	solve3(double c[4], double x[3])
+int	solve3(double c[4], double x[3])
 {
 	t_equation3	e;
 	int			i;
+	int			nroots;
 
+	nroots = 0;
 	e.q = (2.0 * (c[B] * c[B] * c[B]) - 9.0 * c[A] * c[B] * c[C]
 		+ 27.0 * c[A] * c[A] * c[D]) / (27.0 * c[A] * c[A] * c[A]);
 	e.p = (3 * c[A] * c[C] - c[B] * c[B]) / (3 * c[A] * c[A]);
@@ -43,8 +45,9 @@ void	solve3(double c[4], double x[3])
 		e.sqrt_quad_discrmnt = sqrt(e.quad_discrmnt);
 		x[0] = cbrt(-e.q / 2.0 + e.sqrt_quad_discrmnt)
 			+ cbrt(-e.q / 2.0 - e.sqrt_quad_discrmnt);
-		x[1] = INF;
-		x[2] = INF;
+		nroots = 1;
+//		x[1] = INF;
+//		x[2] = INF;
 	}
 	else
 	{
@@ -63,8 +66,10 @@ void	solve3(double c[4], double x[3])
 			x[i] = 2 * sqrt(-e.p / 3.0)
 				* cos((e.phi_by_3 + i * 2.0 * M_PI / 3.0));
 		}
+		nroots = 3;
 	}
 	i = -1;
 	while (++i < 3)
 		x[i] = x[i] - c[B] / (3 * c[A]);
+	return (nroots);
 }

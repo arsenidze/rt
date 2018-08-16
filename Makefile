@@ -6,7 +6,7 @@
 #    By: amelihov <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/29 13:43:11 by amelihov          #+#    #+#              #
-#    Updated: 2018/08/02 13:28:14 by amelihov         ###   ########.fr        #
+#    Updated: 2018/08/16 12:57:55 by amelihov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,133 +20,18 @@ OBJ_DIR = ./obj
 INC_DIR = ./includes
 LIB_DIR = ./lib
 
-SRC = \
-	equation.c\
-	rect.c\
-	disc.c\
-	camera.c\
-	camera_move.c\
-	camera_rotate.c\
-	get_default_scenes.c\
-	get_scene1.c\
-	get_scene2.c\
-	drawer.c\
-	drawer_render.c\
-	errors.c\
-	event_handler_loop.c\
-	apply_light.c\
-	light.c\
-	light_ptr_arr_delete.c\
-	main.c\
-	get_rand.c\
-	clampd.c\
-	clampi.c\
-	get_positive_root.c\
-	sign.c\
-	square.c\
-	cb.c\
-	solve2.c\
-	solve3.c\
-	solve4.c\
-	random_in_unit_sphere.c\
-	init_userinput.c\
-	object.c\
-	object_ptr_arr_delete.c\
-	object_ptr_arr_size.c\
-	get_value_of_attr_with_name.c\
-	is_correct_eol.c\
-	is_only_whitespaces.c\
-	parse_attr_of_type_double.c\
-	parse_attr_of_type_vect3d.c\
-	parse_camera.c\
-	parse_cone.c\
-	parse_cylinder.c\
-	parse_double.c\
-	parse_integer.c\
-	parse_light.c\
-	parse_lights.c\
-	parse_object.c\
-	parse_objects.c\
-	parse_plane.c\
-	parse_sphere.c\
-	parse_torus.c\
-	parse_paraboloid.c\
-	parse_vect3d.c\
-	parser_parse_scene.c\
-	skip_separator.c\
-	str_with_digits_to_int.c\
-	cone.c\
-	cylinder.c\
-	plane.c\
-	sphere.c\
-	torus.c\
-	paraboloid.c\
-	find_closest_intersection.c\
-	render_scene.c\
-	trace_ray.c\
-	get_scenes_from_file.c\
-	scene.c\
-	scene_ptr_arr_delete.c\
-	scene_ptr_arr_size.c\
-	vect3d.c\
-	vect3d_clamp.c\
-	vect3d_cos.c\
-	vect3d_cos_normed.c\
-	vect3d_cross.c\
-	vect3d_div_on_scalar.c\
-	vect3d_dot.c\
-	vect3d_fill_rotate_matrix.c\
-	vect3d_is_in_range.c\
-	vect3d_is_in_range_abs.c\
-	vect3d_len.c\
-	vect3d_mult_on_matrix.c\
-	vect3d_mult_on_scalar.c\
-	vect3d_norm.c\
-	vect3d_sq_len.c\
-	vect3d_reflect.c\
-	vect3d_rotate_around_axis.c\
-	vect3d_print.c\
-	render_scene_parallel.c\
-	cuboid.c\
-
+SRC = $(notdir $(wildcard $(SRC_DIR)/*.c) $(wildcard $(SRC_DIR)/*/*.c) $(wildcard $(SRC_DIR)/*/*/*.c))
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
-	
-INC = \
-	apply_light.h\
-	camera.h\
-	color.h\
-	cone.h\
-	cylinder.h\
-	default_scenes.h\
-	drawer.h\
-	errors.h\
-	errors_defines.h\
-	event_handler_loop.h\
-	intersection.h\
-	light.h\
-	light_ptr_arr.h\
-	mmath.h\
-	object.h\
-	object_ptr_arr.h\
-	parser.h\
-	plane.h\
-	torus.h\
-	paraboloid.h\
-	primitive.h\
-	raytracing.h\
-	rtv1_defines.h\
-	scene.h\
-	scene_ptr_arr.h\
-	sphere.h\
-	userinput.h\
-	vect3d.h\
-	parser_private.h\
-	parallelism.h\
-	disc.h\
-	cuboid.h\
-	rect.h\
-	basis.h\
-	texture.h\
+
+INC = $(notdir $(wildcard $(INC_DIR)/*.h) $(wildcard $(INC_DIR)/*/*.h))
+
+TMP_INC = $(foreach inc, $(wildcard $(INC_DIR)/*), $(addprefix -I, $(inc)))
+
+#testH:
+#	$(TMP_INC)
+
+#testJ:
+#	$(SRC)
 
 LIBFT = $(LIB_DIR)/libft/libft.a
 LIBFT_INC = $(LIB_DIR)/libft/includes/
@@ -156,11 +41,8 @@ SDL_INC 	= ./lib/Frameworks/SDL2.framework/Headers/
 SDL_FLAGS	= -F ./lib/Frameworks -framework SDL2 -rpath ./lib/Frameworks
 
 CFLAGS = -Wall -Wextra -Werror -g
-HFLAGS = -I $(INC_DIR) -I $(LIBFT_INC) -I $(SDL_INC) 
+HFLAGS = -I $(INC_DIR) -I $(LIBFT_INC) -I $(SDL_INC) $(TMP_INC)
 LFLAGS = $(LIBFT_FLAGS) $(SDL_FLAGS) 
-
-#testH:
-#	$(INC)
 
 all:
 	make -C $(LIB_DIR)/libft/
@@ -169,7 +51,7 @@ all:
 $(NAME): $(OBJ) $(LIBFT) Makefile
 	$(LD) $(OBJ) $(LFLAGS) -o $(NAME)
 
-$(OBJ_DIR)/%.o: %.c $(INC)
+$(OBJ_DIR)/%.o: %.c
 	$(CC) $(CFLAGS) $(HFLAGS) -c $< -o $@
 
 $(OBJ): | $(OBJ_DIR)
@@ -193,21 +75,28 @@ re: fclean all
 
 vpath %.c $(SRC_DIR)
 vpath %.c $(SRC_DIR)/camera
-vpath %.c $(SRC_DIR)/default_scenes
 vpath %.c $(SRC_DIR)/drawer
 vpath %.c $(SRC_DIR)/events
 vpath %.c $(SRC_DIR)/light
 vpath %.c $(SRC_DIR)/mmath
 vpath %.c $(SRC_DIR)/object
 vpath %.c $(SRC_DIR)/parser
-vpath %.c $(SRC_DIR)/primitives
+vpath %.c $(SRC_DIR)/primitive
+vpath %.c $(SRC_DIR)/primitive/helpers
 vpath %.c $(SRC_DIR)/raytracing
 vpath %.c $(SRC_DIR)/scene
 vpath %.c $(SRC_DIR)/vect3d
-vpath %.c $(SRC_DIR)/userinput
 vpath %.c $(SRC_DIR)/parallelism
+vpath %.c $(SRC_DIR)/basis
+vpath %.c $(SRC_DIR)/filter
+vpath %.c $(SRC_DIR)/error
+vpath %.c $(SRC_DIR)/event
+vpath %.c $(SRC_DIR)/render
+vpath %.c $(SRC_DIR)/canvas
+vpath %.c $(SRC_DIR)/options
 
 vpath %.h $(INC_DIR)
-vpath %.h $(SRC_DIR)/parser
+vpath %.h $(INC_DIR)/drawer
+vpath %.h $(INC_DIR)/defines
 
 .PHONY: all clean fclean re

@@ -1,0 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   raytracing.h                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/08/14 15:10:46 by amelihov          #+#    #+#             */
+/*   Updated: 2018/08/14 16:41:16 by amelihov         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef RAYTRACING_H
+# define RAYTRACING_H
+
+#define MAX_RAY_DEPTH	4
+#define NSAMPLES 		4
+
+void			raytracing_draw_scene(const t_scene *scene, t_canvas canvas,
+				const t_options *options);
+int				raytracing_get_obj_index_at_coord(const t_scene *scene,
+				t_canvas canvas, int coord[2]);
+
+#endif

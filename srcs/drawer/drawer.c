@@ -6,19 +6,17 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 16:50:50 by amelihov          #+#    #+#             */
-/*   Updated: 2018/07/14 15:53:02 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/08/16 22:45:32 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "drawer.h"
-#include "errors.h"
+#include "err.h"
 #include "libft.h"
 #include <stdlib.h>
 
-void			drawer_delete(t_drawer *drawer)
+void			drawer_deinit(t_drawer *drawer)
 {
-	if (!drawer)
-		return ;
 	if (!drawer->canvas.pixels)
 		free(drawer->canvas.pixels);
 	if (!drawer->texture)
@@ -27,24 +25,19 @@ void			drawer_delete(t_drawer *drawer)
 		SDL_DestroyRenderer(drawer->renderer);
 	if (!drawer->window)
 		SDL_DestroyWindow(drawer->window);
-	free(drawer);
 	SDL_Quit();
 }
 
-static void		*drawer_err_exit(t_drawer *drawer, char *err)
+static short	drawer_err_exit(t_drawer *drawer, char *err)
 {
-	drawer_delete(drawer);
+	drawer_deinit(drawer);
 	try_set_err(err);
-	return (NULL);
+	return (DRAWER_FAILURE);
 }
 
-t_drawer		*drawer_new(unsigned int win_w, unsigned int win_h,
-				const char *win_name)
+short			drawer_init(t_drawer *drawer, unsigned int win_w,
+				unsigned int win_h, const char *win_name)
 {
-	t_drawer	*drawer;
-
-	if (!(drawer = malloc(sizeof(t_drawer))))
-		return (drawer_err_exit(drawer, DRAWER_NEW_MEM));
 	ft_memset(drawer, 0, sizeof(t_drawer));
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 		return (drawer_err_exit(drawer, DRAWER_NEW_SDL_INIT));
@@ -65,5 +58,7 @@ t_drawer		*drawer_new(unsigned int win_w, unsigned int win_h,
 	drawer->canvas.h = win_h;
 	drawer->canvas.pos_x = 0;
 	drawer->canvas.pos_y = 0;
-	return (drawer);
+	drawer->canvas.win_w = win_w;
+	drawer->canvas.win_h = win_h;
+	return (DRAWER_SUCCESS);
 }

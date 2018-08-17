@@ -1,0 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   light_get_impact.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/08/17 18:18:33 by amelihov          #+#    #+#             */
+/*   Updated: 2018/08/17 18:33:13 by amelihov         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "light.h"
+#include "intersection.h"
+
+double			light_get_impact(const t_light *light,
+				const t_intersection *isect)
+{
+	if (light->type == point)
+		return (light_get_point_light_impact(light, isect));
+	else if (light->type == directional)
+		return (light_get_directional_light_impact(light, isect));
+	else if (light->type == spotlight)
+		return (light_get_spotlight_impact(light, isect));
+	return (0);
+}

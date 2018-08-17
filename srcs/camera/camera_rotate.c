@@ -5,29 +5,34 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/04 18:05:35 by amelihov          #+#    #+#             */
-/*   Updated: 2018/07/18 15:30:40 by amelihov         ###   ########.fr       */
+/*   Created: 2018/08/16 22:44:01 by amelihov          #+#    #+#             */
+/*   Updated: 2018/08/16 22:44:06 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "camera.h"
 #include "vect3d.h"
-#include <math.h>
 
 void	camera_rotate_ox(t_camera *camera, double angel)
 {
-	camera->right = vect3d_rotate_around_axis(camera->right, camera->dir, angel);
-	camera->up = vect3d_rotate_around_axis(camera->up, camera->dir, angel);
+	camera->basis.y = vect3d_rotate_around_axis(camera->basis.y,
+		camera->basis.x, angel);
+	camera->basis.z = vect3d_rotate_around_axis(camera->basis.z,
+		camera->basis.x, angel);
 }
 
 void	camera_rotate_oy(t_camera *camera, double angel)
 {
-	camera->dir = vect3d_rotate_around_axis(camera->dir, camera->right, angel);
-	camera->up = vect3d_rotate_around_axis(camera->up, camera->right, angel);
+	camera->basis.x = vect3d_rotate_around_axis(camera->basis.x,
+		camera->basis.y, angel);
+	camera->basis.z = vect3d_rotate_around_axis(camera->basis.z,
+		camera->basis.y, angel);
 }
 
 void	camera_rotate_oz(t_camera *camera, double angel)
 {
-	camera->dir = vect3d_rotate_around_axis(camera->dir, camera->up, angel);
-	camera->right = vect3d_rotate_around_axis(camera->right, camera->up, angel);
+	camera->basis.x = vect3d_rotate_around_axis(camera->basis.x,
+		camera->basis.z, angel);
+	camera->basis.y = vect3d_rotate_around_axis(camera->basis.y,
+		camera->basis.z, angel);
 }

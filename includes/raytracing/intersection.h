@@ -24,8 +24,6 @@ typedef struct	s_intersection
 	t_vect3d	dest;
 	t_vect3d	normal;
 	t_object	*hit_object;
-	double		shade;
-	double		glare;
 }				t_intersection;
 
 #endif

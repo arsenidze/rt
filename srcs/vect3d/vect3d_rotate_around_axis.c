@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/18 15:10:32 by amelihov          #+#    #+#             */
-/*   Updated: 2018/07/18 15:16:22 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/08/16 22:48:37 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 **	Rodrigues' rotation formula
 **	k -> axis
 */
+
 t_vect3d	vect3d_rotate_around_axis(t_vect3d v, t_vect3d k, double angel)
 {
 	t_vect3d	v_rot;

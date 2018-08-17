@@ -18,11 +18,7 @@ short		object_intersection(const t_object *object, t_ray ray,
 {
 	t_ray	shifted_ray;
 	short	is_isect;
-//	double	angels[3];
-//
-//	angels[0] = vect3d_dot(object->basis.x, vect3d(1, 0, 0));
-//	angels[1] = vect3d_dot(object->basis.y, vect3d(0, 1, 0));
-//	angels[2] = vect3d_dot(object->basis.z, vect3d(0, 0, 1));
+
 	shifted_ray.o = ray.o - object->pos;
 	shifted_ray.d = ray.d;
 	is_isect = object->shape.intersection(object->shape.primitive,

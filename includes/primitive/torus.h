@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/15 15:36:22 by amelihov          #+#    #+#             */
-/*   Updated: 2018/08/11 21:31:24 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/08/17 14:00:13 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ typedef struct	s_torus
 {
 	double		r0;
 	double		r1;
-	double		mid;
+	double		mid_r;
+	double		cross_cut_r;
 }				t_torus;
 
 t_torus			torus_create(double r0, double r1);

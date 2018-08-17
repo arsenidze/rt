@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 13:58:42 by amelihov          #+#    #+#             */
-/*   Updated: 2018/08/16 14:02:40 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/08/16 22:43:37 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ t_basis	basis_rotate_oy(t_basis basis, double angel)
 t_basis	basis_rotate_oz(t_basis basis, double angel)
 {
 	t_basis	new_basis;
-	
+
 	new_basis.z = basis.z;
 	new_basis.x = vect3d_rotate_around_axis(basis.x,
 		basis.z, angel);

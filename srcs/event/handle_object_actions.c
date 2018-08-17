@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 12:39:59 by amelihov          #+#    #+#             */
-/*   Updated: 2018/08/16 13:55:50 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/08/17 15:15:50 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,24 @@
 #include "vect3d.h"
 #include "mmath.h"
 
-#define ADD_AND_CLAMP(v, step, a, b) v = clampd(v + step, a, b)
-
 static short	handle_object_material_parameters(int key, t_object *obj)
 {
 	if (key == KEY_OBJ_REFLECTION_UP)
-		ADD_AND_CLAMP(obj->material.reflection, REFLECTION_STEP, 0, 1);
+		ADD_AND_CLAMP(obj->material.reflection, REFLECTION_STEP,
+			REFLECTION_MIN, REFLECTION_MAX);
 	else if (key == KEY_OBJ_REFLECTION_DOWN)
-		ADD_AND_CLAMP(obj->material.reflection, -REFLECTION_STEP, 0, 1);
+		ADD_AND_CLAMP(obj->material.reflection, -REFLECTION_STEP,
+			REFLECTION_MIN, REFLECTION_MAX);
 	else if (key == KEY_OBJ_TRANSPARENCY_UP)
-		ADD_AND_CLAMP(obj->material.transparency, TRANSPARENCY_STEP, 0, 1);
+		ADD_AND_CLAMP(obj->material.transparency, TRANSPARENCY_STEP,
+			TRANSPARENCY_MIN, TRANSPARENCY_MAX);
 	else if (key == KEY_OBJ_TRANSPARENCY_DOWN)
-		ADD_AND_CLAMP(obj->material.transparency, -TRANSPARENCY_STEP, 0, 1);
+		ADD_AND_CLAMP(obj->material.transparency, -TRANSPARENCY_STEP,
+			TRANSPARENCY_MIN, TRANSPARENCY_MAX);
 	else if (key == KEY_OBJ_IOR_UP)
-		ADD_AND_CLAMP(obj->material.ior, IOR_STEP, 0, 1);
+		ADD_AND_CLAMP(obj->material.ior, IOR_STEP, IOR_MIN, IOR_MAX);
 	else if (key == KEY_OBJ_IOR_DOWN)
-		ADD_AND_CLAMP(obj->material.ior, -IOR_STEP, 0, 1);
+		ADD_AND_CLAMP(obj->material.ior, -IOR_STEP, IOR_MIN, IOR_MAX);
 	else
 		return (!NEED_REDRAW);
 	return (NEED_REDRAW);
@@ -76,10 +78,10 @@ static short	handle_object_movement(int key, t_object *obj)
 	return (NEED_REDRAW);
 }
 
-short	handle_object_actions(int key, t_options *optns, t_scene *scene)
+short			handle_object_actions(int key, t_options *optns, t_scene *scene)
 {
 	t_object	*obj;
-	
+
 	obj = &scene->objects.data[optns->object_index];
 	if (handle_object_movement(key, obj))
 		;

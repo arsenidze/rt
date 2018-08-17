@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/05 21:09:30 by amelihov          #+#    #+#             */
-/*   Updated: 2018/08/15 15:55:55 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/08/17 14:59:27 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,6 @@ typedef struct	s_canvas_rect
 
 void			canvas_fill_rect(const t_canvas *canvas, t_canvas_rect rect,
 				int	color);	
+short			canvas_strip_if_not_fit(t_canvas *canvas, t_canvas_rect *rect);
 
 #endif

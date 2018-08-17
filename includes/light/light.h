@@ -6,29 +6,42 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/27 19:49:59 by amelihov          #+#    #+#             */
-/*   Updated: 2018/08/06 13:27:36 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/08/17 19:11:52 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIGHT_H
 # define LIGHT_H
 
-# include "vect3d.h"
+# include "point_light.h"
+# include "directional_light.h"
+# include "spotlight.h"
 
-/*
-**	components indexs
-*/
-# define L_AMBIENT		0
-# define L_DIFFUSE		1
-# define L_SPECULAR		2
+typedef struct s_intersection	t_intersection;
+
+typedef enum	e_light_type
+{
+	point,
+	directional,
+	spotlight
+}				t_light_type;
+
+typedef union	u_light_data
+{
+	t_point_light		point;
+	t_directional_light	directional;
+	t_spotlight			spotlight;
+}				t_light_data;
 
 typedef struct	s_light
 {
-	t_vect3d	pos;
-	t_vect3d	components[3];
+	t_vect3d		pos;	//TMP
+	t_light_type	type;
+	t_light_data	data;
 }				t_light;
 
-//t_light			*light_new(t_vect3d pos, t_vect3d components[3]);
-//void			light_delete(t_light *light);
+double			light_get_impact(const t_light *light,
+				const t_intersection *isect);
+
 
 #endif

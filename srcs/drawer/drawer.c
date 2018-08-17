@@ -6,12 +6,12 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 16:50:50 by amelihov          #+#    #+#             */
-/*   Updated: 2018/08/09 13:34:26 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/08/16 22:45:32 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "drawer.h"
-#include "errors.h"
+#include "err.h"
 #include "libft.h"
 #include <stdlib.h>
 
@@ -35,8 +35,8 @@ static short	drawer_err_exit(t_drawer *drawer, char *err)
 	return (DRAWER_FAILURE);
 }
 
-short	drawer_init(t_drawer *drawer, unsigned int win_w, unsigned int win_h,
-		const char *win_name)
+short			drawer_init(t_drawer *drawer, unsigned int win_w,
+				unsigned int win_h, const char *win_name)
 {
 	ft_memset(drawer, 0, sizeof(t_drawer));
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)

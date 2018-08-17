@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 19:48:53 by amelihov          #+#    #+#             */
-/*   Updated: 2018/08/15 22:00:00 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/08/17 16:23:40 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ int			raytracing_get_obj_idx_on_coord(const t_scene *scene, int i, int j,
 	t_ray			ray;
 	t_intersection	isect;
 	unsigned int	idx;
-	
-	ray.o = scene->camera.pos;	
+
+	ray.o = scene->camera.pos;
 	ray.d = get_ray_dir(scene->camera, i, j, canvas);
 	if (!find_closest_intersection(scene, ray, &isect))
 		return (0);

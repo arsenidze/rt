@@ -24,8 +24,6 @@ typedef struct	s_scene
 	t_array_light	lights;
 }				t_scene;
 
-//t_scene			scene_new(t_camera *camera, t_object **objects,
-//				t_light **lights);
 void			scene_deinit(t_scene *scene);
 
 #endif

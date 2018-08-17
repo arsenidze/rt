@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 19:03:33 by amelihov          #+#    #+#             */
-/*   Updated: 2018/08/14 20:50:37 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/08/17 16:25:36 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,11 @@
 t_vect3d	handle_reflection_and_refraction(const t_scene *scene,
 			const t_intersection *isect, int depth)
 {
-	double		kr;	
+	double		kr;
 	t_ray		reflect_ray;
 	t_ray		refract_ray;
 	t_vect3d	reflect_col;
 	t_vect3d	refract_col;
-	t_vect3d	point_col;
 
 	kr = fresnel(isect->ray.d, isect->normal, isect->hit_object->material.ior,
 		isect->inside);
@@ -40,9 +39,8 @@ t_vect3d	handle_reflection_and_refraction(const t_scene *scene,
 	}
 	else
 		refract_col = vect3d(0, 0, 0);
-	point_col = vect3d_mult_on_scalar(reflect_col,
+	return (vect3d_mult_on_scalar(reflect_col,
 			isect->hit_object->material.reflection * kr)
 			+ vect3d_mult_on_scalar(refract_col,
-			isect->hit_object->material.transparency * (1 - kr));
-	return (point_col);
+			isect->hit_object->material.transparency * (1 - kr)));
 }

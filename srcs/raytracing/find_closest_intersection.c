@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/04 12:15:19 by amelihov          #+#    #+#             */
-/*   Updated: 2018/08/14 18:20:00 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/08/17 15:24:34 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,19 @@
 #include "object.h"
 #include "vect3d.h"
 
-short	find_closest_intersection(const t_scene *scene, t_ray ray,
-		t_intersection *isect)
+static void	set_normal(t_intersection *isect, t_ray ray)
+{
+	isect->normal = object_get_normal(isect->hit_object, isect->dest);
+	isect->inside = 0;
+	if (vect3d_dot(ray.d, isect->normal) > 0)
+	{
+		isect->normal = -isect->normal;
+		isect->inside = 1;
+	}
+}
+
+short		find_closest_intersection(const t_scene *scene, t_ray ray,
+			t_intersection *isect)
 {
 	unsigned int	i;
 	t_object		*curr_object;
@@ -30,7 +41,7 @@ short	find_closest_intersection(const t_scene *scene, t_ray ray,
 	while (i < scene->objects.size)
 	{
 		curr_object = &scene->objects.data[i];
-		if (OBJ_IS_INTERSECT(curr_object, ray, &isect_point) && (!is_isect
+		if (object_intersection(curr_object, ray, &isect_point) && (!is_isect
 			|| vect3d_sq_len(isect_point - ray.o)
 				< vect3d_sq_len(isect->dest - ray.o)))
 		{
@@ -41,14 +52,6 @@ short	find_closest_intersection(const t_scene *scene, t_ray ray,
 		i++;
 	}
 	if (is_isect)
-	{
-		isect->normal = OBJ_GET_NORMAL(isect->hit_object, isect->dest);
-		isect->inside = 0;
-		if (vect3d_dot(ray.d, isect->normal) > 0)
-		{
-			isect->normal = -isect->normal;
-			isect->inside = 1;
-		}
-	}
+		set_normal(isect, ray);
 	return (is_isect);
 }

@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/05 23:09:23 by amelihov          #+#    #+#             */
-/*   Updated: 2018/08/13 20:42:02 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/08/16 23:23:29 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 #include "primitive.h"
 #include "disk.h"
 #include "mmath.h"
+#include "primitive_private.h"
 #include <math.h>
 
-int	sort_and_left_positive_roots(double *roots, int n);
-
-t_cone			cone_create(double slope, double h)
+static void		cone_fill_coeff(t_primitive primitive, t_basis basis,
+				t_ray ray, double coeff[3])
 {
-	t_cone	cone;
-
-	cone.slope = slope;
-	cone.slope2 = slope * slope;
-	cone.h = h;
-	cone.r = slope * h;
-	return (cone);
+	coeff[0] = 1.
+			- square(vect3d_dot(ray.d, basis.z)) * (1 + primitive.cone.slope2);
+	coeff[1] = 2.0 * (vect3d_dot(ray.d, ray.o)
+				- vect3d_dot(ray.d, basis.z) * vect3d_dot(ray.o, basis.z)
+				* (1 + primitive.cone.slope2));
+	coeff[2] = vect3d_dot(ray.o, ray.o) - square(vect3d_dot(ray.o, basis.z))
+				* (1 + primitive.cone.slope2);
 }
 
 #define EPS 0.001
@@ -37,7 +37,7 @@ static short	cone_limitation_check(t_cone cone, t_basis basis, t_ray ray,
 	double		proj_on_axis;
 	t_vect3d	axis;
 	short		is_isect;
-	
+
 	proj_on_axis = vect3d_dot(*intersect_point, basis.z);
 	if (proj_on_axis <= 0.0)
 		return (0);
@@ -55,20 +55,8 @@ static short	cone_limitation_check(t_cone cone, t_basis basis, t_ray ray,
 		return (1);
 }
 
-static void		fill_cone_coefficients(t_primitive primitive, t_basis basis,
-				t_ray ray, double *coeffs)
-{
-	coeffs[0] = 1.
-			- square(vect3d_dot(ray.d, basis.z)) * (1 + primitive.cone.slope2);
-	coeffs[1] = 2.0 * (vect3d_dot(ray.d, ray.o)
-				- vect3d_dot(ray.d, basis.z) * vect3d_dot(ray.o, basis.z)
-				* (1 + primitive.cone.slope2));
-	coeffs[2] = vect3d_dot(ray.o, ray.o) - square(vect3d_dot(ray.o, basis.z))
-				* (1 + primitive.cone.slope2);
-}
-
 short			cone_intersection(t_primitive primitive, t_basis basis,
-				t_ray ray, t_vect3d *intersect_point)
+				t_ray ray, t_vect3d *isect_pnt)
 {
 	double		coeff[3];
 	double		roots[2];
@@ -76,26 +64,23 @@ short			cone_intersection(t_primitive primitive, t_basis basis,
 	int			num_pos_roots;
 	int			i;
 
-	fill_cone_coefficients(primitive, basis, ray, coeff);
-	num_real_roots = solve2(coeff, roots);
-	if (num_real_roots == 0)
+	cone_fill_coeff(primitive, basis, ray, coeff);
+	if ((num_real_roots = solve2(coeff, roots)) == 0)
 		return (0);
 	num_pos_roots = sort_and_left_positive_roots(roots, num_real_roots);
 	if (num_pos_roots == 0)
 		return (0);
 	if (primitive.cone.h < 0.0)
 	{
-		*intersect_point = ray.o + vect3d_mult_on_scalar(ray.d, roots[0] - EPS);
+		*isect_pnt = ray.o + vect3d_mult_on_scalar(ray.d, roots[0] - EPS);
 		return (1);
 	}
-	i = 0;
-	while (i < num_pos_roots)
+	i = -1;
+	while (++i < num_pos_roots)
 	{
-		*intersect_point = ray.o + vect3d_mult_on_scalar(ray.d, roots[i] - EPS);
-		if (cone_limitation_check(primitive.cone, basis, ray,
-			intersect_point))
-		return (1);
-		i++;
+		*isect_pnt = ray.o + vect3d_mult_on_scalar(ray.d, roots[i] - EPS);
+		if (cone_limitation_check(primitive.cone, basis, ray, isect_pnt))
+			return (1);
 	}
 	return (0);
 }
@@ -107,11 +92,14 @@ t_vect3d		cone_get_normal(t_primitive primitive, t_basis basis,
 	double		m;
 	t_vect3d	normal;
 
-	proj_on_axis = vect3d_dot(point, basis.z);
-	if (proj_on_axis >= primitive.cone.h)
+	if (primitive.cone.h >= 0.0)
 	{
-		return (disk_get_normal(PRIMITIVE(disk, primitive.cone.r), basis,
-			point - vect3d_mult_on_scalar(basis.z, primitive.cone.h)));
+		proj_on_axis = vect3d_dot(point, basis.z);
+		if (proj_on_axis >= primitive.cone.h)
+		{
+			return (disk_get_normal(PRIMITIVE(disk, primitive.cone.r), basis,
+				point - vect3d_mult_on_scalar(basis.z, primitive.cone.h)));
+		}
 	}
 	m = vect3d_dot(basis.z, point);
 	normal = point

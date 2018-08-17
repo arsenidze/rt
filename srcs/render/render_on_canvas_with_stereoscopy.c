@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 18:32:56 by amelihov          #+#    #+#             */
-/*   Updated: 2018/08/15 22:16:51 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/08/17 14:22:48 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 static void	combine_pixels(t_pixel *first_pixels, t_pixel *snd_pixels,
 			t_uint w, t_uint h)
 {
-	t_uint	i;	
-	t_uint	j;	
+	t_uint	i;
+	t_uint	j;
 	t_color	*colors1;
 	t_color	*colors2;
 

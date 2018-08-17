@@ -6,14 +6,14 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 15:17:18 by amelihov          #+#    #+#             */
-/*   Updated: 2018/08/15 15:57:56 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/08/16 22:44:57 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "canvas.h"
 
-void			canvas_fill_rect(const t_canvas *canvas, t_canvas_rect rect,
-				int	color)
+void	canvas_fill_rect(const t_canvas *canvas, t_canvas_rect rect,
+		int color)
 {
 	t_uint	i;
 	t_uint	j;
@@ -23,7 +23,7 @@ void			canvas_fill_rect(const t_canvas *canvas, t_canvas_rect rect,
 	{
 		i = 0;
 		while (i < rect.w)
-		{	
+		{
 			CANVAS_SET_PIXEL((*canvas), rect.left + i, rect.top + j, color);
 			i++;
 		}

@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 10:52:52 by amelihov          #+#    #+#             */
-/*   Updated: 2018/08/12 11:29:43 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/08/16 23:02:44 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ short			sphere_intersection(t_primitive primitive, t_basis basis,
 	return (1);
 }
 
-t_vect3d	sphere_get_normal(t_primitive primitive, t_basis basis,
-			t_vect3d point)
+t_vect3d		sphere_get_normal(t_primitive primitive, t_basis basis,
+				t_vect3d point)
 {
 	t_vect3d	normal;
 

@@ -14,7 +14,7 @@
 # define EVENT_H
 
 typedef struct s_drawer	t_drawer;
-#include "scene_declaration.h"
+typedef struct s_scene	t_scene;
 
 void	event_handler_loop(t_drawer *drawer, t_scene *scene);
 

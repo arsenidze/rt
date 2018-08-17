@@ -6,7 +6,7 @@
 #    By: amelihov <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/29 13:43:11 by amelihov          #+#    #+#              #
-#    Updated: 2018/08/16 12:57:55 by amelihov         ###   ########.fr        #
+#    Updated: 2018/08/16 20:12:29 by amelihov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ SRC_DIR = ./srcs
 OBJ_DIR = ./obj
 INC_DIR = ./includes
 LIB_DIR = ./lib
+FRM_DIR = ./lib/Frameworks
 
 SRC = $(notdir $(wildcard $(SRC_DIR)/*.c) $(wildcard $(SRC_DIR)/*/*.c) $(wildcard $(SRC_DIR)/*/*/*.c))
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
@@ -27,12 +28,6 @@ INC = $(notdir $(wildcard $(INC_DIR)/*.h) $(wildcard $(INC_DIR)/*/*.h))
 
 TMP_INC = $(foreach inc, $(wildcard $(INC_DIR)/*), $(addprefix -I, $(inc)))
 
-#testH:
-#	$(TMP_INC)
-
-#testJ:
-#	$(SRC)
-
 LIBFT = $(LIB_DIR)/libft/libft.a
 LIBFT_INC = $(LIB_DIR)/libft/includes/
 LIBFT_FLAGS = -lft -L $(LIB_DIR)/libft/
@@ -40,9 +35,12 @@ LIBFT_FLAGS = -lft -L $(LIB_DIR)/libft/
 SDL_INC 	= ./lib/Frameworks/SDL2.framework/Headers/
 SDL_FLAGS	= -F ./lib/Frameworks -framework SDL2 -rpath ./lib/Frameworks
 
+SDL_IMG_INC 	= ./lib/Frameworks/SDL2_image.framework/Headers/
+SDL_IMG_FLAGS	= -F ./lib/Frameworks -framework SDL2_image -rpath ./lib/Frameworks
+
 CFLAGS = -Wall -Wextra -Werror -g
-HFLAGS = -I $(INC_DIR) -I $(LIBFT_INC) -I $(SDL_INC) $(TMP_INC)
-LFLAGS = $(LIBFT_FLAGS) $(SDL_FLAGS) 
+HFLAGS = -I $(INC_DIR) -I $(LIBFT_INC) -I $(SDL_INC) -I $(SDL_IMG_INC) $(TMP_INC) -I ./lib
+LFLAGS = $(LIBFT_FLAGS) $(SDL_FLAGS) $(SDL_IMG_FLAGS)
 
 all:
 	make -C $(LIB_DIR)/libft/
@@ -89,11 +87,13 @@ vpath %.c $(SRC_DIR)/vect3d
 vpath %.c $(SRC_DIR)/parallelism
 vpath %.c $(SRC_DIR)/basis
 vpath %.c $(SRC_DIR)/filter
-vpath %.c $(SRC_DIR)/error
+vpath %.c $(SRC_DIR)/err
 vpath %.c $(SRC_DIR)/event
 vpath %.c $(SRC_DIR)/render
 vpath %.c $(SRC_DIR)/canvas
 vpath %.c $(SRC_DIR)/options
+vpath %.c $(SRC_DIR)/technical_effect
+vpath %.c $(SRC_DIR)/texture
 
 vpath %.h $(INC_DIR)
 vpath %.h $(INC_DIR)/drawer

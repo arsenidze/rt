@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/05 15:01:14 by amelihov          #+#    #+#             */
-/*   Updated: 2018/08/15 22:18:14 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/08/16 17:08:14 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ void				event_handler_loop(t_drawer *drawer, t_scene *scene)
 		if (event.type == SDL_QUIT)
 			optns.quit = 1;
 		else if (event.type == SDL_KEYDOWN)
-			need_redraw = handle_key_down(&event, &optns, scene);
+			need_redraw = handle_key_down(&event, &optns, scene,
+				&drawer->canvas);
 		else if (event.type == SDL_MOUSEBUTTONDOWN)
 			need_redraw = handle_mouse_down(&event, &optns, scene,
 				&drawer->canvas);

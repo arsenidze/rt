@@ -22,7 +22,6 @@ typedef struct	s_camera
 	t_basis		basis;
 }				t_camera;
 
-//short	camera_init(t_camera *camera, t_vect3d pos, t_basis basis);
 void	camera_rotate_ox(t_camera *camera, double angel);
 void	camera_rotate_oy(t_camera *camera, double angel);
 void	camera_rotate_oz(t_camera *camera, double angel);

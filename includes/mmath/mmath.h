@@ -23,7 +23,6 @@ double		clampd(double x, double a, double b);
 int			clampi(int x, int a, int b);
 double		get_positive_root(double c[3]);
 double		square(double x);
-double		get_rand(void);
 
 double		cb(double x);
 int			sign(double x);

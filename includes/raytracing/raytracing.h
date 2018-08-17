@@ -19,13 +19,6 @@
 # include "ray.h"
 # include "intersection.h"
 
-//typedef struct	s_square
-//{
-//	int	top;
-//	int	left;
-//	int	size;
-//}				t_square;
-
 #define BACKGROUND_COLOR vect3d(0, 0, 0)
 #define MAX_RAY_DEPTH	4
 #define NSAMPLES 		4
@@ -37,9 +30,5 @@ t_vect3d	raytracing_trace(const t_scene *scene,
 int			raytracing_get_obj_idx_on_coord(const t_scene *scene, int i, int j,
 			const t_canvas *canvas);
 
-//void			render_scene(const t_scene *scene, t_canvas canvas,
-//				const t_options *options);
-//void			render_stereoscopy_scene(const t_scene *scene, t_canvas canvas,
-//				const t_options *options);
 
 #endif

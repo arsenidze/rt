@@ -6,15 +6,15 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/14 18:32:23 by amelihov          #+#    #+#             */
-/*   Updated: 2018/08/15 22:09:15 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/08/17 19:12:38 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RAYTRACING_PRIVATE_H
 # define RAYTRACING_PRIVATE_H
 
-#define TAN30	0.57735026919
-#define REFRACT_OFFSET	1e-2
+# define TAN30	0.57735026919
+# define REFRACT_OFFSET	1e-2
 
 typedef struct s_scene			t_scene;
 typedef struct s_camera			t_camera;
@@ -33,6 +33,6 @@ t_vect3d	handle_reflection_and_refraction(const t_scene *scene,
 t_vect3d	get_refraction_ray(t_vect3d ray_dir, t_vect3d normal, int inside,
 			float obj_ior);
 double		fresnel(t_vect3d i, t_vect3d normal, float ior, int inside);
-double		get_light_impact(const t_scene *scene, t_intersection *isect);
+double		get_total_light_impact(const t_scene *scene, t_intersection *isect);
 
 #endif

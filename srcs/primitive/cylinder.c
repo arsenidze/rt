@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/05 23:13:00 by amelihov          #+#    #+#             */
-/*   Updated: 2018/08/12 15:23:40 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/08/16 23:03:05 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ t_cylinder		cylinder_create(double r, double h)
 	return (cylinder);
 }
 
-static short	cylinder_cap_intersect(t_cylinder cylinder, t_basis basis,
+static short	cylinder_limitation_check(t_cylinder cylinder, t_basis basis,
 				t_ray ray, t_vect3d *intersect_point)
 {
 	double		proj_on_axis;
 	t_vect3d	axis;
 	short		is_isect;
-	
+
 	proj_on_axis = vect3d_dot(*intersect_point, basis.z);
 	if (proj_on_axis <= 0.0)
 		return (disk_intersection(PRIMITIVE(disk, cylinder.r), basis, ray,
@@ -72,7 +72,7 @@ short			cylinder_intersection(t_primitive primitive, t_basis basis,
 	if (primitive.cylinder.h < 0.0)
 		return (1);
 	else
-		return (cylinder_cap_intersect(primitive.cylinder, basis, ray,
+		return (cylinder_limitation_check(primitive.cylinder, basis, ray,
 			intersect_point));
 }
 
@@ -83,13 +83,16 @@ t_vect3d		cylinder_get_normal(t_primitive primitive, t_basis basis,
 	double		m;
 	t_vect3d	normal;
 
-	proj_on_axis = vect3d_dot(point, basis.z);
-	if (proj_on_axis <= 0.0)
-		return (disk_get_normal(PRIMITIVE(disk, primitive.cylinder.r), basis,
-			point));
-	else if (proj_on_axis >= primitive.cylinder.h)	 
-		return (-disk_get_normal(PRIMITIVE(disk, primitive.cylinder.r), basis,
-			point - vect3d_mult_on_scalar(basis.z, primitive.cylinder.h)));
+	if (primitive.cylinder.h >= 0.0)
+	{
+		proj_on_axis = vect3d_dot(point, basis.z);
+		if (proj_on_axis <= 0.0)
+			return (disk_get_normal(PRIMITIVE(disk, primitive.cylinder.r),
+				basis, point));
+		else if (proj_on_axis >= primitive.cylinder.h)
+			return (-disk_get_normal(PRIMITIVE(disk, primitive.cylinder.r),
+		basis, point - vect3d_mult_on_scalar(basis.z, primitive.cylinder.h)));
+	}
 	m = vect3d_dot(basis.z, point);
 	normal = point - vect3d_mult_on_scalar(basis.z, m);
 	normal = vect3d_norm(normal);

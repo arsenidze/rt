@@ -19,9 +19,9 @@
 # include "material.h"
 # include "texture.h"
 
-# define OBJ_IS_INTERSECT(o, r, i_p) object_intersection(o, r, i_p)
-# define OBJ_GET_NORMAL(o, p) object_get_normal(o, p)
-# define OBJ_GET_TEX_COORD(o, p, coord) object_get_tex_coord(o, p, coord)
+// # define OBJ_IS_INTERSECT(o, r, i_p) object_intersection(o, r, i_p)
+// # define OBJ_GET_NORMAL(o, p) object_get_normal(o, p)
+// # define OBJ_GET_TEX_COORD(o, p, coord) object_get_tex_coord(o, p, coord)
 
 typedef struct	s_object
 {

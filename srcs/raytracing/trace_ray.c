@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 20:58:54 by amelihov          #+#    #+#             */
-/*   Updated: 2018/08/14 21:31:28 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/08/17 19:12:14 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_vect3d	trace_ray(const t_scene *scene, t_ray ray, int depth)
 			return (handle_reflection_and_refraction(scene, &isect, depth));
 		else
 		{
-			light_impact = get_light_impact(scene, &isect);
+			light_impact = get_total_light_impact(scene, &isect);
 			if (isect.hit_object->texture.pixels)
 				point_col = object_get_color_from_texture(isect.hit_object,
 					isect.dest);

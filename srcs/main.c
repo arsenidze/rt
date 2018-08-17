@@ -6,14 +6,14 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/29 12:44:34 by amelihov          #+#    #+#             */
-/*   Updated: 2018/08/14 17:42:41 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/08/17 19:15:47 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "drawer.h"
 #include "scene.h"
 #include "event.h"
-#include "errors.h"
+#include "err.h"
 #include "libft.h"
 #include "defines/rt_defines.h"
 
@@ -37,7 +37,7 @@ void	get_test_scene1(t_scene *scene)
 
 	tex.w = surface->w;
 	tex.h = surface->h;
-	tex.pitch = surface->pitch;
+	tex.bpp = 3;
 	tex.pixels = malloc(surface->h * surface->pitch);
 	ft_memcpy(tex.pixels, surface->pixels, surface->h * surface->pitch);
 	SDL_UnlockSurface(surface);
@@ -103,9 +103,6 @@ void	get_test_scene1(t_scene *scene)
 
 	light_it = scene->lights.data;
 	light_it[0].pos = vect3d(0, 0, 500);
-	light_it[0].components[L_AMBIENT] = vect3d(0.3, 0.3, 0.3);
-	light_it[0].components[L_DIFFUSE] = vect3d(0.3, 0.3, 0.3);
-	light_it[0].components[L_SPECULAR] = vect3d(0.3, 0.3, 0.3);
 }
 //
 
@@ -122,18 +119,18 @@ void	get_test_scene2(t_scene *scene)
 
 	tex.w = surface->w;
 	tex.h = surface->h;
-	tex.pitch = surface->pitch;
+	tex.bpp = 3;
 	tex.pixels = malloc(surface->h * surface->pitch);
 	ft_memcpy(tex.pixels, surface->pixels, surface->h * surface->pitch);
 	SDL_UnlockSurface(surface);
 	SDL_FreeSurface(surface);
 
-	scene->objects.data = malloc(sizeof(t_object) * 2);
-	scene->objects.size = 2;
+	scene->objects.data = malloc(sizeof(t_object) * 3);
+	scene->objects.size = 3;
 	scene->lights.data = malloc(sizeof(t_light) * 1);
 	scene->lights.size = 1;
 	scene->camera.pos = vect3d(300, 0, 0);
-	scene->camera.basis = (t_basis){vect3d(-1, 0, 0), vect3d(0, 1, 0),
+	scene->camera.basis = (t_basis){vect3d(-1, 0, 0), vect3d(0, -1, 0),
 						vect3d(0, 0, 1)};
 
 	t_object	*obj_it;
@@ -145,27 +142,34 @@ void	get_test_scene2(t_scene *scene)
 	obj_it[0].material.reflection = 0.0;
 	obj_it[0].material.transparency = 0.0;
 	obj_it[0].material.ior = 1.5;
-	obj_it[0].texture = tex;
+	texture_load(&obj_it[0].texture, PATH_TEX"pointillist.bmp");
 	obj_it[0].color = vect3d(1, 0, 0);
 
 
-	obj_it[1].pos = vect3d(0, 100, 0);
+	obj_it[1].pos = vect3d(0, 100, -10);
 	obj_it[1].basis = (t_basis){vect3d(1, 0, 0), vect3d(0, 1, 0),
 						vect3d(0, 0, 1)};
-	obj_it[1].shape = SHAPE(sphere, 50);
+	obj_it[1].shape = SHAPE(plane);
 	obj_it[1].material.reflection = 0.0;
 	obj_it[1].material.transparency = 0.0;
 	obj_it[1].material.ior = 1.5;
 	obj_it[1].texture.pixels = NULL;
 	obj_it[1].color = vect3d(0, 0, 1);
 
+	obj_it[2].pos = vect3d(-500, 100, 50);
+	obj_it[2].basis = (t_basis){vect3d(1, 0, 0), vect3d(0, 1, 0),
+						vect3d(0, 0, 1)};
+	obj_it[2].shape = SHAPE(torus, 50, 100);
+	obj_it[2].material.reflection = 0.0;
+	obj_it[2].material.transparency = 0.0;
+	obj_it[2].material.ior = 1.5;
+	obj_it[2].texture.pixels = NULL;
+	obj_it[2].color = vect3d(0, 0.5, 0.5);
+
 	t_light	*light_it;
 
 	light_it = scene->lights.data;
 	light_it[0].pos = vect3d(0, 0, 10);
-	light_it[0].components[L_AMBIENT] = vect3d(0.3, 0.3, 0.3);
-	light_it[0].components[L_DIFFUSE] = vect3d(0.3, 0.3, 0.3);
-	light_it[0].components[L_SPECULAR] = vect3d(0.3, 0.3, 0.3);
 }
 
 static int	print_usage(void)

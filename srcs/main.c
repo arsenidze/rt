@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/29 12:44:34 by amelihov          #+#    #+#             */
-/*   Updated: 2018/08/17 19:15:47 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/08/17 21:04:32 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "err.h"
 #include "libft.h"
 #include "defines/rt_defines.h"
+#include "parser.h"
 
 //
 #include "scene.h"
@@ -189,6 +190,9 @@ int			main(int argc, char *argv[])
 		return (err_print(PROGNAME": "));
 	//get_test_scene1(&scene);
 	get_test_scene2(&scene);
+	if (scene_init_from_file(argv[1], &scene) != PARSER_SUCCESS)
+		return (err_print(PROGNAME": "));
+
 //	if (scene_init_from_file(&scene, argv[0], &drawer) != SCENE_SUCCESS)
 //		return (err_print(PROGNAME": "));
 	event_handler_loop(&drawer, &scene);

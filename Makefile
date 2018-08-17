@@ -6,7 +6,7 @@
 #    By: amelihov <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/29 13:43:11 by amelihov          #+#    #+#              #
-#    Updated: 2018/08/16 20:12:29 by amelihov         ###   ########.fr        #
+#    Updated: 2018/08/17 20:57:40 by snikitin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,7 @@ all:
 	make $(NAME)
 
 $(NAME): $(OBJ) $(LIBFT) Makefile
-	$(LD) $(OBJ) $(LFLAGS) -o $(NAME)
+	$(LD) $(OBJ) $(LFLAGS) libyaml.a libcyaml.a -o $(NAME)
 
 $(OBJ_DIR)/%.o: %.c
 	$(CC) $(CFLAGS) $(HFLAGS) -c $< -o $@

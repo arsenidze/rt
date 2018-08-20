@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/09 18:11:34 by amelihov          #+#    #+#             */
-/*   Updated: 2018/08/17 12:30:38 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/08/20 21:05:13 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ typedef double	t_vect3d __attribute__((vector_size(sizeof(double)*3)));
 # define VECT3D_3(v1, v2, v3) (t_vect3d[3]){v1, v2, v3}
 
 t_vect3d	vect3d(double x, double y, double z);
+t_vect3d	vect3d_from_scalar(double a);
 t_vect3d	vect3d_mult_on_scalar(t_vect3d v, double a);
 t_vect3d	vect3d_div_on_scalar(t_vect3d v, double a);
 double		vect3d_len(t_vect3d v);
@@ -36,11 +37,11 @@ t_vect3d	vect3d_reflect(t_vect3d ray, t_vect3d normal);
 short		vect3d_is_in_range(t_vect3d v, double a, double b);
 short		vect3d_is_in_range_abs(t_vect3d v, double a, double b);
 short		vect3d_is_equal(t_vect3d v1, t_vect3d v2);
+short		vect3d_is_fst_closer_snd_to(t_vect3d v1, t_vect3d v2, t_vect3d c);
 t_vect3d	vect3d_mult_on_matrix(t_vect3d v, t_vect3d m[3]);
 void		vect3d_fill_rotate_ox_matrix(t_vect3d m[3], double angel);
 void		vect3d_fill_rotate_oy_matrix(t_vect3d m[3], double angel);
 void		vect3d_fill_rotate_oz_matrix(t_vect3d m[3], double angel);
 t_vect3d	vect3d_rotate_around_axis(t_vect3d v, t_vect3d k, double angel);
-
 
 #endif

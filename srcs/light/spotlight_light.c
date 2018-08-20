@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   material.h                                         :+:      :+:    :+:   */
+/*   spotlight_light_apply.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/05 20:44:30 by amelihov          #+#    #+#             */
-/*   Updated: 2018/08/20 20:50:36 by amelihov         ###   ########.fr       */
+/*   Created: 2018/08/20 20:40:29 by amelihov          #+#    #+#             */
+/*   Updated: 2018/08/20 21:35:59 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MATERIAL_H
-# define MATERIAL_H
+#include "spotlight_light.h"
+#include "scene.h"
+#include "intersection.h"
 
-typedef struct	s_material
+t_vect3d				spotlight_light_apply(const t_spotlight_light *light,
+						const t_scene *scene, const t_intersection *isect)
 {
-	t_vect3d	ambient;
-	t_vect3d	diffuse;
-	t_vect3d	specular;
-	double		shininess;
-	double		reflection;
-	double		transparency;
-	double		ior;
-}				t_material;
-
-#endif
+	(void)light;
+	(void)scene;
+	(void)isect;
+	return (vect3d(0, 0, 0));
+}

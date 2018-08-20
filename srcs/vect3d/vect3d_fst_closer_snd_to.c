@@ -1,27 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   material.h                                         :+:      :+:    :+:   */
+/*   vect3d_fst_closer_snd_to.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/05 20:44:30 by amelihov          #+#    #+#             */
-/*   Updated: 2018/08/20 20:50:36 by amelihov         ###   ########.fr       */
+/*   Created: 2018/08/20 21:03:40 by amelihov          #+#    #+#             */
+/*   Updated: 2018/08/20 21:05:13 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MATERIAL_H
-# define MATERIAL_H
+#include "vect3d.h"
 
-typedef struct	s_material
+short	vect3d_is_fst_closer_snd_to(t_vect3d v1, t_vect3d v2, t_vect3d c)
 {
-	t_vect3d	ambient;
-	t_vect3d	diffuse;
-	t_vect3d	specular;
-	double		shininess;
-	double		reflection;
-	double		transparency;
-	double		ior;
-}				t_material;
-
-#endif
+	return (vect3d_sq_len(v1 - c) < vect3d_sq_len(v2 - c));
+}

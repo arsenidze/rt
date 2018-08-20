@@ -1,40 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raytracing_get_obj_idx_on_coord.c                  :+:      :+:    :+:   */
+/*   raytracing_get_obj_on_dir.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/15 19:48:53 by amelihov          #+#    #+#             */
-/*   Updated: 2018/08/18 15:36:12 by amelihov         ###   ########.fr       */
+/*   Created: 2018/08/20 20:39:35 by amelihov          #+#    #+#             */
+/*   Updated: 2018/08/20 22:25:43 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raytracing.h"
 #include "raytracing_private.h"
+#include "vect3d.h"
 #include "scene.h"
-#include "canvas.h"
 #include "intersection.h"
+#include <stddef.h>
 
-int			raytracing_get_obj_idx_on_coord(const t_scene *scene, int i, int j,
-			const t_canvas *canvas)
+t_object	*raytracing_get_obj_on_dir(t_vect3d point1, t_vect3d point2,
+			t_vect3d dir, const t_scene *scene)
 {
 	t_ray			ray;
 	t_intersection	isect;
-	unsigned int	idx;
 
-	ray.o = scene->camera.pos;
-	ray.d = get_ray_dir(scene->camera, i, j, canvas);
-	if (!find_closest_intersection(scene, ray, &isect))
-		return (-1);
-	idx = 0;
-	while (idx < scene->objects.size)
+	ray.o = point1;
+	ray.d = dir;
+	(void)point2;
+	if (find_closest_intersection(scene, ray, &isect))
 	{
-		if (isect.hit_object == &scene->objects.data[idx])
+		if (vect3d_is_fst_closer_snd_to(isect.dest, point2, point1))
 		{
-			return (idx);
+			return (isect.hit_object);
 		}
-		idx++;
 	}
-	return (-1);
+	return (NULL);
 }

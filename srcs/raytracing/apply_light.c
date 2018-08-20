@@ -1,40 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raytracing_get_obj_idx_on_coord.c                  :+:      :+:    :+:   */
+/*   apply_light.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/15 19:48:53 by amelihov          #+#    #+#             */
-/*   Updated: 2018/08/18 15:36:12 by amelihov         ###   ########.fr       */
+/*   Created: 2018/08/17 23:09:23 by amelihov          #+#    #+#             */
+/*   Updated: 2018/08/20 22:43:35 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "raytracing.h"
 #include "raytracing_private.h"
 #include "scene.h"
-#include "canvas.h"
 #include "intersection.h"
+#include "vect3d.h"
 
-int			raytracing_get_obj_idx_on_coord(const t_scene *scene, int i, int j,
-			const t_canvas *canvas)
+t_vect3d	apply_light(const t_scene *scene, const t_intersection *isect)
 {
-	t_ray			ray;
-	t_intersection	isect;
-	unsigned int	idx;
+	t_uint		i;
+	t_vect3d	output;
 
-	ray.o = scene->camera.pos;
-	ray.d = get_ray_dir(scene->camera, i, j, canvas);
-	if (!find_closest_intersection(scene, ray, &isect))
-		return (-1);
-	idx = 0;
-	while (idx < scene->objects.size)
+	if (OBJ_HAS_TEX((*isect->hit_object)))
+		object_update_material_according_to_tex(isect->hit_object, isect->dest);
+	output = vect3d(0, 0, 0);
+	i = 0;
+	while (i < scene->lights.size)
 	{
-		if (isect.hit_object == &scene->objects.data[idx])
-		{
-			return (idx);
-		}
-		idx++;
+		output += light_apply_light_by_type(&scene->lights.data[i], scene,
+			isect);
+		i++;
 	}
-	return (-1);
+	return (output);
 }

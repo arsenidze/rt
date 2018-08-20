@@ -1,34 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   spotlight.h                                        :+:      :+:    :+:   */
+/*   directional_light_apply.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/17 18:56:04 by amelihov          #+#    #+#             */
-/*   Updated: 2018/08/17 19:16:04 by amelihov         ###   ########.fr       */
+/*   Created: 2018/08/20 20:40:29 by amelihov          #+#    #+#             */
+/*   Updated: 2018/08/20 20:45:31 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SPOTLIGHT_H
-# define SPOTLIGHT_H
+#include "directional_light.h"
+#include "scene.h"
+#include "intersection.h"
 
-# include "vect3d.h"
-
-typedef struct s_light	t_light;
-typedef struct s_intersection	t_intersection;
-
-typedef struct	s_spotlight
+t_vect3d				directional_light_apply(const t_directional_light *light,
+						const t_scene *scene, const t_intersection *isect)
 {
-	t_vect3d	pos;
-	t_vect3d	dir;
-	float		cut_off;
-	float		ambient;
-	float		diffuse;
-	float		specular;
-}				t_spotlight;
-
-double			spotlight_get_impact(const t_light *light,
-				const t_intersection *isect);
-
-#endif
+	(void)light;
+	(void)scene;
+	(void)isect;
+	return (vect3d(0, 0, 0));
+}

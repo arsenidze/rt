@@ -1,27 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   material.h                                         :+:      :+:    :+:   */
+/*   vect3d_from_scalar.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/05 20:44:30 by amelihov          #+#    #+#             */
-/*   Updated: 2018/08/20 20:50:36 by amelihov         ###   ########.fr       */
+/*   Created: 2018/08/20 21:02:55 by amelihov          #+#    #+#             */
+/*   Updated: 2018/08/20 21:03:21 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MATERIAL_H
-# define MATERIAL_H
+#include "vect3d.h"
 
-typedef struct	s_material
+t_vect3d	vect3d_from_scalar(double a)
 {
-	t_vect3d	ambient;
-	t_vect3d	diffuse;
-	t_vect3d	specular;
-	double		shininess;
-	double		reflection;
-	double		transparency;
-	double		ior;
-}				t_material;
-
-#endif
+	return (vect3d(a, a, a));
+}

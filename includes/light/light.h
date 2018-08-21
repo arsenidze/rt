@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/27 19:49:59 by amelihov          #+#    #+#             */
-/*   Updated: 2018/08/20 21:32:36 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/08/21 19:53:41 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,9 @@ typedef union	u_light_data
 	t_directional_light	directional;
 	t_spotlight_light	spotlight;
 }				t_light_data;
-// # define L_AMBIENT		0
-// # define L_DIFFUSE		1
-// # define L_SPECULAR		2
-
 
 typedef struct	s_light
 {
-	// t_vect3d		pos;	//TMP
-	// t_vect3d		color;	//TMP
-	// t_vect3d	components[3];
-
 	t_light_type	type;
 	t_light_data	data;
 }				t_light;

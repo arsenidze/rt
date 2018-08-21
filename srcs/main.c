@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/29 12:44:34 by amelihov          #+#    #+#             */
-/*   Updated: 2018/08/20 22:12:12 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/08/21 19:19:03 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	get_test_scene2(t_scene *scene)
 	obj_it[0].material.reflection = 0.0;
 	obj_it[0].material.transparency = 0.0;
 	obj_it[0].material.ior = 1.5;
+	obj_it[0].texture.pixels = NULL;
 	texture_load(&obj_it[0].texture, PATH_TEX"pointillist.bmp");
 	obj_it[0].material.ambient = vect3d(0.4, 0.4, 0.4);
 	obj_it[0].material.diffuse = vect3d(0.4, 0.4, 0.4);
@@ -66,13 +67,18 @@ void	get_test_scene2(t_scene *scene)
 	t_light	*light_it;
 
 	light_it = scene->lights.data;
-	light_it[0].data.point.pos = vect3d(0, 0, 500);
-	light_it[0].data.point.ambient = vect3d(0.4, 0.4, 0.4);
-	light_it[0].data.point.diffuse = vect3d(0.4, 0.4, 0.4);
-	light_it[0].data.point.specular = vect3d(0.4, 0.4, 0.4);
-	light_it[0].data.point.constant = 1.0;
-	light_it[0].data.point.linear = 0.0014;
-	light_it[0].data.point.quadratic = 0.000007;
+//	light_it[0].data.point.pos = vect3d(0, 0, 200);
+//	light_it[0].data.point.ambient = vect3d(0.4, 0.4, 0.4);
+//	light_it[0].data.point.diffuse = vect3d(0.4, 0.4, 0.4);
+//	light_it[0].data.point.specular = vect3d(0.4, 0.4, 0.4);
+//	light_it[0].data.point.constant = 1.0;
+//	light_it[0].data.point.linear = 0.0014;
+//	light_it[0].data.point.quadratic = 0.000007;
+	light_it[0].type = directional;
+	light_it[0].data.directional.ambient = vect3d(0.4, 0.4, 0.4);
+	light_it[0].data.directional.diffuse = vect3d(0.4, 0.4, 0.4);
+	light_it[0].data.directional.specular = vect3d(0.4, 0.4, 0.4);
+	light_it[0].data.directional.dir = vect3d(0, 0, -1);
 }
 
 static int	print_usage(void)

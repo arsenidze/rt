@@ -1,35 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   point_light.h                                      :+:      :+:    :+:   */
+/*   light_private.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/17 18:38:14 by amelihov          #+#    #+#             */
-/*   Updated: 2018/08/21 13:27:31 by amelihov         ###   ########.fr       */
+/*   Created: 2018/08/21 13:07:38 by amelihov          #+#    #+#             */
+/*   Updated: 2018/08/21 13:34:02 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef POINT_LIGHT_H
-# define POINT_LIGHT_H
+#ifndef LIGHT_PRIVATE_H
+# define LIGHT_PRIVATE_H
 
-# include "vect3d.h"
+# define LIGHT_GET_COMPONENTS(l) (t_vect3d[3]){l.ambient, l.diffuse, l.specular}
 
-typedef struct s_scene			t_scene;
+typedef double	t_vect3d __attribute__((vector_size(sizeof(double)*3)));
 typedef struct s_intersection	t_intersection;
 
-typedef struct	s_point_light
-{
-	t_vect3d	ambient;
-	t_vect3d	diffuse;
-	t_vect3d	specular;
-	t_vect3d	pos;
-	float		constant;
-	float		linear;
-	float		quadratic;
-}				t_point_light;
-
-t_vect3d		point_light_apply(const t_point_light *light,
-				const t_scene *scene, const t_intersection *isect);
+t_vect3d	calc_col(t_vect3d l_components[3], t_vect3d dir_to_light,
+			const t_intersection *isect);
 
 #endif

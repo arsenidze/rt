@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/17 18:56:04 by amelihov          #+#    #+#             */
-/*   Updated: 2018/08/20 21:34:40 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/08/21 14:16:49 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ typedef struct s_intersection	t_intersection;
 
 typedef struct	s_spotlight_light
 {
-	t_vect3d	pos;
-	t_vect3d	dir;
-	float		cut_off;
 	t_vect3d	ambient;
 	t_vect3d	diffuse;
 	t_vect3d	specular;
+	t_vect3d	pos;
+	t_vect3d	dir;
+	double		cos_of_cut_off;
 }				t_spotlight_light;
 
 t_vect3d		spotlight_light_apply(const t_spotlight_light *light,

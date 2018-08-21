@@ -1,26 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   light_get_impact.c                                 :+:      :+:    :+:   */
+/*   vect3d_inf.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/17 18:18:33 by amelihov          #+#    #+#             */
-/*   Updated: 2018/08/17 18:33:13 by amelihov         ###   ########.fr       */
+/*   Created: 2018/08/21 13:20:40 by amelihov          #+#    #+#             */
+/*   Updated: 2018/08/21 13:21:32 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "light.h"
-#include "intersection.h"
+#include "vect3d.h"
+#include <float.h>
 
-double			light_get_impact(const t_light *light,
-				const t_intersection *isect)
+#define INF DBL_MAX
+
+t_vect3d	vect3d_inf(void)
 {
-	if (light->type == point)
-		return (light_get_point_light_impact(light, isect));
-	else if (light->type == directional)
-		return (light_get_directional_light_impact(light, isect));
-	else if (light->type == spotlight)
-		return (light_get_spotlight_impact(light, isect));
-	return (0);
+	return (vect3d(INF, INF, INF));
 }

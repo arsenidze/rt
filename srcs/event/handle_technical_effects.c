@@ -6,11 +6,12 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 16:16:07 by amelihov          #+#    #+#             */
-/*   Updated: 2018/08/16 17:22:45 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/08/21 20:11:14 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "event_private.h"
+#include "key_defines.h"
 #include "options.h"
 #include "scene.h"
 #include "canvas.h"

@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/02 13:22:49 by amelihov          #+#    #+#             */
-/*   Updated: 2018/08/16 22:12:54 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/08/21 19:52:38 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,6 @@ typedef struct			s_texture
 	void	*pixels;
 }						t_texture;
 
-short	texture_load(t_texture *tex, const char *tex_name);
+short					texture_load(t_texture *tex, const char *tex_name);
 
 #endif

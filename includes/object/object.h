@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/05 17:45:23 by amelihov          #+#    #+#             */
-/*   Updated: 2018/08/20 22:44:07 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/08/21 19:51:52 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include "material.h"
 # include "texture.h"
 
-# define OBJ_HAS_TEX(obj) (obj.texture.pixels)
+# define OBJ_HAS_TEX(obj) (obj.texture.pixels ? 1 : 0)
 
 typedef struct	s_object
 {
@@ -28,17 +28,16 @@ typedef struct	s_object
 	t_shape		shape;
 	t_material	material;
 	t_texture	texture;
-	t_vect3d	color;	//TMP
 }				t_object;
 
-short		object_intersection(const t_object *object, t_ray ray,
-			t_vect3d *intersect_point);
-t_vect3d	object_get_normal(const t_object *object, t_vect3d point);
-void		object_get_tex_coord(const t_object *object, t_vect3d point,
-			float coord[2]);
-t_vect3d	object_get_color_from_texture(const t_object *object,
-			t_vect3d point);
-void		object_update_material_according_to_tex(t_object *object,
-			t_vect3d point);
+short			object_intersection(const t_object *object, t_ray ray,
+				t_vect3d *intersect_point);
+t_vect3d		object_get_normal(const t_object *object, t_vect3d point);
+void			object_get_tex_coord(const t_object *object, t_vect3d point,
+				float coord[2]);
+t_vect3d		object_get_color_from_texture(const t_object *object,
+				t_vect3d point);
+void			object_update_material_according_to_tex(t_object *object,
+				t_vect3d point);
 
 #endif

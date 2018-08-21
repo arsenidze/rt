@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/09 18:11:34 by amelihov          #+#    #+#             */
-/*   Updated: 2018/08/20 21:05:13 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/08/21 13:20:19 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef double	t_vect3d __attribute__((vector_size(sizeof(double)*3)));
 
 t_vect3d	vect3d(double x, double y, double z);
 t_vect3d	vect3d_from_scalar(double a);
+t_vect3d	vect3d_inf(void);
 t_vect3d	vect3d_mult_on_scalar(t_vect3d v, double a);
 t_vect3d	vect3d_div_on_scalar(t_vect3d v, double a);
 double		vect3d_len(t_vect3d v);

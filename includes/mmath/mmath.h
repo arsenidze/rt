@@ -6,16 +6,16 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/05 19:09:18 by amelihov          #+#    #+#             */
-/*   Updated: 2018/08/12 12:00:56 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/08/21 19:53:21 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MMATH_H
 # define MMATH_H
 
-#include <float.h>
+# include <float.h>
 
-#define INF DBL_MAX
+# define INF DBL_MAX
 
 typedef double	t_vect3d __attribute__((vector_size(sizeof(double)*3)));
 

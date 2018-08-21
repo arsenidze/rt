@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   spotlight_light_apply.c                            :+:      :+:    :+:   */
+/*   err_defines.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/20 20:40:29 by amelihov          #+#    #+#             */
-/*   Updated: 2018/08/20 21:35:59 by amelihov         ###   ########.fr       */
+/*   Created: 2018/07/06 14:12:52 by amelihov          #+#    #+#             */
+/*   Updated: 2018/08/21 19:56:47 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "spotlight_light.h"
-#include "scene.h"
-#include "intersection.h"
+#ifndef ERR_DEFINES_H
+# define ERR_DEFINES_H
 
-t_vect3d				spotlight_light_apply(const t_spotlight_light *light,
-						const t_scene *scene, const t_intersection *isect)
-{
-	(void)light;
-	(void)scene;
-	(void)isect;
-	return (vect3d(0, 0, 0));
-}
+# define DRAWER_NEW_MEM					"Not enough memory to init drawer"
+# define DRAWER_NEW_SDL_INIT			(char *)SDL_GetError()
+# define DRAWER_NEW_SDL_CREATE_WINDOW 	(char *)SDL_GetError()
+# define DRAWER_NEW_SDL_CREATE_RENDERER	(char *)SDL_GetError()
+# define DRAWER_NEW_SDL_CREATE_TEXTURE 	(char *)SDL_GetError()
+
+#endif

@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/06 12:27:42 by amelihov          #+#    #+#             */
-/*   Updated: 2018/08/16 20:15:26 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/08/21 19:57:11 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define ERR_H
 
 # include "err.h"
-# include "error_defines.h"
+# include "err_defines.h"
 
 /*
 **	set_err:

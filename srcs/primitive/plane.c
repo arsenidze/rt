@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 10:52:52 by amelihov          #+#    #+#             */
-/*   Updated: 2018/08/11 13:57:53 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/08/21 13:49:02 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ void			plane_get_tex_coord(t_primitive primitive, t_basis basis,
 				t_vect3d point, float coord[2])
 {
 	point = basis_get_coord_in_basis(basis, point);
-	coord[0] = fabs(point[Y] / primitive.plane.tex_scale);
-	coord[1] = fabs(point[X] / primitive.plane.tex_scale);
+	coord[0] = fabs(fmod(point[Y], primitive.plane.tex_scale))
+				/ primitive.plane.tex_scale;
+	coord[1] = fabs(fmod(point[X], primitive.plane.tex_scale))
+				/ primitive.plane.tex_scale;
 }

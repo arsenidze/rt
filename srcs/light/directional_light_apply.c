@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/20 20:40:29 by amelihov          #+#    #+#             */
-/*   Updated: 2018/08/21 19:43:22 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/08/23 14:39:54 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_vect3d	directional_light_apply(const t_directional_light *light,
 			const t_scene *scene, const t_intersection *isect)
 {
 	t_vect3d		dir_to_light;
-	t_object		*shadow_reason;
+	const t_object	*shadow_reason;
 
 	dir_to_light = -light->dir;
 	if ((shadow_reason = raytracing_get_obj_on_dir(isect->dest, vect3d_inf(),

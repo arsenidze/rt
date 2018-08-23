@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/20 20:40:29 by amelihov          #+#    #+#             */
-/*   Updated: 2018/08/21 19:43:01 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/08/23 14:42:13 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_vect3d	spotlight_light_apply(const t_spotlight_light *light,
 			const t_scene *scene, const t_intersection *isect)
 {
 	t_vect3d		dir_to_light;
-	t_object		*shadow_reason;
+	const t_object	*shadow_reason;
 	double			cos_theta;
 
 	dir_to_light = light->pos - isect->dest;

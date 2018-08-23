@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/18 15:52:33 by amelihov          #+#    #+#             */
-/*   Updated: 2018/08/21 19:48:16 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/08/23 14:41:58 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_vect3d				point_light_apply(const t_point_light *light,
 	double			sq_dist;
 	double			dist;
 	t_vect3d		dir_to_light;
-	t_object		*shadow_reason;
+	const t_object	*shadow_reason;
 	t_vect3d		attenuation;
 
 	dir_to_light = light->pos - isect->dest;

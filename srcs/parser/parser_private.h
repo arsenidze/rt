@@ -6,23 +6,15 @@
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 13:57:00 by snikitin          #+#    #+#             */
-/*   Updated: 2018/08/17 19:59:31 by snikitin         ###   ########.fr       */
+/*   Updated: 2018/08/30 18:35:01 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSER_PRIVATE_H
 # define PARSER_PRIVATE_H
 
-# include "scene.h"
 # include "light.h"
-# include "camera.h"
-# include "object.h"
-# include "cone.h"
-# include "cuboid.h"
-# include "cylinder.h"
-# include "disk.h"
-# include "paraboloid.h"
-# include "plane.h"
+# include "scene.h"
 # include "primitive.h"
 # include "rect.h"
 # include "sphere.h"
@@ -32,6 +24,10 @@
 enum e_parsing_errors
 {
 	COLOR_VALUE_BIG = 1,
+	TOO_MANY_TYPES,
+	TOO_FEW_TYPES,
+	VALUE_BIG,
+	VALUE_LOW
 };
 
 void	parser_put_error_mapping(char *name);
@@ -46,12 +42,42 @@ struct	s_p_camera
 	unsigned int	rotation_count;
 };
 
-struct	s_p_light
+
+struct	s_p_spotlight
 {
 	float			*position;
 	unsigned int	position_count;
-	unsigned int	*color;
-	unsigned int	color_count;
+	float			*direction;
+	unsigned int	direction_count;
+	float			cut_off;
+};
+
+struct	s_p_point
+{
+	float			*position;
+	unsigned int	position_count;
+	float			constant;
+	float			linear;
+	float			quadratic;
+};
+
+struct	s_p_directional
+{
+	float			*direction;
+	unsigned int	direction_count;
+};
+
+struct	s_p_light
+{
+	float					*ambient;
+	unsigned int			ambient_count;
+	float					*diffuse;
+	unsigned int			diffuse_count;
+	float					*specular;
+	unsigned int			specular_count;
+	struct	s_p_spotlight	*spotlight;
+	struct	s_p_point		*point;
+	struct	s_p_directional	*directional;
 };
 
 struct	s_p_sphere
@@ -108,12 +134,16 @@ struct	s_p_paraboloid
 
 struct	s_p_material
 {
-	float	transparency;
-	float	reflection;
-	float	refraction;
-	float	ambient;
-	float	diffuse;
-	float	specular;
+	float			transparency;
+	float			reflection;
+	float			refraction;
+	float			shininess;
+	float			*ambient;
+	unsigned int	ambient_count;
+	float			*diffuse;
+	unsigned int	diffuse_count;
+	float			*specular;
+	unsigned int	specular_count;
 	char	*texture_path;
 };
 
@@ -145,11 +175,27 @@ struct	s_p_scene
 	unsigned int		objects_count;
 };
 
-t_basis	angles_to_basis(float *angles);
 
-int		validate_parsed_values(struct s_p_scene *p_scene);
-int		init_camera(struct s_p_scene *p_scene, t_scene *scene);
-int		create_objects(struct s_p_scene *p_scene, t_scene *scene);
-int		create_lights(struct s_p_scene *p_scene, t_scene *scene);
+
+int			validate_obj_type(struct s_p_object *object);
+int			validate_obj_type_num(struct s_p_object *object);
+int			validate_objects(struct s_p_object *objects,
+				unsigned int objects_count);
+
+int			validate_light_spot(struct s_p_spotlight *spotlight);
+int			validate_light_point(struct s_p_point *point);
+//int			validate_light_directional(struct s_p_directional *directional);
+int			validate_light_ads(struct s_p_light *light);
+int			validate_light_type_num(struct s_p_light *light);
+int			validate_lights(struct s_p_light *lights,
+			unsigned int lights_count);
+
+int			validate_parsed_values(struct s_p_scene *p_scene);
+
+t_basis		angles_to_basis(float *angles);
+t_vect3d	vect3d_from_float(float *data);
+int			init_camera(struct s_p_scene *p_scene, t_scene *scene);
+int			create_objects(struct s_p_scene *p_scene, t_scene *scene);
+int			create_lights(struct s_p_scene *p_scene, t_scene *scene);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/17 19:23:00 by snikitin          #+#    #+#             */
-/*   Updated: 2018/08/17 20:48:31 by snikitin         ###   ########.fr       */
+/*   Updated: 2018/08/30 15:25:55 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,8 @@ void	parser_put_error_code(unsigned int error_code)
 {
 	if (error_code == COLOR_VALUE_BIG)
 		ft_putstr_fd("ERROR:\t Invalid value. Color value should be no greater than 255.", 2);
+	ft_putnbr(error_code);
+	ft_putchar('\n');
+
 }
+

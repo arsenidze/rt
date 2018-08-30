@@ -6,7 +6,7 @@
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 19:20:07 by snikitin          #+#    #+#             */
-/*   Updated: 2018/08/17 21:11:30 by snikitin         ###   ########.fr       */
+/*   Updated: 2018/08/30 18:35:26 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,12 @@
 static void	init_material(struct s_p_material *p_material,
 		t_material *material)
 {
-	material->ambient = p_material->ambient;
-	material->diffuse = p_material->diffuse;
-	material->specular = p_material->specular;
+	material->ambient = vect3d_from_float(p_material->ambient);
+	material->diffuse = vect3d_from_float(p_material->diffuse);
+	material->specular = vect3d_from_float(p_material->specular);
 	material->reflection = p_material->reflection;
 	material->transparency = p_material->transparency;
+	material->shininess = p_material->shininess;
 	material->ior = p_material->refraction;
 }
 
@@ -66,16 +67,18 @@ static int	init_array_objects(struct s_p_scene *p_scene,
 	i = 0;
 	while (i < objects->size)
 	{
-		objects->data[i].color[X] = 1;//
+		init_figure(&p_scene->objects[i], &objects->data[i]);
 		objects->data[i].pos[X] = p_scene->objects[i].position[X];
 		objects->data[i].pos[Y] = p_scene->objects[i].position[Y];
 		objects->data[i].pos[Z] = p_scene->objects[i].position[Z];
+
+//wtf?
+		objects->data[i].texture.pixels = NULL;
+
 		objects->data[i].basis =
 			angles_to_basis(p_scene->objects[i].rotation);
 		init_material(&p_scene->objects[i].material,
 				&objects->data[i].material);
-		init_figure(&p_scene->objects[i], &objects->data[i]);
-		//texture
 		i++;
 	}
 	return (0);

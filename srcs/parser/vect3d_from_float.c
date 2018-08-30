@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_camera.c                                      :+:      :+:    :+:   */
+/*   vect3d_from_float.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/16 17:24:53 by snikitin          #+#    #+#             */
-/*   Updated: 2018/08/16 18:04:01 by snikitin         ###   ########.fr       */
+/*   Created: 2018/08/20 17:47:16 by snikitin          #+#    #+#             */
+/*   Updated: 2018/08/20 17:47:44 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vect3d.h"
-#include "basis.h"
-#include "scene.h"
-#include "camera.h"
-#include "parser_private.h"
 
-int		init_camera(struct s_p_scene *p_scene, t_scene *scene)
+t_vect3d	vect3d_from_float(float *data)
 {
-	scene->camera.pos = vect3d(p_scene->camera->position[0],
-		p_scene->camera->position[1], p_scene->camera->position[2]);
-	scene->camera.basis = angles_to_basis(p_scene->camera->rotation);
-	return (0);//void?
+	t_vect3d	vec;
+
+	vec[X] = data[X];
+	vec[Y] = data[Y];
+	vec[Z] = data[Z];
+	return (vec);
 }

@@ -6,7 +6,7 @@
 #    By: amelihov <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/29 13:43:11 by amelihov          #+#    #+#              #
-#    Updated: 2018/08/20 21:28:41 by amelihov         ###   ########.fr        #
+#    Updated: 2018/08/30 18:07:03 by snikitin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,6 +78,7 @@ vpath %.c $(SRC_DIR)/events
 vpath %.c $(SRC_DIR)/light
 vpath %.c $(SRC_DIR)/mmath
 vpath %.c $(SRC_DIR)/object
+vpath %.c $(SRC_DIR)/parser
 vpath %.c $(SRC_DIR)/primitive
 vpath %.c $(SRC_DIR)/primitive/helpers
 vpath %.c $(SRC_DIR)/raytracing

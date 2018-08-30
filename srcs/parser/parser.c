@@ -6,7 +6,7 @@
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 18:59:18 by snikitin          #+#    #+#             */
-/*   Updated: 2018/08/17 21:30:48 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/08/30 18:46:00 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,6 @@
 static const cyaml_schema_value_t g_vector_entry =
 {
 	CYAML_VALUE_FLOAT(CYAML_FLAG_DEFAULT, float),
-};
-
-static const cyaml_schema_value_t g_color_entry =
-{
-	CYAML_VALUE_UINT(CYAML_FLAG_DEFAULT, unsigned int),
 };
 
 /*
@@ -43,14 +38,63 @@ static const cyaml_schema_field_t g_camera_fields_p_schema[] =
 /*
 ** Light
 */
-static const cyaml_schema_field_t g_light_fields_p_schema[] =
+static const cyaml_schema_field_t g_spotlight_fields_p_schema[] =
 {
 	CYAML_FIELD_SEQUENCE("position", CYAML_FLAG_POINTER,
-			struct s_p_light, position, &g_vector_entry,
-			3, 3),
-	CYAML_FIELD_SEQUENCE("color", CYAML_FLAG_POINTER,
-			struct s_p_light, color, &g_color_entry,
-			3, 3),
+		struct s_p_spotlight, position, &g_vector_entry,
+		3, 3),
+	CYAML_FIELD_SEQUENCE("direction", CYAML_FLAG_POINTER,
+		struct s_p_spotlight, direction, &g_vector_entry,
+		3, 3),
+	CYAML_FIELD_FLOAT("cut off", CYAML_FLAG_DEFAULT,
+		struct s_p_spotlight, cut_off),
+	CYAML_FIELD_END
+};
+
+static const cyaml_schema_field_t g_point_fields_p_schema[] =
+{
+	CYAML_FIELD_SEQUENCE("position", CYAML_FLAG_POINTER,
+		struct s_p_point, position, &g_vector_entry,
+		3, 3),
+	CYAML_FIELD_FLOAT("constant", CYAML_FLAG_DEFAULT,
+		struct s_p_point, constant),
+	CYAML_FIELD_FLOAT("linear", CYAML_FLAG_DEFAULT,
+		struct s_p_point, linear),
+	CYAML_FIELD_FLOAT("quadratic", CYAML_FLAG_DEFAULT,
+		struct s_p_point, quadratic),
+	CYAML_FIELD_END
+};
+
+static const cyaml_schema_field_t g_directional_fields_p_schema[] =
+{
+	CYAML_FIELD_SEQUENCE("direction", CYAML_FLAG_POINTER,
+		struct s_p_directional, direction, &g_vector_entry,
+		3, 3),
+		CYAML_FIELD_END
+};
+
+static const cyaml_schema_field_t g_light_fields_p_schema[] =
+{
+	CYAML_FIELD_SEQUENCE("ambient", CYAML_FLAG_POINTER,
+		struct s_p_light, ambient, &g_vector_entry,
+		3, 3),
+	CYAML_FIELD_SEQUENCE("diffuse", CYAML_FLAG_POINTER,
+		struct s_p_light, diffuse, &g_vector_entry,
+		3, 3),
+	CYAML_FIELD_SEQUENCE("specular", CYAML_FLAG_POINTER,
+		struct s_p_light, specular, &g_vector_entry,
+		3, 3),
+
+
+	CYAML_FIELD_MAPPING_PTR(
+		"spotlight", CYAML_FLAG_OPTIONAL,
+		struct s_p_light, spotlight, g_spotlight_fields_p_schema),
+	CYAML_FIELD_MAPPING_PTR(
+		"point light", CYAML_FLAG_OPTIONAL,
+		struct s_p_light, point, g_point_fields_p_schema),
+	CYAML_FIELD_MAPPING_PTR(
+		"directional light", CYAML_FLAG_OPTIONAL,
+		struct s_p_light, directional, g_directional_fields_p_schema),
 	CYAML_FIELD_END
 };
 
@@ -70,15 +114,20 @@ static const cyaml_schema_field_t g_material_fields_p_schema[] = {
 		struct s_p_material, reflection),
 	CYAML_FIELD_FLOAT("refraction", CYAML_FLAG_DEFAULT,
 		struct s_p_material, refraction),
-	CYAML_FIELD_FLOAT("ambient", CYAML_FLAG_DEFAULT,
-		struct s_p_material, ambient),
-	CYAML_FIELD_FLOAT("diffuse", CYAML_FLAG_DEFAULT,
-		struct s_p_material, diffuse),
-	CYAML_FIELD_FLOAT("specular", CYAML_FLAG_DEFAULT,
-		struct s_p_material, specular),
+	CYAML_FIELD_FLOAT("shininess", CYAML_FLAG_DEFAULT,
+		struct s_p_material, shininess),
+	CYAML_FIELD_SEQUENCE("ambient", CYAML_FLAG_POINTER,
+		struct s_p_material, ambient, &g_vector_entry,
+		3, 3),
+	CYAML_FIELD_SEQUENCE("diffuse", CYAML_FLAG_POINTER,
+		struct s_p_material, diffuse, &g_vector_entry,
+		3, 3),
+	CYAML_FIELD_SEQUENCE("specular", CYAML_FLAG_POINTER,
+		struct s_p_material, specular, &g_vector_entry,
+		3, 3),
 	CYAML_FIELD_STRING_PTR(
-			"texture path", CYAML_FLAG_POINTER | CYAML_FLAG_OPTIONAL,
-			struct s_p_material, texture_path, 0, CYAML_UNLIMITED),
+		"texture path", CYAML_FLAG_POINTER | CYAML_FLAG_OPTIONAL,
+		struct s_p_material, texture_path, 0, CYAML_UNLIMITED),
 	CYAML_FIELD_END
 };
 
@@ -205,7 +254,8 @@ static const cyaml_schema_field_t g_object_fields_p_schema[] = {
 	CYAML_FIELD_END
 };
 
-static const cyaml_schema_value_t g_object_schema = {
+static const cyaml_schema_value_t g_object_schema =
+{
 	CYAML_VALUE_MAPPING(CYAML_FLAG_DEFAULT,
 			struct s_p_object, g_object_fields_p_schema),
 };
@@ -215,16 +265,16 @@ static const cyaml_schema_value_t g_object_schema = {
 */
 static const cyaml_schema_field_t g_scene_fields_p_schema[] = {
 	CYAML_FIELD_MAPPING_PTR(
-			"camera", CYAML_FLAG_OPTIONAL,
-			struct s_p_scene, camera, g_camera_fields_p_schema),
+		"camera", CYAML_FLAG_OPTIONAL,
+		struct s_p_scene, camera, g_camera_fields_p_schema),
 	CYAML_FIELD_SEQUENCE(
-			"lights", CYAML_FLAG_POINTER,
-			struct s_p_scene, lights,
-			&g_light_schema, 0, CYAML_UNLIMITED), //limit maybe
+		"lights", CYAML_FLAG_POINTER,
+		struct s_p_scene, lights,
+		&g_light_schema, 0, CYAML_UNLIMITED), //limit maybe
 	CYAML_FIELD_SEQUENCE(
-			"objects", CYAML_FLAG_POINTER,
-			struct s_p_scene, objects,
-			&g_object_schema, 0, CYAML_UNLIMITED), //limit maybe
+		"objects", CYAML_FLAG_POINTER,
+		struct s_p_scene, objects,
+		&g_object_schema, 0, CYAML_UNLIMITED), //limit maybe
 	CYAML_FIELD_END
 };
 
@@ -260,16 +310,19 @@ int		scene_init_from_file(char *file_path, t_scene *scene)
 	if (err != CYAML_OK)
 	{
 		fprintf(stderr, "ERROR: %s\n", cyaml_strerror(err));
-		return (PARSER_FAIL);
+		return (PARSER_FAILURE);
 	}
+
 	if (validate_parsed_values(p_scene))
 	{
 		cyaml_free(&g_config, &g_scene_schema, p_scene, 0);
-		return (PARSER_FAIL);
+		return (PARSER_FAILURE);
 	}
+
 	init_camera(p_scene, scene);
 	create_objects(p_scene, scene);
 	create_lights(p_scene, scene);
+	
 	cyaml_free(&g_config, &g_scene_schema, p_scene, 0);
 	return (PARSER_SUCCESS);
 }

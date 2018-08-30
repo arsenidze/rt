@@ -6,12 +6,14 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/21 20:00:12 by amelihov          #+#    #+#             */
-/*   Updated: 2018/08/21 20:00:45 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/08/30 21:35:57 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef OPTIONS_MANIPULATIONS_DEFINES_H
 # define OPTIONS_MANIPULATIONS_DEFINES_H
+
+# include "math.h"
 
 # define MAX_PIXELS 10
 

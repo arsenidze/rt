@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/29 12:44:34 by amelihov          #+#    #+#             */
-/*   Updated: 2018/08/30 18:53:37 by snikitin         ###   ########.fr       */
+/*   Updated: 2018/08/30 21:36:35 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,9 +100,6 @@ int			main(int argc, char *argv[])
 	//get_test_scene2(&scene);
 	if (scene_init_from_file(argv[1], &scene) != PARSER_SUCCESS)
 		return (err_print(PROGNAME": "));
-	scene.camera.basis = (t_basis){vect3d(-1, 0, 0), vect3d(0, -1, 0),
-						vect3d(0, 0, 1)};
-
 	event_handler_loop(&drawer, &scene);
 	drawer_deinit(&drawer);
 	scene_deinit(&scene);

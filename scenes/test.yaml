@@ -27,12 +27,6 @@ lights:
     diffuse: [0.4, 0.4, 0.4]
     specular: [0.4, 0.4, 0.4]
 
-  - directional light:
-        direction: [0, 0, -1]
-    ambient: [0.4, 0.4, 0.4]
-    diffuse: [0.4, 0.4, 0.4]
-    specular: [0.4, 0.4, 0.4]
-
   - spotlight:
         position: [11, 13, 20]
         direction: [11, 13, 20]
@@ -40,3 +34,17 @@ lights:
     ambient: [0.3, 0.3, 0.3]
     diffuse: [0.3, 0.3, 0.3]
     specular: [0.3, 0.3, 0.3]
+
+  - directional light:
+        direction: [0, 0, 1]
+    ambient: [0.4, 0.4, 0.4]
+    diffuse: [0.4, 0.4, 0.4]
+    specular: [0.4, 0.4, 0.4]
+
+    #  - spotlight:
+    #        position: [11, 13, 20]
+    #        direction: [11, 13, 20]
+    #        cut off: 42 #0-180
+    #    ambient: [0.3, 0.3, 0.3]
+    #    diffuse: [0.3, 0.3, 0.3]
+    #    specular: [0.3, 0.3, 0.3]

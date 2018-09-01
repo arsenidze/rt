@@ -6,7 +6,7 @@
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/20 20:22:06 by snikitin          #+#    #+#             */
-/*   Updated: 2018/09/01 17:30:55 by snikitin         ###   ########.fr       */
+/*   Updated: 2018/09/01 20:38:52 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ static int	validate_light(struct s_p_light *light)
 	if ((error_code = validate_light_spot(light->spotlight)))
 		return (error_code);
 	if ((error_code = validate_light_point(light->point)))
+		return (error_code);
+	if ((error_code = validate_light_directional(light->directional)))
 		return (error_code);
 	return (0);
 }

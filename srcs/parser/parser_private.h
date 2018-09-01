@@ -6,7 +6,7 @@
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 13:57:00 by snikitin          #+#    #+#             */
-/*   Updated: 2018/09/01 20:20:13 by snikitin         ###   ########.fr       */
+/*   Updated: 2018/09/01 20:40:34 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,9 @@ enum	e_parsing_errors
 	TOO_MANY_TYPES = 1,
 	TOO_FEW_TYPES,
 	VALUE_BIG,
-	VALUE_LOW
+	VALUE_LOW,
+	INNER_RADIUS_BIGGER_THEN_OUTER,
+	DIRECTION_CANNOT_BE_ZERO_VECTOR
 };
 
 # define MAX_FLOAT_TEMP 5000
@@ -250,6 +252,8 @@ struct	s_p_scene
 	unsigned int		objects_count;
 };
 
+int			validate_direction(float *direction);
+
 int			validate_plane(struct s_p_plane *plane);
 int			validate_sphere(struct s_p_sphere *sphere);
 int			validate_cone(struct s_p_cone *cone);
@@ -270,6 +274,7 @@ int			validate_objects(struct s_p_object *objects,
 				unsigned int objects_count);
 
 int			validate_light_spot(struct s_p_spotlight *spotlight);
+int			validate_light_directional(struct s_p_directional *directional);
 int			validate_light_point(struct s_p_point *point);
 //int			validate_light_directional(struct s_p_directional *directional);
 int			validate_light_ads(struct s_p_light *light);

@@ -6,7 +6,7 @@
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 19:20:07 by snikitin          #+#    #+#             */
-/*   Updated: 2018/09/01 15:07:07 by snikitin         ###   ########.fr       */
+/*   Updated: 2018/09/01 15:13:04 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,19 +72,10 @@ static int	init_array_objects(struct s_p_scene *p_scene,
 		objects->data[i].pos[X] = p_scene->objects[i].position[X];
 		objects->data[i].pos[Y] = p_scene->objects[i].position[Y];
 		objects->data[i].pos[Z] = p_scene->objects[i].position[Z];
-
-
-
-		//texture_load(&objects->data[i].texture, p_scene->objects[i].material.texture_path);
-		//texture_load(&objects->data[i].texture, "res/textures/pointillist.bmp");
-		
 		objects->data[i].texture.pixels = NULL;
 		if (texture_load(&objects->data[i].texture,
- 			p_scene->objects[i].material.texture_path) == TEXTURE_FAILURE)
-			return (1);
-
-
-
+			p_scene->objects[i].material.texture_path) == TEXTURE_FAILURE)
+				return (1); //put error!
 		objects->data[i].basis =
 			angles_to_basis(p_scene->objects[i].rotation);
 		init_material(&p_scene->objects[i].material,

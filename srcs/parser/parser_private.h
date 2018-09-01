@@ -6,7 +6,7 @@
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 13:57:00 by snikitin          #+#    #+#             */
-/*   Updated: 2018/08/30 18:35:01 by snikitin         ###   ########.fr       */
+/*   Updated: 2018/09/01 16:40:14 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,8 +175,10 @@ struct	s_p_scene
 	unsigned int		objects_count;
 };
 
+int		validate_value_float(float val, float min_val, float max_val);
 
-
+int			validate_obj_material(struct s_p_material *material);
+int			validate_obj_ads(struct s_p_material *material);
 int			validate_obj_type(struct s_p_object *object);
 int			validate_obj_type_num(struct s_p_object *object);
 int			validate_objects(struct s_p_object *objects,

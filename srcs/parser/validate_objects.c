@@ -6,21 +6,11 @@
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/20 20:21:22 by snikitin          #+#    #+#             */
-/*   Updated: 2018/08/30 17:32:18 by snikitin         ###   ########.fr       */
+/*   Updated: 2018/09/01 16:53:04 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser_private.h"
-
-
-//	if ((error_code = validate_ads_object(object)))
-//		return (error_code);
-
-int		validate_obj_material(struct s_p_material *material)
-{
-	(void)material;
-	return(0);
-}
 
 static int	validate_object(struct s_p_object *object)
 {
@@ -37,7 +27,7 @@ static int	validate_object(struct s_p_object *object)
 	return (0);
 }
 
-int	validate_objects(struct s_p_object *objects,
+int		validate_objects(struct s_p_object *objects,
 		unsigned int objects_count)
 {
 	unsigned int	error_code;

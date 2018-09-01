@@ -6,7 +6,7 @@
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/20 20:22:06 by snikitin          #+#    #+#             */
-/*   Updated: 2018/08/30 17:43:14 by snikitin         ###   ########.fr       */
+/*   Updated: 2018/09/01 15:51:33 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ static int	validate_light(struct s_p_light *light)
 	return (0);
 }
 
-int	validate_lights(struct s_p_light *lights,
-		unsigned int lights_count)
+int		validate_lights(struct s_p_light *lights,
+	unsigned int lights_count)
 {
 	unsigned int	error_code;
 	unsigned int	i;

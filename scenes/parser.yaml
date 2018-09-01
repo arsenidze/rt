@@ -128,8 +128,25 @@ objects:
        texture path: pangidfd.png 
 
 lights:
-  - position: [9, 2, 3]
-    color: [225, 253, 225]
-  
-  - position: [2, 3, 4]
-    color: [225, 225, 225]
+  - point light:
+        position: [0, 0, 200]
+        constant: 1.0
+        linear: 0.0014
+        quadratic: 0.000007
+    ambient: [0.4, 0.4, 0.4]
+    diffuse: [0.4, 0.4, 0.4]
+    specular: [0.4, 0.4, 0.4]
+
+  - directional light:
+        direction: [0, 0, -1]
+    ambient: [0.4, 0.4, 0.4]
+    diffuse: [0.4, 0.4, 0.4]
+    specular: [0.4, 0.4, 0.4]
+
+  - spotlight:
+        position: [11, 13, 20]
+        direction: [11, 13, 20]
+        cut off: 42 #0-180
+    ambient: [0.3, 0.3, 0.3]
+    diffuse: [0.3, 0.3, 0.3]
+    specular: [0.3, 0.3, 0.3]

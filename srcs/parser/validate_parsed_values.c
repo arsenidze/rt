@@ -6,7 +6,7 @@
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/17 17:49:06 by snikitin          #+#    #+#             */
-/*   Updated: 2018/08/30 17:43:25 by snikitin         ###   ########.fr       */
+/*   Updated: 2018/09/01 15:41:49 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ int		validate_parsed_values(struct s_p_scene *p_scene)
 
 	//if (validate_camera_values(p_scene->camera)) //do we need to validate cam values?
 	//	return (1);
-
-	
 	error_code = 0;
 	if ((error_code = validate_lights(p_scene->lights, p_scene->lights_count)))
 	{

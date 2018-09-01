@@ -6,7 +6,7 @@
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 18:59:18 by snikitin          #+#    #+#             */
-/*   Updated: 2018/09/01 15:08:31 by snikitin         ###   ########.fr       */
+/*   Updated: 2018/09/01 15:40:22 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -289,13 +289,6 @@ static const cyaml_config_t g_config = {
 	.mem_fn = cyaml_mem,
 };
 
-enum
-{
-	ARG_PROG_NAME,
-	ARG_PATH_IN,
-	ARG__COUNT,
-};
-
 #include "libft.h"//
 
 int		scene_init_from_file(char *file_path, t_scene *scene)
@@ -324,7 +317,6 @@ int		scene_init_from_file(char *file_path, t_scene *scene)
 		cyaml_free(&g_config, &g_scene_schema, p_scene, 0);
 		return (PARSER_FAILURE);
 	}
-
 	init_camera(p_scene, scene);
 	create_lights(p_scene, scene);
 	cyaml_free(&g_config, &g_scene_schema, p_scene, 0);

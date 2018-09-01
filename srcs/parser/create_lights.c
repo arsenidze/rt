@@ -6,7 +6,7 @@
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 18:34:11 by snikitin          #+#    #+#             */
-/*   Updated: 2018/08/30 18:10:51 by snikitin         ###   ########.fr       */
+/*   Updated: 2018/09/01 15:48:09 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,14 @@
 #include "array_light.h"
 #include "light.h"
 #include <stdlib.h>
+#include <math.h>
 
-static void	init_spotlight(struct s_p_light *p_light, t_spotlight_light *spotlight)
+static void	init_spotlight(struct s_p_light *p_light,
+		t_spotlight_light *spotlight)
 {
-	spotlight->pos= vect3d_from_float(p_light->spotlight->position);
-	spotlight->dir= vect3d_from_float(p_light->spotlight->direction);
-	spotlight->cos_of_cut_off = p_light->spotlight->cut_off;//calculate this value??
+	spotlight->pos = vect3d_from_float(p_light->spotlight->position);
+	spotlight->dir = vect3d_from_float(p_light->spotlight->direction);
+	spotlight->cos_of_cut_off = cos(p_light->spotlight->cut_off);//(should i divide to 2?)
 	spotlight->ambient = vect3d_from_float(p_light->ambient);
 	spotlight->diffuse = vect3d_from_float(p_light->diffuse);
 	spotlight->specular = vect3d_from_float(p_light->specular);
@@ -30,7 +32,7 @@ static void	init_spotlight(struct s_p_light *p_light, t_spotlight_light *spotlig
 
 static void	init_point(struct s_p_light *p_light, t_point_light *point)
 {
-	point->pos= vect3d_from_float(p_light->point->position);
+	point->pos = vect3d_from_float(p_light->point->position);
 	point->constant = p_light->point->constant;
 	point->linear = p_light->point->linear;
 	point->quadratic = p_light->point->quadratic;
@@ -55,12 +57,12 @@ static void	init_light_type(struct s_p_light *p_light, t_light *light)
 		init_spotlight(p_light, &light->data.spotlight);
 		light->type = spotlight;
 	}
-	if (p_light->point)
+	else if (p_light->point)
 	{
 		init_point(p_light, &light->data.point);
 		light->type = point;
 	}
-	if (p_light->directional)
+	else if (p_light->directional)
 	{
 		init_directional(p_light, &light->data.directional);
 		light->type = directional;
@@ -81,11 +83,18 @@ int		init_lights(struct s_p_scene *p_scene, t_array_light *lights)
 }
 
 int		create_lights(struct s_p_scene *p_scene, t_scene *scene)
-{	
+{
+	unsigned int	i;
+
 	scene->lights.size = p_scene->lights_count;
 	if (!(scene->lights.data =
-				malloc(sizeof(t_light) * p_scene->lights_count)))
+		malloc(sizeof(t_light) * p_scene->lights_count)))
 		return (1);
-	init_lights(p_scene, &scene->lights);
+	i = 0;
+	while (i < scene->lights.size)
+	{
+		init_light_type(&p_scene->lights[i], &scene->lights.data[i]);
+		i++;
+	}
 	return (0);
 }

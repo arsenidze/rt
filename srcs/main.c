@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/29 12:44:34 by amelihov          #+#    #+#             */
-/*   Updated: 2018/09/01 14:58:19 by snikitin         ###   ########.fr       */
+/*   Updated: 2018/09/01 15:11:26 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ int			main(int argc, char *argv[])
 	if (drawer_init(&drawer, WIN_W, WIN_H, argv[0]) != DRAWER_SUCCESS)
 		return (err_print(PROGNAME": "));
 	//get_test_scene2(&scene);
-	ft_bzero(&scene, sizeof(scene));
+	//ft_bzero(&scene, sizeof(scene));
 	if (scene_init_from_file(argv[1], &scene) != PARSER_SUCCESS)
 		return (err_print(PROGNAME": "));
 	event_handler_loop(&drawer, &scene);

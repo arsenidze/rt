@@ -6,7 +6,7 @@
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/01 16:32:35 by snikitin          #+#    #+#             */
-/*   Updated: 2018/09/01 17:07:54 by snikitin         ###   ########.fr       */
+/*   Updated: 2018/09/01 18:01:36 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,18 @@ int		validate_obj_material(struct s_p_material *material)
 	error_code = 0;
 	if ((error_code = validate_obj_ads(material)))
 		;
-	else if ((error_code = validate_value_float(material->transparency, 0, 1)))
-		parser_put_error_mapping("transparency");
-	else if ((error_code = validate_value_float(material->reflection, 0, 1)))
-		parser_put_error_mapping("reflection");
-	else if ((error_code = validate_value_float(material->refraction, 1, 5)))
-		parser_put_error_mapping("refraction");
+	else if ((error_code = validate_value_float(material->transparency,
+		PARS_TRANSPARENCY_MIN, PARS_TRANSPARENCY_MAX)))
+			parser_put_error_mapping("transparency");
+	else if ((error_code = validate_value_float(material->reflection,
+		PARS_REFLECTION_MIN, PARS_REFLECTION_MAX)))
+			parser_put_error_mapping("reflection");
+	else if ((error_code = validate_value_float(material->refraction,
+		PARS_REFRACTION_MIN, PARS_REFRACTION_MAX)))
+			parser_put_error_mapping("refraction");
+	else if ((error_code = validate_value_float(material->shininess,
+		PARS_SHININESS_MIN, PARS_SHININESS_MAX)))
+			parser_put_error_mapping("shininess");
 	if (error_code)
 		parser_put_error_mapping("material");
 	return (error_code);

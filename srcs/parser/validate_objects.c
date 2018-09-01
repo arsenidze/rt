@@ -6,7 +6,7 @@
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/20 20:21:22 by snikitin          #+#    #+#             */
-/*   Updated: 2018/09/01 17:12:26 by snikitin         ###   ########.fr       */
+/*   Updated: 2018/09/01 20:09:11 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ static int	validate_object(struct s_p_object *object)
 	error_code = 0;
 	if ((error_code = validate_obj_type_num(object)))
 		return (error_code);
-	//if ((error_code = validate_obj_type(object->spotobject)))
-	//	return (error_code);
+	if ((error_code = validate_obj_type(object)))
+		return (error_code);
 	if ((error_code = validate_obj_material(&object->material)))
 		return (error_code);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 14:30:32 by snikitin          #+#    #+#             */
-/*   Updated: 2018/09/01 17:02:32 by snikitin         ###   ########.fr       */
+/*   Updated: 2018/09/01 18:09:31 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@ int		validate_light_spot(struct s_p_spotlight *spotlight)
 	if (!spotlight)
 		return (0);
 	error_code = 0;
-	if ((error_code = validate_value_float(spotlight->cut_off, 0, 180)))
-		parser_put_error_mapping("cut off");
+	if ((error_code = validate_value_float(spotlight->cut_off,
+		PARS_CUTOFF_MIN, PARS_CUTOFF_MAX)))
+			parser_put_error_mapping("cut off");
 	return (error_code);
 }
 
@@ -31,11 +32,14 @@ int		validate_light_point(struct s_p_point *point)
 	if (!point)
 		return (0);
 	error_code = 0;
-	if ((error_code = validate_value_float(point->constant, 0, 180)))
-		parser_put_error_mapping("constant");
-	else if ((error_code = validate_value_float(point->linear, 0, 180)))
-		parser_put_error_mapping("linear");
-	else if ((error_code = validate_value_float(point->quadratic, 0, 180)))
-		parser_put_error_mapping("quadratic");
+	if ((error_code = validate_value_float(point->constant,
+		PARS_CONSTANT_MIN, PARS_CONSTANT_MAX)))
+			parser_put_error_mapping("constant");
+	else if ((error_code = validate_value_float(point->linear,
+		PARS_LINEAR_MIN, PARS_QUADRATIC_MAX)))
+			parser_put_error_mapping("linear");
+	else if ((error_code = validate_value_float(point->quadratic,
+		PARS_QUADRATIC_MIN, PARS_QUADRATIC_MAX)))
+			parser_put_error_mapping("quadratic");
 	return (error_code);
 }

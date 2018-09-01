@@ -6,7 +6,7 @@
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 18:59:18 by snikitin          #+#    #+#             */
-/*   Updated: 2018/08/30 18:46:00 by snikitin         ###   ########.fr       */
+/*   Updated: 2018/09/01 15:08:31 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -319,10 +319,14 @@ int		scene_init_from_file(char *file_path, t_scene *scene)
 		return (PARSER_FAILURE);
 	}
 
+	if (create_objects(p_scene, scene))
+	{
+		cyaml_free(&g_config, &g_scene_schema, p_scene, 0);
+		return (PARSER_FAILURE);
+	}
+
 	init_camera(p_scene, scene);
-	create_objects(p_scene, scene);
 	create_lights(p_scene, scene);
-	
 	cyaml_free(&g_config, &g_scene_schema, p_scene, 0);
 	return (PARSER_SUCCESS);
 }

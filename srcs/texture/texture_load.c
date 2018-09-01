@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 19:21:44 by amelihov          #+#    #+#             */
-/*   Updated: 2018/08/16 22:48:03 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/09/01 14:46:25 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,22 @@
 
 short	texture_load(t_texture *tex, const char *tex_name)
 {
-	SDL_Surface	*surfrace;
+	SDL_Surface	*surface;
 
-	surfrace = IMG_Load(tex_name);
-	if (!surfrace)
+	surface = IMG_Load(tex_name);
+	if (!surface)
 		return (TEXTURE_FAILURE);
-	tex->w = surfrace->w;
-	tex->h = surfrace->h;
-	tex->bpp = surfrace->format->BytesPerPixel;
-	if (!(tex->pixels = malloc(surfrace->h * surfrace->pitch)))
+	tex->w = surface->w;
+	tex->h = surface->h;
+	tex->bpp = surface->format->BytesPerPixel;
+	if (!(tex->pixels = malloc(surface->h * surface->pitch)))
 	{
-		SDL_FreeSurface(surfrace);
+		SDL_FreeSurface(surface);
 		return (TEXTURE_FAILURE);
 	}
-	SDL_LockSurface(surfrace);
-	ft_memcpy(tex->pixels, surfrace->pixels, surfrace->h * surfrace->pitch);
-	SDL_UnlockSurface(surfrace);
-	SDL_FreeSurface(surfrace);
+	SDL_LockSurface(surface);
+	ft_memcpy(tex->pixels, surface->pixels, surface->h * surface->pitch);
+	SDL_UnlockSurface(surface);
+	SDL_FreeSurface(surface);
 	return (TEXTURE_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 19:20:07 by snikitin          #+#    #+#             */
-/*   Updated: 2018/08/30 18:35:26 by snikitin         ###   ########.fr       */
+/*   Updated: 2018/09/01 15:07:07 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "parser_private.h"
 #include "array_object.h"
 #include "object.h"
+#include "libft.h"
 #include <stdlib.h>
 #include <math.h>
 
@@ -72,8 +73,17 @@ static int	init_array_objects(struct s_p_scene *p_scene,
 		objects->data[i].pos[Y] = p_scene->objects[i].position[Y];
 		objects->data[i].pos[Z] = p_scene->objects[i].position[Z];
 
-//wtf?
+
+
+		//texture_load(&objects->data[i].texture, p_scene->objects[i].material.texture_path);
+		//texture_load(&objects->data[i].texture, "res/textures/pointillist.bmp");
+		
 		objects->data[i].texture.pixels = NULL;
+		if (texture_load(&objects->data[i].texture,
+ 			p_scene->objects[i].material.texture_path) == TEXTURE_FAILURE)
+			return (1);
+
+
 
 		objects->data[i].basis =
 			angles_to_basis(p_scene->objects[i].rotation);
@@ -88,8 +98,9 @@ int			create_objects(struct s_p_scene *p_scene, t_scene *scene)
 {
 	scene->objects.size = p_scene->objects_count;
 	if (!(scene->objects.data =
-				malloc(sizeof(t_object) * p_scene->objects_count)))
+				ft_memalloc(sizeof(t_object) * p_scene->objects_count)))
 		return (1);
-	init_array_objects(p_scene, &scene->objects);
+	if (init_array_objects(p_scene, &scene->objects))
+		return (1);
 	return (0);
 }

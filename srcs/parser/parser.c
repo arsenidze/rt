@@ -6,7 +6,7 @@
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 18:59:18 by snikitin          #+#    #+#             */
-/*   Updated: 2018/09/01 15:40:22 by snikitin         ###   ########.fr       */
+/*   Updated: 2018/09/01 17:09:32 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static const cyaml_schema_field_t g_directional_fields_p_schema[] =
 	CYAML_FIELD_SEQUENCE("direction", CYAML_FLAG_POINTER,
 		struct s_p_directional, direction, &g_vector_entry,
 		3, 3),
-		CYAML_FIELD_END
+	CYAML_FIELD_END
 };
 
 static const cyaml_schema_field_t g_light_fields_p_schema[] =
@@ -105,7 +105,7 @@ static const cyaml_schema_value_t g_light_schema =
 };
 
 /*
-** Material 
+** Material
 */
 static const cyaml_schema_field_t g_material_fields_p_schema[] = {
 	CYAML_FIELD_FLOAT("transparency", CYAML_FLAG_DEFAULT,
@@ -305,13 +305,11 @@ int		scene_init_from_file(char *file_path, t_scene *scene)
 		fprintf(stderr, "ERROR: %s\n", cyaml_strerror(err));
 		return (PARSER_FAILURE);
 	}
-
 	if (validate_parsed_values(p_scene))
 	{
 		cyaml_free(&g_config, &g_scene_schema, p_scene, 0);
 		return (PARSER_FAILURE);
 	}
-
 	if (create_objects(p_scene, scene))
 	{
 		cyaml_free(&g_config, &g_scene_schema, p_scene, 0);
@@ -322,63 +320,3 @@ int		scene_init_from_file(char *file_path, t_scene *scene)
 	cyaml_free(&g_config, &g_scene_schema, p_scene, 0);
 	return (PARSER_SUCCESS);
 }
-
-//libcyaml: ERROR: Backtrace:
-//libcyaml: ERROR:   in mapping field: rectangle
-//libcyaml: ERROR:   in sequence entry: 8
-//libcyaml: ERROR:   in mapping field: objects
-//ERROR: Invalid value
-
-//int		main(int argc, char **argv)
-//{
-//	cyaml_err_t		err;
-//	struct s_p_scene	*scene;
-//
-//	if (argc != ARG__COUNT) {
-//		fprintf(stderr, "Usage:\n");
-//		fprintf(stderr, "  %s <INPUT>\n", argv[ARG_PROG_NAME]);
-//		return EXIT_FAILURE;
-//	}
-//	err = cyaml_load_file(argv[ARG_PATH_IN], &g_config,
-//			&g_scene_schema, (cyaml_data_t **)&scene, NULL);
-//	if (err != CYAML_OK) {
-//		fprintf(stderr, "ERROR: %s\n", cyaml_strerror(err));
-//		return EXIT_FAILURE;
-//	}
-//
-//	printf("%s:\n", "camera->position");
-//	for (unsigned i = 0; i < scene->camera->position_count; i++) {
-//		printf("  - %f\n", scene->camera->position[i]);
-//	}
-//	printf("%s:\n", "camera->rotation");
-//	for (unsigned i = 0; i < scene->camera->rotation_count; i++) {
-//		printf("  - %f\n", scene->camera->rotation[i]);
-//	}
-//	printf("%s: %llu\n", "objects_p_count", scene->objects_count);
-//	for (unsigned j = 0; j < scene->objects_count; j++) {
-//		//printf("%s: %f\n", "plane, texture_scale", scene->objects[j].plane->texture_scale);
-//		printf("%s: %f\n", "transparency", scene->objects[j].material.transparency);
-//		printf("%s: %f\n", "specular", scene->objects[j].material.specular);
-//		printf("\t\t position - %d\n", j);
-//		for (unsigned i = 0; i < scene->objects[j].position_count; i++) {
-//			printf("  - %f\n", scene->objects[j].position[i]);
-//		}
-//		printf("\t\t rotation - %d\n", j);
-//		for (unsigned i = 0; i < scene->objects[j].rotation_count; i++) {
-//			printf("  - %f\n", scene->objects[j].rotation[i]);
-//		}
-//	}
-//	printf("%s: %llu\n", "lights_p_count", scene->lights_count);
-//	for (unsigned j = 0; j < scene->lights_count; j++) {
-//		printf("\t\t position - %d\n", j);
-//		for (unsigned i = 0; i < scene->lights[j].position_count; i++) {
-//			printf("  - %f\n", scene->lights[j].position[i]);
-//		}
-//		printf("\t\t color - %d\n", j);
-//		for (unsigned i = 0; i < scene->lights[j].color_count; i++) {
-//			printf("  - %d\n", scene->lights[j].color[i]);
-//		}
-//	}
-//	cyaml_free(&g_config, &g_scene_schema, scene, 0);
-//	return (EXIT_SUCCESS);
-//}

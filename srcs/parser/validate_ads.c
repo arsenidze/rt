@@ -6,7 +6,7 @@
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/20 20:52:44 by snikitin          #+#    #+#             */
-/*   Updated: 2018/09/01 16:47:30 by snikitin         ###   ########.fr       */
+/*   Updated: 2018/09/01 17:34:28 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 static int	validate_ads_values(t_vect3d value)
 {
-
 	unsigned int	error_code;
 	unsigned int	i;
 
@@ -32,30 +31,36 @@ static int	validate_ads_values(t_vect3d value)
 	return (0);
 }
 
-int		validate_light_ads(struct s_p_light *light)
+int			validate_light_ads(struct s_p_light *light)
 {
 	unsigned int	error_code;
-	
+
 	error_code = 0;
-	if ((error_code = validate_ads_values(vect3d_from_float(light->ambient))))
+	if ((error_code = validate_ads_values(
+					vect3d_from_float(light->ambient))))
 		parser_put_error_mapping("ambient");
-	else if ((error_code = validate_ads_values(vect3d_from_float(light->diffuse))))
+	else if ((error_code = validate_ads_values(
+					vect3d_from_float(light->diffuse))))
 		parser_put_error_mapping("diffuse");
-	else if ((error_code = validate_ads_values(vect3d_from_float(light->specular))))
+	else if ((error_code = validate_ads_values(
+					vect3d_from_float(light->specular))))
 		parser_put_error_mapping("specular");
 	return (error_code);
 }
 
-int		validate_obj_ads(struct s_p_material *material)
+int			validate_obj_ads(struct s_p_material *material)
 {
 	unsigned int	error_code;
-	
+
 	error_code = 0;
-	if ((error_code = validate_ads_values(vect3d_from_float(material->ambient))))
+	if ((error_code = validate_ads_values(
+					vect3d_from_float(material->ambient))))
 		parser_put_error_mapping("ambient");
-	else if ((error_code = validate_ads_values(vect3d_from_float(material->diffuse))))
+	else if ((error_code = validate_ads_values(
+					vect3d_from_float(material->diffuse))))
 		parser_put_error_mapping("diffuse");
-	else if ((error_code = validate_ads_values(vect3d_from_float(material->specular))))
+	else if ((error_code = validate_ads_values(
+					vect3d_from_float(material->specular))))
 		parser_put_error_mapping("specular");
 	return (error_code);
 }

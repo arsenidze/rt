@@ -6,7 +6,7 @@
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/20 20:21:22 by snikitin          #+#    #+#             */
-/*   Updated: 2018/09/01 16:53:04 by snikitin         ###   ########.fr       */
+/*   Updated: 2018/09/01 17:12:26 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,7 @@
 static int	validate_object(struct s_p_object *object)
 {
 	unsigned int	error_code;
-	
-	(void)object;
+
 	error_code = 0;
 	if ((error_code = validate_obj_type_num(object)))
 		return (error_code);

@@ -6,7 +6,7 @@
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/01 16:32:35 by snikitin          #+#    #+#             */
-/*   Updated: 2018/09/01 16:53:43 by snikitin         ###   ########.fr       */
+/*   Updated: 2018/09/01 17:07:54 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int		validate_obj_material(struct s_p_material *material)
 		parser_put_error_mapping("reflection");
 	else if ((error_code = validate_value_float(material->refraction, 1, 5)))
 		parser_put_error_mapping("refraction");
-	if (error_code)	
+	if (error_code)
 		parser_put_error_mapping("material");
-	return(error_code);
+	return (error_code);
 }

@@ -6,7 +6,7 @@
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 13:57:00 by snikitin          #+#    #+#             */
-/*   Updated: 2018/09/01 16:40:14 by snikitin         ###   ########.fr       */
+/*   Updated: 2018/09/01 17:21:19 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,17 @@
 # include "torus.h"
 # include "basis.h"
 
-enum e_parsing_errors
+enum	e_parsing_errors
 {
-	COLOR_VALUE_BIG = 1,
-	TOO_MANY_TYPES,
+	TOO_MANY_TYPES = 1,
 	TOO_FEW_TYPES,
 	VALUE_BIG,
 	VALUE_LOW
 };
 
-void	parser_put_error_mapping(char *name);
-void	parser_put_error_sequence(unsigned int entry_num);
-void	parser_put_error_code(unsigned int entry_num);
+void		parser_put_error_mapping(char *name);
+void		parser_put_error_sequence(unsigned int entry_num);
+void		parser_put_error_code(unsigned int entry_num);
 
 struct	s_p_camera
 {
@@ -41,7 +40,6 @@ struct	s_p_camera
 	float			*rotation;
 	unsigned int	rotation_count;
 };
-
 
 struct	s_p_spotlight
 {
@@ -75,9 +73,9 @@ struct	s_p_light
 	unsigned int			diffuse_count;
 	float					*specular;
 	unsigned int			specular_count;
-	struct	s_p_spotlight	*spotlight;
-	struct	s_p_point		*point;
-	struct	s_p_directional	*directional;
+	struct s_p_spotlight	*spotlight;
+	struct s_p_point		*point;
+	struct s_p_directional	*directional;
 };
 
 struct	s_p_sphere
@@ -144,7 +142,7 @@ struct	s_p_material
 	unsigned int	diffuse_count;
 	float			*specular;
 	unsigned int	specular_count;
-	char	*texture_path;
+	char			*texture_path;
 };
 
 struct	s_p_object
@@ -167,7 +165,6 @@ struct	s_p_object
 
 struct	s_p_scene
 {
-	float				ambient;//
 	struct s_p_camera	*camera;
 	struct s_p_light	*lights;
 	unsigned int		lights_count;
@@ -175,7 +172,7 @@ struct	s_p_scene
 	unsigned int		objects_count;
 };
 
-int		validate_value_float(float val, float min_val, float max_val);
+int			validate_value_float(float val, float min_val, float max_val);
 
 int			validate_obj_material(struct s_p_material *material);
 int			validate_obj_ads(struct s_p_material *material);

@@ -6,7 +6,7 @@
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 18:34:11 by snikitin          #+#    #+#             */
-/*   Updated: 2018/09/01 15:48:09 by snikitin         ###   ########.fr       */
+/*   Updated: 2018/09/01 17:32:19 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,20 +69,7 @@ static void	init_light_type(struct s_p_light *p_light, t_light *light)
 	}
 }
 
-int		init_lights(struct s_p_scene *p_scene, t_array_light *lights)
-{
-	unsigned int	i;
-
-	i = 0;
-	while (i < lights->size)
-	{
-		init_light_type(&p_scene->lights[i], &lights->data[i]);//delete routine
-		i++;
-	}
-	return (0);
-}
-
-int		create_lights(struct s_p_scene *p_scene, t_scene *scene)
+int			create_lights(struct s_p_scene *p_scene, t_scene *scene)
 {
 	unsigned int	i;
 

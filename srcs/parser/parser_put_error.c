@@ -6,7 +6,7 @@
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/17 19:23:00 by snikitin          #+#    #+#             */
-/*   Updated: 2018/09/01 17:35:26 by snikitin         ###   ########.fr       */
+/*   Updated: 2018/09/02 15:48:27 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,15 @@ void	parser_put_error_sequence(unsigned int entry_num)
 
 void	parser_put_error_code(unsigned int error_code)
 {
-	//if (error_code == COLOR_VALUE_BIG)
-	//	ft_putstr_fd("ERROR:\t Invalid value. "
-	//			"Color value should be no greater than 255.", 2);
-	ft_putnbr(error_code);
+	static const char	*parsing_errors[] = {
+		"Invalid number of types. Only one type should be specified.",
+		"Invalid number of types. At least one type should be specified.",
+		"Invalid value. Value too big.",
+		"Invalid value. Value too low.",
+		"Invalid values. Outer radius should be bigger than inner radius."
+		"Invalid values. Direction vector cannot be null vector."};
+
+	ft_putstr_fd("ERROR:\t", 2);
+	ft_putstr_fd(parsing_errors[error_code - 1], 2);
 	ft_putchar('\n');
 }

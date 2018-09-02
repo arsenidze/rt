@@ -4,8 +4,9 @@ camera:
 
 objects:
   - position: [0, 0, 0]
-    sphere:
-        radius: 50 
+    torus:
+        inner radius: 50 
+        outer radius: 70 
     rotation: [0, 0, 0]
     material:
        shininess: 200 

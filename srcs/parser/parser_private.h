@@ -6,7 +6,7 @@
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 13:57:00 by snikitin          #+#    #+#             */
-/*   Updated: 2018/09/01 20:40:34 by snikitin         ###   ########.fr       */
+/*   Updated: 2018/09/02 15:46:42 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ enum	e_parsing_errors
 	VALUE_BIG,
 	VALUE_LOW,
 	INNER_RADIUS_BIGGER_THEN_OUTER,
-	DIRECTION_CANNOT_BE_ZERO_VECTOR
+	DIRECTION_CANNOT_BE_NULL_VECTOR
 };
 
 # define MAX_FLOAT_TEMP 5000

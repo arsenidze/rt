@@ -6,11 +6,12 @@
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/01 20:08:52 by snikitin          #+#    #+#             */
-/*   Updated: 2018/09/01 20:29:35 by snikitin         ###   ########.fr       */
+/*   Updated: 2018/09/02 16:55:36 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser_private.h"
+#include "parser_values_limits.h"
 
 int			validate_disk(struct s_p_disk *disk)
 {
@@ -28,7 +29,6 @@ int			validate_torus(struct s_p_torus *torus)
 	unsigned int	error_code;
 
 	error_code = 0;
-
 	if ((error_code = validate_value_float(torus->inner_radius,
 		PARS_TORUS_INNER_RADIUS_MIN, PARS_TORUS_INNER_RADIUS_MAX)))
 		parser_put_error_mapping("inner radius");

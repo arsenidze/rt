@@ -6,7 +6,7 @@
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/17 19:23:00 by snikitin          #+#    #+#             */
-/*   Updated: 2018/09/02 15:48:27 by snikitin         ###   ########.fr       */
+/*   Updated: 2018/09/02 16:43:13 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,6 @@ void	parser_put_error_code(unsigned int error_code)
 		"Invalid values. Direction vector cannot be null vector."};
 
 	ft_putstr_fd("ERROR:\t", 2);
-	ft_putstr_fd(parsing_errors[error_code - 1], 2);
+	ft_putendl_fd(parsing_errors[error_code - 1], 2);
 	ft_putchar('\n');
 }

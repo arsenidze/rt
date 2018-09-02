@@ -6,12 +6,13 @@
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 18:59:18 by snikitin          #+#    #+#             */
-/*   Updated: 2018/09/01 17:09:32 by snikitin         ###   ########.fr       */
+/*   Updated: 2018/09/02 16:57:58 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <stdio.h>
+#include "libft.h"
 #include "cyaml.h"
 #include "parser_private.h"
 #include "parser.h"
@@ -84,8 +85,6 @@ static const cyaml_schema_field_t g_light_fields_p_schema[] =
 	CYAML_FIELD_SEQUENCE("specular", CYAML_FLAG_POINTER,
 		struct s_p_light, specular, &g_vector_entry,
 		3, 3),
-
-
 	CYAML_FIELD_MAPPING_PTR(
 		"spotlight", CYAML_FLAG_OPTIONAL,
 		struct s_p_light, spotlight, g_spotlight_fields_p_schema),
@@ -270,11 +269,11 @@ static const cyaml_schema_field_t g_scene_fields_p_schema[] = {
 	CYAML_FIELD_SEQUENCE(
 		"lights", CYAML_FLAG_POINTER,
 		struct s_p_scene, lights,
-		&g_light_schema, 0, CYAML_UNLIMITED), //limit maybe
+		&g_light_schema, 0, PARS_MAX_LIGHTS_NUM),
 	CYAML_FIELD_SEQUENCE(
 		"objects", CYAML_FLAG_POINTER,
 		struct s_p_scene, objects,
-		&g_object_schema, 0, CYAML_UNLIMITED), //limit maybe
+		&g_object_schema, 0, PARS_MAX_LIGHTS_NUM),
 	CYAML_FIELD_END
 };
 
@@ -289,15 +288,12 @@ static const cyaml_config_t g_config = {
 	.mem_fn = cyaml_mem,
 };
 
-#include "libft.h"//
-
 int		scene_init_from_file(char *file_path, t_scene *scene)
 {
 	cyaml_err_t			err;
 	struct s_p_scene	*p_scene;
 
 	ft_bzero(scene, sizeof(t_scene));
-	//(void)p_scene;
 	err = cyaml_load_file(file_path, &g_config,
 			&g_scene_schema, (cyaml_data_t **)&p_scene, NULL);
 	if (err != CYAML_OK)
@@ -305,12 +301,7 @@ int		scene_init_from_file(char *file_path, t_scene *scene)
 		fprintf(stderr, "ERROR: %s\n", cyaml_strerror(err));
 		return (PARSER_FAILURE);
 	}
-	if (validate_parsed_values(p_scene))
-	{
-		cyaml_free(&g_config, &g_scene_schema, p_scene, 0);
-		return (PARSER_FAILURE);
-	}
-	if (create_objects(p_scene, scene))
+	if ((validate_parsed_values(p_scene)) || (create_objects(p_scene, scene)))
 	{
 		cyaml_free(&g_config, &g_scene_schema, p_scene, 0);
 		return (PARSER_FAILURE);

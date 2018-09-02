@@ -6,11 +6,12 @@
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/01 20:08:17 by snikitin          #+#    #+#             */
-/*   Updated: 2018/09/01 20:26:40 by snikitin         ###   ########.fr       */
+/*   Updated: 2018/09/02 16:57:19 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser_private.h"
+#include "parser_values_limits.h"
 
 int			validate_plane(struct s_p_plane *plane)
 {

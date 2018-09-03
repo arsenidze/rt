@@ -16,7 +16,7 @@ objects:
        ambient: [0.0, 0.4, 0.4]
        diffuse: [0.4, 0.0, 0.4]
        specular: [0.4, 0.4, 0.0]
-       texture path: "res/textures/pointillist.bmp" #texture PATH??
+       #texture path: "res/textures/pointillist.bmp" #texture PATH??
 
 lights:
   - point light:

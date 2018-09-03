@@ -6,7 +6,7 @@
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 13:57:00 by snikitin          #+#    #+#             */
-/*   Updated: 2018/09/02 17:04:18 by snikitin         ###   ########.fr       */
+/*   Updated: 2018/09/03 18:22:08 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 
 # define PARS_MAX_OBJECTS_NUM 100
 # define PARS_MAX_LIGHTS_NUM 100
+
+# define TO_RAD(n) ((n) * (M_PI / 180.0))
 
 struct		s_p_camera
 {

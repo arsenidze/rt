@@ -6,7 +6,7 @@
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 18:34:11 by snikitin          #+#    #+#             */
-/*   Updated: 2018/09/01 17:51:18 by snikitin         ###   ########.fr       */
+/*   Updated: 2018/09/03 18:19:21 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	init_spotlight(struct s_p_light *p_light,
 {
 	spotlight->pos = vect3d_from_float(p_light->spotlight->position);
 	spotlight->dir = vect3d_from_float(p_light->spotlight->direction);
-	spotlight->cos_of_cut_off = cos(p_light->spotlight->cut_off / 2);
+	spotlight->cos_of_cut_off = cos(TO_RAD(p_light->spotlight->cut_off / 2));
 	spotlight->ambient = vect3d_from_float(p_light->ambient);
 	spotlight->diffuse = vect3d_from_float(p_light->diffuse);
 	spotlight->specular = vect3d_from_float(p_light->specular);

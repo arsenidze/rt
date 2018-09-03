@@ -6,7 +6,7 @@
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 19:20:07 by snikitin          #+#    #+#             */
-/*   Updated: 2018/09/02 16:45:12 by snikitin         ###   ########.fr       */
+/*   Updated: 2018/09/03 18:20:57 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static void	init_figure(struct s_p_object *p_obj, t_object *obj)
 		obj->shape = SHAPE(cylinder, p_obj->cylinder->radius,
 			p_obj->cylinder->height);
 	if (p_obj->cone)
-		obj->shape = SHAPE(cone, tan(p_obj->cone->angle / 2),
+		obj->shape = SHAPE(cone, tan(TO_RAD(p_obj->cone->angle / 2)),
 			p_obj->cone->height);
 	if (p_obj->cuboid)
 		obj->shape = SHAPE(cuboid, (double[3]){p_obj->cuboid->width,
@@ -73,8 +73,9 @@ static int	init_array_objects(struct s_p_scene *p_scene,
 		objects->data[i].pos[Y] = p_scene->objects[i].position[Y];
 		objects->data[i].pos[Z] = p_scene->objects[i].position[Z];
 		objects->data[i].texture.pixels = NULL;
-		if (texture_load(&objects->data[i].texture,
-			p_scene->objects[i].material.texture_path) == TEXTURE_FAILURE)
+		if (p_scene->objects[i].material.texture_path
+			&& texture_load(&objects->data[i].texture,
+				p_scene->objects[i].material.texture_path) == TEXTURE_FAILURE)
 		{
 			ft_putendl_fd("ERROR:\tFailed to load texture", 2);
 			return (1);

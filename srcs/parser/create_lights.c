@@ -6,7 +6,7 @@
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 18:34:11 by snikitin          #+#    #+#             */
-/*   Updated: 2018/09/03 18:19:21 by snikitin         ###   ########.fr       */
+/*   Updated: 2018/09/03 18:50:02 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ static void	init_spotlight(struct s_p_light *p_light,
 		t_spotlight_light *spotlight)
 {
 	spotlight->pos = vect3d_from_float(p_light->spotlight->position);
-	spotlight->dir = vect3d_from_float(p_light->spotlight->direction);
+	spotlight->dir =
+		vect3d_norm(vect3d_from_float(p_light->spotlight->direction));
 	spotlight->cos_of_cut_off = cos(TO_RAD(p_light->spotlight->cut_off / 2));
 	spotlight->ambient = vect3d_from_float(p_light->ambient);
 	spotlight->diffuse = vect3d_from_float(p_light->diffuse);
@@ -44,7 +45,8 @@ static void	init_point(struct s_p_light *p_light, t_point_light *point)
 static void	init_directional(struct s_p_light *p_light,
 		t_directional_light *directional)
 {
-	directional->dir = vect3d_from_float(p_light->directional->direction);
+	directional->dir =
+		vect3d_norm(vect3d_from_float(p_light->directional->direction));
 	directional->ambient = vect3d_from_float(p_light->ambient);
 	directional->diffuse = vect3d_from_float(p_light->diffuse);
 	directional->specular = vect3d_from_float(p_light->specular);

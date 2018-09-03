@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 12:55:54 by amelihov          #+#    #+#             */
-/*   Updated: 2018/08/21 20:05:45 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/09/03 18:37:10 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,15 +45,15 @@
 # define KEY_SEPIA_SWITCH			SDL_SCANCODE_3
 # define KEY_BLACK_AND_WHITE_SWITCH	SDL_SCANCODE_4
 
-# define KEY_CAM_MOVE_FORWARD	SDL_SCANCODE_SPACE
-# define KEY_CAM_MOVE_BACKWARD	SDL_SCANCODE_SPACE
+# define KEY_CAM_MOVE_FORWARD	SDL_SCANCODE_UP
+# define KEY_CAM_MOVE_BACKWARD	SDL_SCANCODE_DOWN
 
-# define KEY_CAM_ROT_UP					SDL_SCANCODE_SPACE
-# define KEY_CAM_ROT_DOWN				SDL_SCANCODE_SPACE
-# define KEY_CAM_ROT_LEFT				SDL_SCANCODE_SPACE
-# define KEY_CAM_ROT_RIGHT				SDL_SCANCODE_SPACE
-# define KEY_CAM_ROT_CLOCKWISE			SDL_SCANCODE_SPACE
-# define KEY_CAM_ROT_COUNTER_CLOCKWISE	SDL_SCANCODE_SPACE
+# define KEY_CAM_ROT_UP					SDL_SCANCODE_KP_8
+# define KEY_CAM_ROT_DOWN				SDL_SCANCODE_KP_5
+# define KEY_CAM_ROT_LEFT				SDL_SCANCODE_KP_4
+# define KEY_CAM_ROT_RIGHT				SDL_SCANCODE_KP_6
+# define KEY_CAM_ROT_CLOCKWISE			SDL_SCANCODE_KP_7
+# define KEY_CAM_ROT_COUNTER_CLOCKWISE	SDL_SCANCODE_KP_9
 
 # define KEY_TO_MAKE_SCREENSHOT		SDL_SCANCODE_P
 

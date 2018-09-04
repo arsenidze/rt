@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/18 15:52:33 by amelihov          #+#    #+#             */
-/*   Updated: 2018/08/23 14:41:58 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/09/04 15:56:34 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,5 @@ t_vect3d				point_light_apply(const t_point_light *light,
 				* isect->hit_object->material.ambient);
 	}
 	return (attenuation * calc_col(LIGHT_GET_COMPONENTS((*light)), dir_to_light,
-																isect));
+		isect));
 }

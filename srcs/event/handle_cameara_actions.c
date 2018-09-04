@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 12:49:25 by amelihov          #+#    #+#             */
-/*   Updated: 2018/09/03 18:41:26 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/09/04 18:32:21 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,17 @@ short	handle_camera_actions(int key, t_options *optns, t_scene *scene)
 {
 	(void)optns;
 	if (key == KEY_CAM_MOVE_FORWARD)
-		camera_move(&scene->camera, CAMERA_MOVE_STEP);
+		camera_move_forward_backward(&scene->camera, CAMERA_MOVE_STEP);
 	else if (key == KEY_CAM_MOVE_BACKWARD)
-		camera_move(&scene->camera, -CAMERA_MOVE_STEP);
+		camera_move_forward_backward(&scene->camera, -CAMERA_MOVE_STEP);
+	else if (key == KEY_CAM_MOVE_UP)
+		camera_move_up_down(&scene->camera, CAMERA_MOVE_STEP);
+	else if (key == KEY_CAM_MOVE_DOWN)
+		camera_move_up_down(&scene->camera, -CAMERA_MOVE_STEP);
+	else if (key == KEY_CAM_MOVE_LEFT)
+		camera_move_left_right(&scene->camera, CAMERA_MOVE_STEP);
+	else if (key == KEY_CAM_MOVE_RIGHT)
+		camera_move_left_right(&scene->camera, -CAMERA_MOVE_STEP);
 	else if (key == KEY_CAM_ROT_UP)
 		camera_rotate_oy(&scene->camera, -CAMERA_ROT_ANGLE);
 	else if (key == KEY_CAM_ROT_DOWN)

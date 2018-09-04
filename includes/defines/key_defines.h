@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 12:55:54 by amelihov          #+#    #+#             */
-/*   Updated: 2018/09/03 18:40:11 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/09/04 18:34:31 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,10 @@
 
 # define KEY_CAM_MOVE_FORWARD	SDL_SCANCODE_UP
 # define KEY_CAM_MOVE_BACKWARD	SDL_SCANCODE_DOWN
+# define KEY_CAM_MOVE_LEFT		SDL_SCANCODE_LEFT
+# define KEY_CAM_MOVE_RIGHT		SDL_SCANCODE_RIGHT
+# define KEY_CAM_MOVE_UP		SDL_SCANCODE_PAGEUP
+# define KEY_CAM_MOVE_DOWN		SDL_SCANCODE_PAGEDOWN
 
 # define KEY_CAM_ROT_UP					SDL_SCANCODE_KP_8
 # define KEY_CAM_ROT_DOWN				SDL_SCANCODE_KP_2

@@ -11,7 +11,7 @@ objects:
        shininess: 200 
        transparency: 0
        reflection: 0
-       refraction: 1.5  #1-5
+       refraction: 1.5
        ambient: [0.5, 0.7, 0.8]
        diffuse: [0.5, 0.7, 0.8]
        specular: [0.9, 0.9, 0.9]
@@ -24,7 +24,7 @@ objects:
        shininess: 200 
        transparency: 0.7
        reflection: 1
-       refraction: 1.8  #1-5
+       refraction: 1.8
        ambient: [0.4, 0.4, 0.4]
        diffuse: [0.4, 0.4, 0.4]
        specular: [0.9, 0.9, 0.9]
@@ -37,7 +37,7 @@ objects:
        shininess: 200 
        transparency: 1
        reflection: 1
-       refraction: 1.8  #1-5
+       refraction: 1.8
        ambient: [0.4, 0.4, 0.4]
        diffuse: [0.4, 0.4, 0.4]
        specular: [0.9, 0.9, 0.9]
@@ -51,7 +51,7 @@ objects:
        shininess: 200 
        transparency: 0
        reflection: 0
-       refraction: 1  #1-5
+       refraction: 1
        ambient: [0.4, 0.4, 0.4]
        diffuse: [0.4, 0.4, 0.4]
        specular: [0.9, 0.9, 0.9]
@@ -64,7 +64,7 @@ objects:
        shininess: 200 
        transparency: 0
        reflection: 0
-       refraction: 1.5  #1-5
+       refraction: 1
        ambient: [0.9, 0.7, 0.8]
        diffuse: [0.9, 0.7, 0.8]
        specular: [0.9, 0.9, 0.9]
@@ -77,7 +77,7 @@ objects:
        shininess: 200 
        transparency: 0
        reflection: 0
-       refraction: 1.5  #1-5
+       refraction: 1
        ambient: [0.5, 0.7, 0.4]
        diffuse: [0.5, 0.7, 0.4]
        specular: [0.9, 0.9, 0.9]

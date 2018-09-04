@@ -1,0 +1,86 @@
+camera:
+    position: [1200, 0, 0]
+    rotation: [0, 0, 180]
+
+objects:
+  - position: [0, 0, 0]
+    sphere:
+        radius: 100
+    rotation: [0, 0, 0]
+    material:
+       shininess: 200 
+       transparency: 0
+       reflection: 0
+       refraction: 1.5
+       ambient: [0.0, 0.4, 0.4]
+       diffuse: [0.4, 0.0, 0.4]
+       specular: [0.4, 0.4, 0.0]
+       texture path: "res/textures/pointillist.bmp"
+
+  - position: [0, 0, -100]
+    plane:
+        texture scale: 100
+    rotation: [0, 0, 0]
+    material:
+       shininess: 200 
+       transparency: 0
+       reflection: 0
+       refraction: 1
+       ambient: [0.0, 0.4, 0.4]
+       diffuse: [0.4, 0.0, 0.4]
+       specular: [0.4, 0.4, 0.0]
+       texture path: "res/textures/pointillist.bmp"
+      
+  - position: [0, 200, -100]
+    cylinder:
+        radius: 70
+        height: 500
+    rotation: [0, 0, 0]
+    material:
+       shininess: 200 
+       transparency: 0
+       reflection: 0
+       refraction: 1
+       ambient: [0.0, 0.4, 0.4]
+       diffuse: [0.4, 0.0, 0.4]
+       specular: [0.4, 0.4, 0.0]
+       texture path: "res/textures/pointillist.bmp"
+
+  - position: [0, -200, -100]
+    cone:
+        angle: 40
+        height: 500
+    rotation: [0, 0, 0]
+    material:
+       shininess: 200 
+       transparency: 0
+       reflection: 0
+       refraction: 1
+       ambient: [0.0, 0.4, 0.4]
+       diffuse: [0.4, 0.0, 0.4]
+       specular: [0.4, 0.4, 0.0]
+       texture path: "res/textures/pointillist.bmp"
+
+lights:
+  - point light:
+        position: [0, 0, 200]
+        constant: 1.0
+        linear: 0.0014
+        quadratic: 0.00007
+    ambient: [0.4, 0.4, 0.4]
+    diffuse: [0.4, 0.4, 0.4]
+    specular: [0.4, 0.4, 0.4]
+
+  - spotlight:
+        position: [11, 13, 20]
+        direction: [11, 13, 20]
+        cut off: 42
+    ambient: [0.3, 0.3, 0.3]
+    diffuse: [0.3, 0.3, 0.3]
+    specular: [0.3, 0.3, 0.3]
+
+  - directional light:
+        direction: [0, 0, 1]
+    ambient: [0.4, 0.4, 0.4]
+    diffuse: [0.4, 0.4, 0.4]
+    specular: [0.4, 0.4, 0.4]

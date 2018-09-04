@@ -1,7 +1,0 @@
-2
-1
-scene:
-	camera: pos[600, 200, 300], dir[-1, 0, 0], up[0, 0, 1];
-	object: ambient[0.8, 0.2, 0.2], diffuse[0.8, 0.2, 0.2], specular[0.2, 0.2, 0.2], primitive[torus], pos[0, 0, 0], axis[0, 0, 1], radius0[50], radius1[100];
-	object: ambient[0.8, 0.2, 0.2], diffuse[0.8, 0.2, 0.2], specular[0.2, 0.2, 0.2], primitive[cylinder], pos[-100, 200, 300], axis[0, 0, 1], radius[50];
-	light: pos[0, 0, 500], ambient[1, 1, 1], diffuse[1, 1, 1], specular[1, 1, 1];

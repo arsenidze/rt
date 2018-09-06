@@ -23,6 +23,21 @@ t_vect3d	object_get_color_from_texture(const t_object *object,
 	object_get_tex_coord(object, point, coord);
 	coord[0] *= object->texture.w;
 	coord[1] *= object->texture.h;
+
+
+	if (object->texture.offset[0] != 0)
+	{
+		coord[0] += object->texture.offset[0];
+		if (coord[0] > object->texture.h)
+			coord[0] -= object->texture.h;
+	}
+	if (object->texture.offset[1] != 0)
+	{
+		coord[1] += object->texture.offset[1];
+		if (coord[1] > object->texture.h)
+			coord[1] -= object->texture.h;
+	}
+
 	col.value = TEX_GET_PIXEL(object->texture, (int)coord[0], (int)coord[1]);
 	vect3d_col[X] = col.rgba[RED] / 255.0;
 	vect3d_col[Y] = col.rgba[GREEN] / 255.0;

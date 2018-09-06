@@ -26,6 +26,7 @@ typedef struct			s_texture
 	t_uint	h;
 	t_uint	bpp;
 	void	*pixels;
+	int		offset[2];
 }						t_texture;
 
 short					texture_load(t_texture *tex, const char *tex_name);

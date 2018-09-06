@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/17 23:09:23 by amelihov          #+#    #+#             */
-/*   Updated: 2018/08/23 14:44:12 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/09/06 21:06:42 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,5 @@ t_vect3d	apply_light(const t_scene *scene, const t_intersection *isect)
 	}
 	if (obj_handler)
 		((t_intersection *)isect)->hit_object = obj_handler;
-	output = vect3d_clamp(output, 0, 1);
 	return (output);
 }

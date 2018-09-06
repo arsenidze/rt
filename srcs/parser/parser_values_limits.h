@@ -6,7 +6,7 @@
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/02 16:46:37 by snikitin          #+#    #+#             */
-/*   Updated: 2018/09/02 16:48:26 by snikitin         ###   ########.fr       */
+/*   Updated: 2018/09/04 18:06:25 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@
 
 # define PARS_CONE_HEIGHT_MIN 0
 # define PARS_CONE_HEIGHT_MAX MAX_FLOAT_TEMP
-# define PARS_CONE_ANGLE_MIN 0
+# define PARS_CONE_ANGLE_MIN 0.1
 # define PARS_CONE_ANGLE_MAX MAX_FLOAT_TEMP
 
 # define PARS_CUBOID_HEIGHT_MIN 0

@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/02 20:27:12 by amelihov          #+#    #+#             */
-/*   Updated: 2018/09/02 20:29:29 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/09/06 19:34:08 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "canvas.h"
 #include "ray.h"
 #include "vect3d.h"
-	#include <math.h>
+
 t_vect3d	raytracing_trace(const t_scene *scene, int i, int j,
 			const t_canvas *canvas)
 {

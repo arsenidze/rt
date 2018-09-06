@@ -1,0 +1,77 @@
+camera:
+    position: [300, 0, 0]
+    rotation: [0, 0, 180]
+
+objects:
+
+  - position: [0, 20, 20]
+    sphere:
+        radius: 50
+    rotation: [0, -45, 0]
+    material:
+       shininess: 10
+       transparency: 0
+       reflection: 0
+       refraction: 1.5
+       ambient: [0.2, 0.2, 0.2]
+       diffuse: [0.7, 0.7, 0.7]
+       specular: [0.7, 0.7, 0.7]
+       texture path: "res/textures/eye2.jpg"
+
+  - position: [-200, 0, -300]
+    plane:
+      texture scale: 45
+    rotation: [0, 0, 0]
+    material:
+       shininess: 10
+       transparency: 0
+       reflection: 0
+       refraction: 1.5
+       ambient: [0.2, 0.2, 0.2]
+       diffuse: [0.4, 0.4, 0.4]
+       specular: [0.4, 0.4, 0.4]
+
+  # - position: [-200, 0, -150]
+  #   plane:
+  #     texture scale: 45
+  #   rotation: [0, 90, 0]
+  #   material:
+  #      shininess: 10
+  #      transparency: 0
+  #      reflection: 0
+  #      refraction: 1.5
+  #      ambient: [0.2, 0.2, 0.2]
+  #      diffuse: [0.4, 0.4, 0.4]
+  #      specular: [0.4, 0.4, 0.4]
+
+lights:
+  # - point light:
+  #       position: [0, 0, 200]
+  #       constant: 1.0
+  #       linear: 0.0014
+  #       quadratic: 0.000007
+  #   ambient: [1, 1, 1]
+  #   diffuse: [1, 1, 1]
+  #   specular: [1, 1, 1]
+
+  - spotlight:
+        position: [-300, 0, 700]
+        direction: [0, 0, -1]
+        cut off: 80 #0-180
+    ambient: [0.9, 0.9, 0.9]
+    diffuse: [0.9, 0.9, 0.9]
+    specular: [0.9, 0.9, 0.9]
+
+  # - directional light:
+  #       direction: [0, 0, 1]
+  #   ambient: [0.4, 0.4, 0.4]
+  #   diffuse: [0.4, 0.4, 0.4]
+  #   specular: [0.4, 0.4, 0.4]
+
+    #  - spotlight:
+    #        position: [11, 13, 20]
+    #        direction: [11, 13, 20]
+    #        cut off: 42 #0-180
+    #    ambient: [0.3, 0.3, 0.3]
+    #    diffuse: [0.3, 0.3, 0.3]
+    #    specular: [0.3, 0.3, 0.3]

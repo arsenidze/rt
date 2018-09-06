@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 12:55:54 by amelihov          #+#    #+#             */
-/*   Updated: 2018/09/04 18:34:31 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/09/06 22:25:52 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,10 @@
 # define KEY_CAM_ROT_COUNTER_CLOCKWISE	SDL_SCANCODE_KP_9
 
 # define KEY_TO_MAKE_SCREENSHOT		SDL_SCANCODE_P
+
+# define KEY_OBJ_TEXTURE_OFFSET_X_UP	SDL_SCANCODE_Z
+# define KEY_OBJ_TEXTURE_OFFSET_X_DOWN	SDL_SCANCODE_X
+# define KEY_OBJ_TEXTURE_OFFSET_Y_UP	SDL_SCANCODE_C
+# define KEY_OBJ_TEXTURE_OFFSET_Y_DOWN	SDL_SCANCODE_V
 
 #endif

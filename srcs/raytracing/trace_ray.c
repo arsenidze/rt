@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/30 20:58:54 by amelihov          #+#    #+#             */
-/*   Updated: 2018/09/06 21:09:04 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/09/06 22:29:45 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 #include "ray.h"
 
 t_vect3d	trace_ray(const t_scene *scene, t_ray ray, int depth)
-
 {
 	t_intersection	isect;
 	t_vect3d		point_col;

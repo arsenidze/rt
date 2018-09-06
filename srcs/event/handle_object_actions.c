@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 12:39:59 by amelihov          #+#    #+#             */
-/*   Updated: 2018/08/21 20:10:56 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/09/06 22:28:19 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,25 @@
 #include "options.h"
 #include "vect3d.h"
 #include "mmath.h"
+
+static short	handle_object_texutre_parameters(int key, t_object *obj)
+{
+	if (key == KEY_OBJ_TEXTURE_OFFSET_X_UP)
+		ADD_AND_CLAMP(obj->texture.offset[0], TEXTURE_OFFSET_STEP,
+			0, obj->texture.w - 1);
+	else if (key == KEY_OBJ_TEXTURE_OFFSET_X_DOWN)
+		ADD_AND_CLAMP(obj->texture.offset[0], -TEXTURE_OFFSET_STEP,
+			0, obj->texture.w - 1);
+	else if (key == KEY_OBJ_TEXTURE_OFFSET_Y_UP)
+		ADD_AND_CLAMP(obj->texture.offset[1], -TEXTURE_OFFSET_STEP,
+			0, obj->texture.h - 1);
+	else if (key == KEY_OBJ_TEXTURE_OFFSET_Y_DOWN)
+		ADD_AND_CLAMP(obj->texture.offset[1], TEXTURE_OFFSET_STEP,
+			0, obj->texture.h - 1);
+	else
+		return (!NEED_REDRAW);
+	return (NEED_REDRAW);
+}
 
 static short	handle_object_material_parameters(int key, t_object *obj)
 {
@@ -89,6 +108,8 @@ short			handle_object_actions(int key, t_options *optns, t_scene *scene)
 	else if (handle_object_rotation(key, obj))
 		;
 	else if (handle_object_material_parameters(key, obj))
+		;
+	else if (handle_object_texutre_parameters(key, obj))
 		;
 	else
 		return (!NEED_REDRAW);

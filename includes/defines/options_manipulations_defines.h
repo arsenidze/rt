@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/21 20:00:12 by amelihov          #+#    #+#             */
-/*   Updated: 2018/08/30 21:35:57 by snikitin         ###   ########.fr       */
+/*   Updated: 2018/09/06 22:26:21 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,7 @@
 
 # define CAMERA_ROT_ANGLE 	(M_PI / 180.0) * 10.0
 # define CAMERA_MOVE_STEP 	10
+
+# define TEXTURE_OFFSET_STEP	10
 
 #endif

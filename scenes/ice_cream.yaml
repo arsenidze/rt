@@ -15,7 +15,8 @@ objects:
        ambient: [0.2, 0.2, 0.2]
        diffuse: [0.4, 0.4, 0.4]
        specular: [0.4, 0.4, 0.4]
-       texture path: "res/textures/violet.jpg"
+       texture:
+           path: "res/textures/violet.jpg"
 
   - position: [-40, 50, 10]
     sphere:
@@ -29,7 +30,8 @@ objects:
        ambient: [0.2, 0.2, 0.2]
        diffuse: [0.4, 0.4, 0.4]
        specular: [0.4, 0.4, 0.4]
-       texture path: "res/textures/white.jpg"
+       texture:
+           path: "res/textures/white.jpg"
 
   - position: [0, 20, 20]
     sphere:
@@ -43,7 +45,8 @@ objects:
        ambient: [0.2, 0.2, 0.2]
        diffuse: [0.7, 0.7, 0.7]
        specular: [0.7, 0.7, 0.7]
-       texture path: "res/textures/ice_cream_red.jpg"
+       texture:
+           path: "res/textures/ice_cream_red.jpg"
 
   - position: [-110, -85, -180]
     cone:
@@ -58,7 +61,8 @@ objects:
        ambient: [0.0, 0.4, 0.4]
        diffuse: [0.4, 0.0, 0.4]
        specular: [0.4, 0.4, 0.0]
-       texture path: "res/textures/ice_cream_cone.jpg"
+       texture:
+           path: "res/textures/ice_cream_cone.jpg"
 
   - position: [-200, 0, -300]
     plane:

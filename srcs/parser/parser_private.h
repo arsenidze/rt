@@ -6,7 +6,7 @@
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 13:57:00 by snikitin          #+#    #+#             */
-/*   Updated: 2018/09/03 18:22:08 by snikitin         ###   ########.fr       */
+/*   Updated: 2018/09/08 16:39:22 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,19 +123,26 @@ struct		s_p_paraboloid
 	float	height;
 };
 
+struct		s_p_texture
+{
+	char			*path;
+	unsigned int	x_offset;
+	unsigned int	y_offset;
+};
+
 struct		s_p_material
 {
-	float			transparency;
-	float			reflection;
-	float			refraction;
-	float			shininess;
-	float			*ambient;
-	unsigned int	ambient_count;
-	float			*diffuse;
-	unsigned int	diffuse_count;
-	float			*specular;
-	unsigned int	specular_count;
-	char			*texture_path;
+	float				transparency;
+	float				reflection;
+	float				refraction;
+	float				shininess;
+	float				*ambient;
+	unsigned int		ambient_count;
+	float				*diffuse;
+	unsigned int		diffuse_count;
+	float				*specular;
+	unsigned int		specular_count;
+	struct s_p_texture	*texture;
 };
 
 struct		s_p_object

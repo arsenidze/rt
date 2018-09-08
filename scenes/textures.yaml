@@ -1,6 +1,6 @@
 camera:
-    position: [1200, 0, 0]
-    rotation: [0, 0, 180]
+    position: [-1200, 0, 0]
+    rotation: [0, 0, 0]
 
 objects:
   - position: [0, 0, 0]

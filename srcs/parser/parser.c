@@ -6,7 +6,7 @@
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 18:59:18 by snikitin          #+#    #+#             */
-/*   Updated: 2018/09/02 16:57:58 by snikitin         ###   ########.fr       */
+/*   Updated: 2018/09/08 16:39:44 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,20 @@ static const cyaml_schema_value_t g_light_schema =
 };
 
 /*
+** Texture
+*/
+static const cyaml_schema_field_t g_texture_fields_p_schema[] = {
+	CYAML_FIELD_STRING_PTR(
+		"path", CYAML_FLAG_POINTER | CYAML_FLAG_OPTIONAL,
+		struct s_p_texture, path, 0, CYAML_UNLIMITED),
+	CYAML_FIELD_UINT("offset x", CYAML_FLAG_DEFAULT | CYAML_FLAG_OPTIONAL,
+		struct s_p_texture, x_offset),
+	CYAML_FIELD_UINT("offset y", CYAML_FLAG_DEFAULT | CYAML_FLAG_OPTIONAL,
+		struct s_p_texture, y_offset),
+	CYAML_FIELD_END
+};
+
+/*
 ** Material
 */
 static const cyaml_schema_field_t g_material_fields_p_schema[] = {
@@ -124,9 +138,9 @@ static const cyaml_schema_field_t g_material_fields_p_schema[] = {
 	CYAML_FIELD_SEQUENCE("specular", CYAML_FLAG_POINTER,
 		struct s_p_material, specular, &g_vector_entry,
 		3, 3),
-	CYAML_FIELD_STRING_PTR(
-		"texture path", CYAML_FLAG_POINTER | CYAML_FLAG_OPTIONAL,
-		struct s_p_material, texture_path, 0, CYAML_UNLIMITED),
+	CYAML_FIELD_MAPPING_PTR(
+			"texture", CYAML_FLAG_OPTIONAL,
+			struct s_p_material, texture, g_texture_fields_p_schema),
 	CYAML_FIELD_END
 };
 

@@ -6,14 +6,14 @@
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/02 16:46:37 by snikitin          #+#    #+#             */
-/*   Updated: 2018/09/04 18:06:25 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/09/08 16:46:40 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSER_VALUES_LIMITS_H
 # define PARSER_VALUES_LIMITS_H
 
-# define MAX_FLOAT_TEMP 5000
+# define FLT_MAX 30000
 
 /*
 ** Object(Material)
@@ -25,7 +25,7 @@
 # define PARS_REFRACTION_MIN 1
 # define PARS_REFRACTION_MAX 5
 # define PARS_SHININESS_MIN 0
-# define PARS_SHININESS_MAX MAX_FLOAT_TEMP
+# define PARS_SHININESS_MAX FLT_MAX
 
 /*
 ** Spotlight light
@@ -47,44 +47,44 @@
 ** Figures
 */
 # define PARS_PLANE_TEX_SCALE_MIN 0
-# define PARS_PLANE_TEX_SCALE_MAX MAX_FLOAT_TEMP
+# define PARS_PLANE_TEX_SCALE_MAX FLT_MAX
 
 # define PARS_SPHERE_RADIUS_MIN 0
-# define PARS_SPHERE_RADIUS_MAX MAX_FLOAT_TEMP
+# define PARS_SPHERE_RADIUS_MAX FLT_MAX
 
 # define PARS_CYLINDER_HEIGHT_MIN 0
-# define PARS_CYLINDER_HEIGHT_MAX MAX_FLOAT_TEMP
+# define PARS_CYLINDER_HEIGHT_MAX FLT_MAX
 # define PARS_CYLINDER_RADIUS_MIN 0
-# define PARS_CYLINDER_RADIUS_MAX MAX_FLOAT_TEMP
+# define PARS_CYLINDER_RADIUS_MAX FLT_MAX
 
 # define PARS_CONE_HEIGHT_MIN 0
-# define PARS_CONE_HEIGHT_MAX MAX_FLOAT_TEMP
+# define PARS_CONE_HEIGHT_MAX FLT_MAX
 # define PARS_CONE_ANGLE_MIN 0.1
-# define PARS_CONE_ANGLE_MAX MAX_FLOAT_TEMP
+# define PARS_CONE_ANGLE_MAX FLT_MAX
 
 # define PARS_CUBOID_HEIGHT_MIN 0
-# define PARS_CUBOID_HEIGHT_MAX MAX_FLOAT_TEMP
+# define PARS_CUBOID_HEIGHT_MAX FLT_MAX
 # define PARS_CUBOID_WIDTH_MIN 0
-# define PARS_CUBOID_WIDTH_MAX MAX_FLOAT_TEMP
+# define PARS_CUBOID_WIDTH_MAX FLT_MAX
 # define PARS_CUBOID_DEPTH_MIN 0
-# define PARS_CUBOID_DEPTH_MAX MAX_FLOAT_TEMP
+# define PARS_CUBOID_DEPTH_MAX FLT_MAX
 
 # define PARS_DISK_RADIUS_MIN 0
-# define PARS_DISK_RADIUS_MAX MAX_FLOAT_TEMP
+# define PARS_DISK_RADIUS_MAX FLT_MAX
 
 # define PARS_PARABOLOID_COEFF_MIN 0
-# define PARS_PARABOLOID_COEFF_MAX MAX_FLOAT_TEMP
+# define PARS_PARABOLOID_COEFF_MAX FLT_MAX
 # define PARS_PARABOLOID_HEIGHT_MIN 0
-# define PARS_PARABOLOID_HEIGHT_MAX MAX_FLOAT_TEMP
+# define PARS_PARABOLOID_HEIGHT_MAX FLT_MAX
 
 # define PARS_RECTANGLE_HEIGHT_MIN 0
-# define PARS_RECTANGLE_HEIGHT_MAX MAX_FLOAT_TEMP
+# define PARS_RECTANGLE_HEIGHT_MAX FLT_MAX
 # define PARS_RECTANGLE_WIDTH_MIN 0
-# define PARS_RECTANGLE_WIDTH_MAX MAX_FLOAT_TEMP
+# define PARS_RECTANGLE_WIDTH_MAX FLT_MAX
 
 # define PARS_TORUS_INNER_RADIUS_MIN 0
-# define PARS_TORUS_INNER_RADIUS_MAX MAX_FLOAT_TEMP
+# define PARS_TORUS_INNER_RADIUS_MAX FLT_MAX
 # define PARS_TORUS_OUTER_RADIUS_MIN 0
-# define PARS_TORUS_OUTER_RADIUS_MAX MAX_FLOAT_TEMP
+# define PARS_TORUS_OUTER_RADIUS_MAX FLT_MAX
 
 #endif

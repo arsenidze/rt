@@ -6,7 +6,7 @@
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 19:20:07 by snikitin          #+#    #+#             */
-/*   Updated: 2018/09/03 18:20:57 by snikitin         ###   ########.fr       */
+/*   Updated: 2018/09/08 16:34:28 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,27 @@ static void	init_figure(struct s_p_object *p_obj, t_object *obj)
 			p_obj->paraboloid->height);
 }
 
+static int	init_texture(struct s_p_texture *p_texture, t_texture *texture)
+{
+	if (p_texture)
+	{
+		if (texture_load(texture, p_texture->path) == TEXTURE_FAILURE)
+		{
+			ft_putendl_fd("ERROR:\tFailed to load texture", 2);
+			return (1);
+		}
+		if (p_texture->x_offset > texture->w
+				|| p_texture->y_offset > texture->h)
+		{
+			ft_putendl_fd("ERROR:\tInvalid texture offset values", 2);
+			return (1);
+		}
+		texture->offset[0] = p_texture->x_offset;
+		texture->offset[1] = p_texture->y_offset;
+	}
+	return (0);
+}
+
 static int	init_array_objects(struct s_p_scene *p_scene,
 		t_array_object *objects)
 {
@@ -73,13 +94,9 @@ static int	init_array_objects(struct s_p_scene *p_scene,
 		objects->data[i].pos[Y] = p_scene->objects[i].position[Y];
 		objects->data[i].pos[Z] = p_scene->objects[i].position[Z];
 		objects->data[i].texture.pixels = NULL;
-		if (p_scene->objects[i].material.texture_path
-			&& texture_load(&objects->data[i].texture,
-				p_scene->objects[i].material.texture_path) == TEXTURE_FAILURE)
-		{
-			ft_putendl_fd("ERROR:\tFailed to load texture", 2);
+		if (init_texture(p_scene->objects[i].material.texture,
+					&objects->data[i].texture))
 			return (1);
-		}
 		objects->data[i].basis =
 			angles_to_basis(p_scene->objects[i].rotation);
 		init_material(&p_scene->objects[i].material,

@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/29 12:44:34 by amelihov          #+#    #+#             */
-/*   Updated: 2018/09/04 18:09:28 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/09/08 22:25:32 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "err.h"
 #include "libft.h"
 #include "parser.h"
-#include "defines/rt_defines.h"
+#include "rt_defines.h"
 
 static int	print_usage(void)
 {

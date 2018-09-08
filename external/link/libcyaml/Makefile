@@ -1,1 +1,0 @@
-../../libs/libcyaml/make_with_yaml_lib.mk

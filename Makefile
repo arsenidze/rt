@@ -6,7 +6,7 @@
 #    By: amelihov <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/29 13:43:11 by amelihov          #+#    #+#              #
-#    Updated: 2018/09/08 22:32:00 by amelihov         ###   ########.fr        #
+#    Updated: 2018/09/08 22:54:44 by amelihov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -342,7 +342,7 @@ fclean: clean
 	@echo "*** removing main target: "$(NAME)" ***"
 	@$(RM) -r $(OBJ_DIR)
 	@echo "*** cleaning libs ***"
-	@make clean -f $(LIBFT_MK) -C $(LIBFT_MK_DIR)
+	@make fclean -f $(LIBFT_MK) -C $(LIBFT_MK_DIR)
 	@make clean -f $(LIBCYAML_MK) -C $(LIBCYAML_MK_DIR)
 
 re: fclean all

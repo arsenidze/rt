@@ -1,0 +1,31 @@
+camera:
+    moving:
+        forward: arrow up
+        backward: arrow down 
+        left: arrow left 
+        right: arrow right 
+        up: page up
+        down: page down 
+    rotation:
+        around X +: numpad 9
+        around X -: numpad 7
+        around Y +: numpad 8
+        around Y -: numpad 2
+        around Z +: numpad 6
+        around Z -: numpad 4
+     resoulusion:
+         increase: +
+         decrease: -
+     antialiasing: 1
+     filters:
+         stereoscopy:  2
+         sepia : 3
+         black and white : 4
+     screenshot: p
+     
+objects:
+    texture moving:
+         X +: x
+         X -: z
+         Y +: v
+         Y -: c

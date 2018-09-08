@@ -1,0 +1,143 @@
+This document is intended for C developers wishing to make use of \href{https://github.com/tlsa/libcyaml}{\tt Lib\+C\+Y\+A\+ML}.
+
+\subsection*{Overview }
+
+If you want to use Lib\+C\+Y\+A\+ML you\textquotesingle{}ll need to have two things\+:
+
+
+\begin{DoxyEnumerate}
+\item A consistent structure to the sort of Y\+A\+ML you want to load/save.
+\item Some C data structure to load/save to/from.
+\end{DoxyEnumerate}
+
+Lib\+C\+Y\+A\+ML\textquotesingle{}s aim is to make this as simple as possible for the programmer. However, Lib\+C\+Y\+A\+ML knows nothing about either your data structure or the \char`\"{}shape\char`\"{} of the Y\+A\+ML you want to load. You provide this information by defining \char`\"{}schemas\char`\"{}, and passing them to Lib\+C\+Y\+A\+ML.
+
+\begin{quote}
+{\bfseries Note}\+: If you need to handle arbitrary \char`\"{}free-\/form\char`\"{} Y\+A\+ML (e.\+g. for a tool to convert between Y\+A\+ML and J\+S\+ON), then Lib\+C\+Y\+A\+ML would not be much help. In such a case, I\textquotesingle{}d recommend using \href{https://github.com/yaml/libyaml}{\tt libyaml} directly. \end{quote}
+
+
+\subsection*{A simple example\+: loading Y\+A\+ML }
+
+Let\textquotesingle{}s say you want to load the following Y\+A\+ML document\+:
+
+
+\begin{DoxyCode}
+name: Fibonacci
+data:
+  - 1
+  - 1
+  - 2
+  - 3
+  - 5
+  - 8
+\end{DoxyCode}
+
+
+And you want to load it into the following C data structure\+:
+
+
+\begin{DoxyCode}
+\textcolor{keyword}{struct }numbers \{
+    \textcolor{keywordtype}{char} *name;
+    \textcolor{keywordtype}{int} *data;
+    \textcolor{keywordtype}{unsigned} data\_count;
+\};
+\end{DoxyCode}
+
+
+Then we need to define a C\+Y\+A\+ML schema to describe these to Lib\+C\+Y\+A\+ML.
+
+\begin{quote}
+{\bfseries Note}\+: Use the doxygen A\+PI documentation, or else the documentation in \href{https://github.com/tlsa/libcyaml/blob/master/include/cyaml/cyaml.h}{\tt cyaml.\+h} in conjunction with this guide. \end{quote}
+
+
+At the top level of the Y\+A\+ML is a mapping with two fields, \char`\"{}name\char`\"{} and \char`\"{}data\char`\"{}. The the first field is just a simple scalar value (it\textquotesingle{}s neither a mapping nor a sequence). The second field has a sequence value.
+
+We\textquotesingle{}ll start by defining the C\+Y\+A\+ML schema for the \char`\"{}data\char`\"{} sequence, since since that\textquotesingle{}s the \char`\"{}deepest\char`\"{} non-\/scalar type. The reason for starting here will become clear later.
+
+
+\begin{DoxyCode}
+\textcolor{comment}{/* CYAML value schema for entries of the data sequence. */}
+\textcolor{keyword}{static} \textcolor{keyword}{const} cyaml\_schema\_value\_t data\_entry = \{
+    CYAML\_VALUE\_INT(CYAML\_FLAG\_DEFAULT, \textcolor{keywordtype}{int}),
+\};
+\end{DoxyCode}
+
+
+Here we\textquotesingle{}re making a {\ttfamily cyaml\+\_\+schema\+\_\+value\+\_\+t} for the entries in the sequence. There are various {\ttfamily C\+Y\+A\+M\+L\+\_\+\+V\+A\+L\+U\+E\+\_\+\{T\+Y\+PE\}} macros to assist with this. Here we\textquotesingle{}re using {\ttfamily C\+Y\+A\+M\+L\+\_\+\+V\+A\+L\+U\+E\+\_\+\+I\+NT}, because the value is a signed integer. The parameters passed to the macro are {\ttfamily enum cyaml\+\_\+flag}, and the C data type of the value.
+
+Now we can write the schema for the mapping. First we\textquotesingle{}ll construct an array of {\ttfamily cyaml\+\_\+schema\+\_\+field\+\_\+t} entries that describe each field in the mapping.
+
+
+\begin{DoxyCode}
+\textcolor{comment}{/* CYAML mapping schema fields array for the top level mapping. */}
+\textcolor{keyword}{static} \textcolor{keyword}{const} cyaml\_schema\_field\_t top\_mapping\_schema[] = \{
+    CYAML\_FIELD\_STRING\_PTR(\textcolor{stringliteral}{"name"}, CYAML\_FLAG\_POINTER,
+            \textcolor{keyword}{struct} numbers, name,
+            0, CYAML\_UNLIMITED),
+    CYAML\_FIELD\_SEQUENCE(\textcolor{stringliteral}{"data"}, CYAML\_FLAG\_POINTER,
+            \textcolor{keyword}{struct} numbers, data, &data\_entry,
+            0, CYAML\_UNLIMITED),
+    CYAML\_FIELD\_END
+\};
+\end{DoxyCode}
+
+
+There are {\ttfamily C\+Y\+A\+M\+L\+\_\+\+F\+I\+E\+L\+D\+\_\+\{T\+Y\+PE\}} helper macros to construct the mapping field entries. The array must be terminated by a {\ttfamily C\+Y\+A\+M\+L\+\_\+\+F\+I\+E\+L\+D\+\_\+\+E\+ND} entry. The helper macro parameters are specific to each {\ttfamily C\+Y\+A\+M\+L\+\_\+\+F\+I\+E\+L\+D\+\_\+\{T\+Y\+PE\}} macro.
+
+The entry for the name field is of type string pointer. You can consult the documentation for the {\ttfamily C\+Y\+A\+M\+L\+\_\+\+F\+I\+E\+L\+D\+\_\+\{T\+Y\+PE\}} macros to see what the parameters mean.
+
+\begin{quote}
+{\bfseries Note}\+: The field for the sequence takes a pointer to the sequence entry data type that we defined earlier as {\ttfamily data\+\_\+entry}. \end{quote}
+
+
+Finally we can define the schema for the top level value that gets passed to the Lib\+C\+Y\+A\+ML.
+
+
+\begin{DoxyCode}
+\textcolor{comment}{/* CYAML value schema for the top level mapping. */}
+\textcolor{keyword}{static} \textcolor{keyword}{const} cyaml\_schema\_value\_t top\_schema = \{
+    CYAML\_VALUE\_MAPPING(CYAML\_FLAG\_POINTER,
+            \textcolor{keyword}{struct} numbers, top\_mapping\_schema),
+\};
+\end{DoxyCode}
+
+
+In this case our top level value is a mapping type. One of the parameters needed for mappings is the array of field definitions. In this case we\textquotesingle{}re passing the {\ttfamily top\+\_\+mapping\+\_\+schema} that we defined above.
+
+
+\begin{DoxyCode}
+\textcolor{comment}{/* Create our CYAML configuration. */}
+\textcolor{keyword}{static} \textcolor{keyword}{const} cyaml\_config\_t config = \{
+    .log\_level = CYAML\_LOG\_WARNING, \textcolor{comment}{/* Logging errors and warnings only. */}
+    .log\_fn = cyaml\_log,            \textcolor{comment}{/* Use the default logging function. */}
+    .mem\_fn = cyaml\_mem,            \textcolor{comment}{/* Use the default memory allocator. */}
+\};
+
+\textcolor{comment}{/* Where to store the loaded data */}
+\textcolor{keyword}{struct }numbers *n;
+
+\textcolor{comment}{/* Load the file into p */}
+cyaml\_err\_t err = cyaml\_load\_file(argv[ARG\_PATH\_IN], &config,
+        &top\_schema, (cyaml\_data\_t **)&n, NULL);
+\textcolor{keywordflow}{if} (err != CYAML\_OK) \{
+    \textcolor{comment}{/* Handle error */}
+\}
+
+\textcolor{comment}{/* Use the data. */}
+printf(\textcolor{stringliteral}{"%s:\(\backslash\)n"}, n->name);
+\textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} i = 0; i < n->data\_count; i++) \{
+    printf(\textcolor{stringliteral}{"  - %i\(\backslash\)n"}, n->data[i]);
+\}
+
+\textcolor{comment}{/* Free the data */}
+err = cyaml\_free(&config, &top\_schema, n, 0);
+\textcolor{keywordflow}{if} (err != CYAML\_OK) \{
+    \textcolor{comment}{/* Handle error */}
+\}
+\end{DoxyCode}
+
+
+And that\textquotesingle{}s it, the Y\+A\+ML is loaded into the custom C data structure.
+
+You can find the code for this in the project\textquotesingle{}s \href{../examples}{\tt examples} directory. 

@@ -13,19 +13,49 @@ camera:
         around Y -: numpad 2
         around Z +: numpad 6
         around Z -: numpad 4
-     resoulusion:
+    resoulusion:
          increase: +
          decrease: -
-     antialiasing: 1
-     filters:
+    antialiasing: 1
+    filters:
          stereoscopy:  2
          sepia : 3
          black and white : 4
-     screenshot: p
+    screenshot: p
      
 objects:
+    select object: mouse click on object
     texture moving:
-         X +: x
-         X -: z
-         Y +: v
-         Y -: c
+        X +: x
+        X -: z
+        Y +: v
+        Y -: c
+    moving:
+        forward: q
+        backward: a
+        right: w
+        left: s
+        up: e
+        down: d
+        roll clockwise: r
+        roll counter clockwise: f
+        pitch clockwise: t
+        pitch counter clockwise: g
+        yaw clockwise: y
+        yaw counter clockwise: h
+        reflection up: u
+        reflection down: j
+        transparency up: i
+        transparency down: k
+        ior up: o
+        ior down: l
+    transparency:
+        increase:
+        decrease: 
+    reflection:
+        increase:
+        decrease: 
+    refraction:
+        increase:
+        decrease: 
+

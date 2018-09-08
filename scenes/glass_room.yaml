@@ -1,0 +1,44 @@
+camera:
+    position: [0, 0, 0]
+    rotation: [0, 0, 0]
+
+objects:
+  - position: [30, 0, 0]
+    sphere:
+        radius: 10
+    rotation: [0, 0, 0]
+    material:
+       shininess: 200 
+       transparency: 0
+       reflection: 0
+       refraction: 1
+       ambient: [0.0, 0.4, 0.4]
+       diffuse: [0.4, 0.0, 0.4]
+       specular: [0.4, 0.4, 0.0]
+
+  - position: [0, 0, 0]
+    cuboid:
+        width:  500 
+        height: 500 
+        depth:  500 
+    rotation: [0, 0, 0]
+    material:
+       shininess: 200 
+       transparency: 0
+       reflection: 1
+       refraction: 5
+       ambient: [0.4, 0.4, 0.4]
+       diffuse: [0.4, 0.4, 0.4]
+       specular: [0.4, 0.4, 0.4]
+
+lights:
+  - point light:
+        position: [0, 0, 0]
+        constant: 1.0
+        linear: 0.0014
+        quadratic: 0.00007
+    ambient: [1.0, 1.0, 1.0]
+    diffuse: [1.0, 1.0, 1.0]
+    specular: [1.0, 1.0, 1.0]
+
+

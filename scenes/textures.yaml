@@ -15,7 +15,8 @@ objects:
        ambient: [0.0, 0.4, 0.4]
        diffuse: [0.4, 0.0, 0.4]
        specular: [0.4, 0.4, 0.0]
-       texture path: "res/textures/pointillist.bmp"
+       texture:
+           path: "res/textures/pointillist.bmp"
 
   - position: [0, 0, -100]
     plane:
@@ -29,7 +30,8 @@ objects:
        ambient: [0.0, 0.4, 0.4]
        diffuse: [0.4, 0.0, 0.4]
        specular: [0.4, 0.4, 0.0]
-       texture path: "res/textures/pointillist.bmp"
+       texture:
+           path: "res/textures/pointillist.bmp"
       
   - position: [0, 200, -100]
     cylinder:
@@ -44,7 +46,10 @@ objects:
        ambient: [0.0, 0.4, 0.4]
        diffuse: [0.4, 0.0, 0.4]
        specular: [0.4, 0.4, 0.0]
-       texture path: "res/textures/pointillist.bmp"
+       texture:
+           path: "res/textures/pointillist.bmp"
+           offset x: 10
+           #offset y: 100
 
   - position: [0, -200, -100]
     cone:
@@ -59,7 +64,8 @@ objects:
        ambient: [0.0, 0.4, 0.4]
        diffuse: [0.4, 0.0, 0.4]
        specular: [0.4, 0.4, 0.0]
-       texture path: "res/textures/pointillist.bmp"
+       texture:
+           path: "res/textures/pointillist.bmp"
 
 lights:
   - point light:

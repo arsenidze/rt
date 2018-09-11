@@ -13,7 +13,7 @@ camera:
         around Y -: numpad 2
         around Z +: numpad 6
         around Z -: numpad 4
-    resoulusion:
+    resolution:
          increase: +
          decrease: -
     antialiasing: 1

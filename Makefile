@@ -6,7 +6,7 @@
 #    By: amelihov <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/29 13:43:11 by amelihov          #+#    #+#              #
-#    Updated: 2018/09/08 22:54:44 by amelihov         ###   ########.fr        #
+#    Updated: 2018/09/11 15:03:01 by amelihov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -288,16 +288,16 @@ INC_DIRS =\
 	-Isrcs/raytracing\
 	-Isrcs/render
 
-LIBFT 			= $(LINK_DIR)/libft/libft_exec
+LIBFT 			= $(LINK_DIR)/libft/libft_out_dir/libft.a
 LIBFT_INC 		= $(LINK_DIR)/libft/libft_includes
-LIBFT_FLAGS 	= $(LINK_DIR)/libft/libft_exec
+LIBFT_FLAGS 	= $(LINK_DIR)/libft/libft_out_dir/libft.a
 LIBFT_MK 		= Makefile
 LIBFT_MK_DIR	= $(LIB_DIR)/libft
 
-LIBCYAML 		= $(LINK_DIR)/libcyaml/libcyaml_exec
+LIBCYAML 		= $(LINK_DIR)/libcyaml/libcyaml_out_dir/libcyaml.a
 LIBCYAML_INC	= $(LINK_DIR)/libcyaml/libcyaml_includes
-LIBCYAML_FLAGS	= $(LINK_DIR)/libcyaml/libcyaml_exec\
-			  	 $(LINK_DIR)/libcyaml/libyaml_exec
+LIBCYAML_FLAGS	= $(LINK_DIR)/libcyaml/libcyaml_out_dir/libcyaml.a\
+			  	 $(LINK_DIR)/libcyaml/libcyaml_out_dir/libyaml.a
 LIBCYAML_MK 	= make_with_yaml_lib.mk
 LIBCYAML_MK_DIR = $(LIB_DIR)/libcyaml
 
@@ -308,7 +308,7 @@ SDL2_IMG_INC 	= $(LINK_DIR)/sdl2_image/sdl2_image_includes\
 				  $(LINK_DIR)/sdl2_image
 SDL2_IMG_FLAGS	= -F $(FRM_DIR) -framework SDL2_image -rpath $(FRM_DIR)
 
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror -O3
 IFLAGS = $(INC_DIRS) -I $(LIBFT_INC) -I $(LIBCYAML_INC) -I $(SDL2_INC)\
 		$(foreach inc, $(SDL2_IMG_INC), $(addprefix -I, $(inc)))
 LFLAGS = $(LIBFT_FLAGS) $(LIBCYAML_FLAGS) $(SDL2_FLAGS) $(SDL2_IMG_FLAGS)

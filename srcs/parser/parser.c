@@ -6,7 +6,7 @@
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 18:59:18 by snikitin          #+#    #+#             */
-/*   Updated: 2018/09/08 16:39:44 by snikitin         ###   ########.fr       */
+/*   Updated: 2018/09/12 18:52:17 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -278,7 +278,7 @@ static const cyaml_schema_value_t g_object_schema =
 */
 static const cyaml_schema_field_t g_scene_fields_p_schema[] = {
 	CYAML_FIELD_MAPPING_PTR(
-		"camera", CYAML_FLAG_OPTIONAL,
+		"camera", CYAML_FLAG_DEFAULT,
 		struct s_p_scene, camera, g_camera_fields_p_schema),
 	CYAML_FIELD_SEQUENCE(
 		"lights", CYAML_FLAG_POINTER,
@@ -310,7 +310,7 @@ int		scene_init_from_file(char *file_path, t_scene *scene)
 	ft_bzero(scene, sizeof(t_scene));
 	err = cyaml_load_file(file_path, &g_config,
 			&g_scene_schema, (cyaml_data_t **)&p_scene, NULL);
-	if (err != CYAML_OK)
+	if (err != CYAML_OK || !p_scene)
 	{
 		fprintf(stderr, "ERROR: %s\n", cyaml_strerror(err));
 		return (PARSER_FAILURE);

@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/05 17:45:23 by amelihov          #+#    #+#             */
-/*   Updated: 2018/08/23 14:16:01 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/09/17 17:07:07 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,6 @@ t_vect3d		object_get_color_from_texture(const t_object *object,
 				t_vect3d point);
 void			object_update_material_according_to_tex(t_object *object,
 				t_vect3d point);
+void			object_deinit(t_object *obj);
 
 #endif

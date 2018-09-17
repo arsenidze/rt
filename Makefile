@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: amelihov <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2018/03/29 13:43:11 by amelihov          #+#    #+#              #
-#    Updated: 2018/09/17 17:18:43 by snikitin         ###   ########.fr        #
+#    Created: 2018/09/17 17:31:43 by amelihov          #+#    #+#              #
+#    Updated: 2018/09/17 17:33:31 by amelihov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,8 @@ LIB_DIR = ./external/libs
 FRM_DIR = ./external/Frameworks
 
 SRC_FULL_PATH =\
+	srcs/array_object/array_object_deinit.c\
+	srcs/array_light/array_light_deinit.c\
 	srcs/basis/basis_get_coord_in_basis.c\
 	srcs/basis/basis_rotate.c\
 	srcs/camera/camera_move.c\
@@ -62,6 +64,7 @@ SRC_FULL_PATH =\
 	srcs/object/object.c\
 	srcs/object/object_get_color_from_texture.c\
 	srcs/object/object_update_material_according_to_tex.c\
+	srcs/object/object_deinit.c\
 	srcs/options/options_init.c\
 	srcs/options/options_is_filters_on.c\
 	srcs/parser/angles_to_basis.c\
@@ -116,6 +119,7 @@ SRC_FULL_PATH =\
 	srcs/scene/scene.c\
 	srcs/technical_effect/technical_effect_make_screenshot.c\
 	srcs/texture/texture_load.c\
+	srcs/texture/texture_deinit.c\
 	srcs/vect3d/vect3d.c\
 	srcs/vect3d/vect3d_clamp.c\
 	srcs/vect3d/vect3d_cos.c\
@@ -139,121 +143,7 @@ SRC_FULL_PATH =\
 	srcs/vect3d/vect3d_sq_len.c\
 	srcs/parser/validate_camera.c
 
-SRC =\
-	basis_get_coord_in_basis.c\
-	basis_rotate.c\
-	camera_move.c\
-	camera_rotate.c\
-	canvas_fill_rect.c\
-	canvas_strip_if_not_fit.c\
-	drawer.c\
-	drawer_render_on_window.c\
-	err.c\
-	event_handler_loop.c\
-	handle_cameara_actions.c\
-	handle_key_down.c\
-	handle_mouse_down.c\
-	handle_object_actions.c\
-	handle_render_options.c\
-	handle_technical_effects.c\
-	filter_apply_black_and_white.c\
-	filter_apply_filters.c\
-	filter_apply_sepia.c\
-	calc_col.c\
-	directional_light_apply.c\
-	light_apply_light_by_type.c\
-	point_light_apply.c\
-	spotlight_light_apply.c\
-	main.c\
-	cb.c\
-	clampd.c\
-	clampi.c\
-	get_positive_root.c\
-	sign.c\
-	solve2.c\
-	solve3.c\
-	solve4.c\
-	square.c\
-	object.c\
-	object_get_color_from_texture.c\
-	object_update_material_according_to_tex.c\
-	options_init.c\
-	options_is_filters_on.c\
-	angles_to_basis.c\
-	create_lights.c\
-	create_objects.c\
-	init_camera.c\
-	parser.c\
-	parser_put_error.c\
-	parser_put_error_mapping.c\
-	validate_ads.c\
-	validate_direction.c\
-	validate_figures_1.c\
-	validate_figures_2.c\
-	validate_light_type.c\
-	validate_light_type_num.c\
-	validate_lights.c\
-	validate_obj_material.c\
-	validate_obj_type.c\
-	validate_obj_type_num.c\
-	validate_objects.c\
-	validate_parsed_values.c\
-	validate_value_float.c\
-	vect3d_from_float.c\
-	cone.c\
-	cone_create.c\
-	cuboid.c\
-	cuboid_create.c\
-	cylinder.c\
-	disk.c\
-	paraboloid.c\
-	paraboloid_create.c\
-	plane.c\
-	rect.c\
-	sort_and_left_positive_roots.c\
-	sphere.c\
-	torus.c\
-	apply_light.c\
-	find_closest_intersection.c\
-	fresnel.c\
-	get_ray_dir.c\
-	get_refraction_ray.c\
-	handle_reflection_and_refraction.c\
-	raytracing_get_obj_idx_on_coord.c\
-	raytracing_get_obj_on_dir.c\
-	raytracing_trace.c\
-	raytracing_trace_with_antialiasing.c\
-	trace_ray.c\
-	render_on_canvas.c\
-	render_on_canvas_parallel.c\
-	render_on_canvas_single.c\
-	render_on_canvas_with_stereoscopy.c\
-	scene.c\
-	technical_effect_make_screenshot.c\
-	texture_load.c\
-	vect3d.c\
-	vect3d_clamp.c\
-	vect3d_cos.c\
-	vect3d_cos_normed.c\
-	vect3d_cross.c\
-	vect3d_div_on_scalar.c\
-	vect3d_dot.c\
-	vect3d_fill_rotate_matrix.c\
-	vect3d_from_scalar.c\
-	vect3d_fst_closer_snd_to.c\
-	vect3d_inf.c\
-	vect3d_is_equal.c\
-	vect3d_is_in_range.c\
-	vect3d_is_in_range_abs.c\
-	vect3d_len.c\
-	vect3d_mult_on_matrix.c\
-	vect3d_mult_on_scalar.c\
-	vect3d_norm.c\
-	vect3d_reflect.c\
-	vect3d_rotate_around_axis.c\
-	vect3d_sq_len.c\
-	validate_camera.c
-
+SRC = $(notdir $(SRC_FULL_PATH))
 
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 
@@ -308,7 +198,7 @@ SDL2_FLAGS	= -F $(FRM_DIR) -framework SDL2 -rpath $(FRM_DIR)
 SDL2_IMG_INC 	= $(FRM_DIR)/SDL2_image.framework/Headers $(FRM_DIR)
 SDL2_IMG_FLAGS	= -F $(FRM_DIR) -framework SDL2_image -rpath $(FRM_DIR)
 
-CFLAGS = -Wall -Wextra -Werror -O3 -g
+CFLAGS = -Wall -Wextra -Werror -O3
 IFLAGS = $(INC_DIRS) -I $(LIBFT_INC) -I $(LIBCYAML_INC) -I $(SDL2_INC)\
 		$(foreach inc, $(SDL2_IMG_INC), $(addprefix -I, $(inc)))
 LFLAGS = $(LIBFT_FLAGS) $(LIBCYAML_FLAGS) $(SDL2_FLAGS) $(SDL2_IMG_FLAGS)
@@ -360,6 +250,8 @@ depend:
 	@echo "*** make depend ***"
 
 vpath %.c $(SRC_DIR)
+vpath %.c $(SRC_DIR)/array_light
+vpath %.c $(SRC_DIR)/array_object
 vpath %.c $(SRC_DIR)/basis
 vpath %.c $(SRC_DIR)/camera
 vpath %.c $(SRC_DIR)/canvas
@@ -384,6 +276,30 @@ vpath %.c $(SRC_DIR)/vect3d
 # DO NOT DELETE
 # DO NOT DELETE
 
+./obj/array_object_deinit.o: includes/array_object/array_object.h
+./obj/array_object_deinit.o: includes/object/object.h
+./obj/array_object_deinit.o: includes/vect3d/vect3d.h
+./obj/array_object_deinit.o: includes/basis/basis.h
+./obj/array_object_deinit.o: includes/shape/shape.h
+./obj/array_object_deinit.o: includes/primitive/primitive.h
+./obj/array_object_deinit.o: includes/primitive/sphere.h
+./obj/array_object_deinit.o: includes/raytracing/ray.h
+./obj/array_object_deinit.o: includes/primitive/cylinder.h
+./obj/array_object_deinit.o: includes/primitive/cone.h
+./obj/array_object_deinit.o: includes/primitive/plane.h
+./obj/array_object_deinit.o: includes/primitive/torus.h
+./obj/array_object_deinit.o: includes/primitive/paraboloid.h
+./obj/array_object_deinit.o: includes/primitive/rect.h
+./obj/array_object_deinit.o: includes/primitive/disk.h
+./obj/array_object_deinit.o: includes/primitive/cuboid.h
+./obj/array_object_deinit.o: includes/material/material.h
+./obj/array_object_deinit.o: includes/texture/texture.h
+./obj/array_light_deinit.o: includes/array_light/array_light.h
+./obj/array_light_deinit.o: includes/light/light.h
+./obj/array_light_deinit.o: includes/light/point_light.h
+./obj/array_light_deinit.o: includes/vect3d/vect3d.h
+./obj/array_light_deinit.o: includes/light/directional_light.h
+./obj/array_light_deinit.o: includes/light/spotlight_light.h
 ./obj/basis_get_coord_in_basis.o: includes/basis/basis.h
 ./obj/basis_get_coord_in_basis.o: includes/vect3d/vect3d.h
 ./obj/basis_rotate.o: includes/basis/basis.h includes/vect3d/vect3d.h
@@ -1311,6 +1227,22 @@ vpath %.c $(SRC_DIR)/vect3d
 ./obj/object_update_material_according_to_tex.o: includes/primitive/cuboid.h
 ./obj/object_update_material_according_to_tex.o: includes/material/material.h
 ./obj/object_update_material_according_to_tex.o: includes/texture/texture.h
+./obj/object_deinit.o: includes/object/object.h
+./obj/object_deinit.o: includes/vect3d/vect3d.h includes/basis/basis.h
+./obj/object_deinit.o: includes/shape/shape.h
+./obj/object_deinit.o: includes/primitive/primitive.h
+./obj/object_deinit.o: includes/primitive/sphere.h
+./obj/object_deinit.o: includes/raytracing/ray.h
+./obj/object_deinit.o: includes/primitive/cylinder.h
+./obj/object_deinit.o: includes/primitive/cone.h
+./obj/object_deinit.o: includes/primitive/plane.h
+./obj/object_deinit.o: includes/primitive/torus.h
+./obj/object_deinit.o: includes/primitive/paraboloid.h
+./obj/object_deinit.o: includes/primitive/rect.h
+./obj/object_deinit.o: includes/primitive/disk.h
+./obj/object_deinit.o: includes/primitive/cuboid.h
+./obj/object_deinit.o: includes/material/material.h
+./obj/object_deinit.o: includes/texture/texture.h
 ./obj/options_init.o: includes/options/options.h
 ./obj/options_is_filters_on.o: includes/options/options.h
 ./obj/angles_to_basis.o: includes/vect3d/vect3d.h
@@ -2647,6 +2579,7 @@ vpath %.c $(SRC_DIR)/vect3d
 ./obj/texture_load.o: ./external/Frameworks/SDL2/close_code.h
 ./obj/texture_load.o: ./external/libs/libft/includes/libft.h
 ./obj/texture_load.o: ./external/libs/libft/includes/get_next_line.h
+./obj/texture_deinit.o: includes/texture/texture.h
 ./obj/vect3d.o: includes/vect3d/vect3d.h
 ./obj/vect3d_clamp.o: includes/vect3d/vect3d.h includes/mmath/mmath.h
 ./obj/vect3d_cos.o: includes/vect3d/vect3d.h

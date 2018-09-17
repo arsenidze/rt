@@ -6,15 +6,16 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/18 17:55:45 by amelihov          #+#    #+#             */
-/*   Updated: 2018/08/07 16:43:08 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/09/17 17:22:52 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "scene.h"
-#include <stdlib.h>
+#include "array_object.h"
+#include "array_light.h"
 
 void			scene_deinit(t_scene *scene)
 {
-	free(scene->objects.data);
-	free(scene->lights.data);
+	array_object_deinit(scene->objects);
+	array_light_deinit(scene->lights);
 }

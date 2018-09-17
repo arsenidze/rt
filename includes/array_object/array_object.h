@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/06 13:07:21 by amelihov          #+#    #+#             */
-/*   Updated: 2018/08/06 17:02:24 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/09/17 17:03:56 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,7 @@ typedef struct			s_array_object
 	t_object	*data;
 	t_uint		size;
 }						t_array_object;
+
+void					array_object_deinit(t_array_object objects);
 
 #endif

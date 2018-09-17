@@ -1,28 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   array_light.h                                      :+:      :+:    :+:   */
+/*   texture_deinit.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/06 13:07:21 by amelihov          #+#    #+#             */
-/*   Updated: 2018/09/17 17:04:26 by amelihov         ###   ########.fr       */
+/*   Created: 2018/09/17 17:10:27 by amelihov          #+#    #+#             */
+/*   Updated: 2018/09/17 17:10:55 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ARRAY_LIGHT_H
-# define ARRAY_LIGHT_H
+#include "texture.h"
+#include <stdlib.h>
 
-# include "light.h"
-
-typedef unsigned int		t_uint;
-
-typedef struct				s_array_light
+void					texture_deinit(t_texture *tex)
 {
-	t_light		*data;
-	t_uint		size;
-}							t_array_light;
-
-void						array_light_deinit(t_array_light lights);
-
-#endif
+	free(tex->pixels);
+}

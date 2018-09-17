@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   array_light.h                                      :+:      :+:    :+:   */
+/*   array_object_deinit.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/06 13:07:21 by amelihov          #+#    #+#             */
-/*   Updated: 2018/09/17 17:04:26 by amelihov         ###   ########.fr       */
+/*   Created: 2018/09/17 16:59:23 by amelihov          #+#    #+#             */
+/*   Updated: 2018/09/17 17:07:13 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ARRAY_LIGHT_H
-# define ARRAY_LIGHT_H
+#include "array_object.h" 
+#include <stdlib.h>
 
-# include "light.h"
-
-typedef unsigned int		t_uint;
-
-typedef struct				s_array_light
+void					array_object_deinit(t_array_object objects)
 {
-	t_light		*data;
-	t_uint		size;
-}							t_array_light;
+	t_uint i;
 
-void						array_light_deinit(t_array_light lights);
-
-#endif
+	i = 0;
+	while (i < objects.size)
+	{
+		object_deinit(&objects.data[i]);
+		i++;
+	}
+	free(objects.data);
+}

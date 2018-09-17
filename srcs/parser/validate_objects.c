@@ -6,24 +6,26 @@
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/20 20:21:22 by snikitin          #+#    #+#             */
-/*   Updated: 2018/09/02 15:52:31 by snikitin         ###   ########.fr       */
+/*   Updated: 2018/09/17 17:59:08 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser_private.h"
+#include "parser_values_limits.h"
 
 static int	validate_object(struct s_p_object *object)
 {
 	unsigned int	error_code;
 
 	error_code = 0;
-	if ((error_code = validate_obj_type_num(object)))
-		return (error_code);
-	if ((error_code = validate_obj_type(object)))
-		return (error_code);
-	if ((error_code = validate_obj_material(&object->material)))
-		return (error_code);
-	return (0);
+	if ((error_code = validate_obj_type_num(object))
+	|| (error_code = validate_obj_type(object))
+	|| (error_code = validate_obj_material(&object->material)))
+		;
+	else if ((error_code = validate_vector_float(object->position,
+		PARS_POSITION_MIN, PARS_POSITION_MAX)))
+		parser_put_error_mapping("position");
+	return (error_code);
 }
 
 int			validate_objects(struct s_p_object *objects,

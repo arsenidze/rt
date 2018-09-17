@@ -6,7 +6,7 @@
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 18:59:18 by snikitin          #+#    #+#             */
-/*   Updated: 2018/09/17 16:42:38 by snikitin         ###   ########.fr       */
+/*   Updated: 2018/09/17 17:02:25 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -310,7 +310,10 @@ int		scene_init_from_file(char *file_path, t_scene *scene)
 	err = cyaml_load_file(file_path, &g_config,
 			&g_scene_schema, (cyaml_data_t **)&p_scene, NULL);
 	if (!p_scene)
+	{
+		ft_putendl_fd("ERROR:\tInvalid input file", 2);
 		return (PARSER_FAILURE);
+	}
 	if (err != CYAML_OK)
 	{
 		ft_putstr_fd(cyaml_strerror(err), 2);

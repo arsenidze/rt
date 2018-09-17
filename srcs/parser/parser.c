@@ -6,12 +6,11 @@
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/15 18:59:18 by snikitin          #+#    #+#             */
-/*   Updated: 2018/09/12 18:52:17 by snikitin         ###   ########.fr       */
+/*   Updated: 2018/09/17 16:42:38 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <stdio.h>
 #include "libft.h"
 #include "cyaml.h"
 #include "parser_private.h"
@@ -310,9 +309,11 @@ int		scene_init_from_file(char *file_path, t_scene *scene)
 	ft_bzero(scene, sizeof(t_scene));
 	err = cyaml_load_file(file_path, &g_config,
 			&g_scene_schema, (cyaml_data_t **)&p_scene, NULL);
-	if (err != CYAML_OK || !p_scene)
+	if (!p_scene)
+		return (PARSER_FAILURE);
+	if (err != CYAML_OK)
 	{
-		fprintf(stderr, "ERROR: %s\n", cyaml_strerror(err));
+		ft_putstr_fd(cyaml_strerror(err), 2);
 		return (PARSER_FAILURE);
 	}
 	if ((validate_parsed_values(p_scene)) || (create_objects(p_scene, scene)))

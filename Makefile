@@ -6,7 +6,7 @@
 #    By: amelihov <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/29 13:43:11 by amelihov          #+#    #+#              #
-#    Updated: 2018/09/11 15:29:44 by amelihov         ###   ########.fr        #
+#    Updated: 2018/09/17 17:18:43 by snikitin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -136,7 +136,8 @@ SRC_FULL_PATH =\
 	srcs/vect3d/vect3d_norm.c\
 	srcs/vect3d/vect3d_reflect.c\
 	srcs/vect3d/vect3d_rotate_around_axis.c\
-	srcs/vect3d/vect3d_sq_len.c
+	srcs/vect3d/vect3d_sq_len.c\
+	srcs/parser/validate_camera.c
 
 SRC =\
 	basis_get_coord_in_basis.c\
@@ -250,7 +251,9 @@ SRC =\
 	vect3d_norm.c\
 	vect3d_reflect.c\
 	vect3d_rotate_around_axis.c\
-	vect3d_sq_len.c
+	vect3d_sq_len.c\
+	validate_camera.c
+
 
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 
@@ -305,7 +308,7 @@ SDL2_FLAGS	= -F $(FRM_DIR) -framework SDL2 -rpath $(FRM_DIR)
 SDL2_IMG_INC 	= $(FRM_DIR)/SDL2_image.framework/Headers $(FRM_DIR)
 SDL2_IMG_FLAGS	= -F $(FRM_DIR) -framework SDL2_image -rpath $(FRM_DIR)
 
-CFLAGS = -Wall -Wextra -Werror -O3
+CFLAGS = -Wall -Wextra -Werror -O3 -g
 IFLAGS = $(INC_DIRS) -I $(LIBFT_INC) -I $(LIBCYAML_INC) -I $(SDL2_INC)\
 		$(foreach inc, $(SDL2_IMG_INC), $(addprefix -I, $(inc)))
 LFLAGS = $(LIBFT_FLAGS) $(LIBCYAML_FLAGS) $(SDL2_FLAGS) $(SDL2_IMG_FLAGS)
@@ -378,6 +381,7 @@ vpath %.c $(SRC_DIR)/texture
 vpath %.c $(SRC_DIR)/vect3d
 
 .PHONY: all clean fclean re
+# DO NOT DELETE
 # DO NOT DELETE
 
 ./obj/basis_get_coord_in_basis.o: includes/basis/basis.h
@@ -2664,3 +2668,30 @@ vpath %.c $(SRC_DIR)/vect3d
 ./obj/vect3d_reflect.o: includes/vect3d/vect3d.h
 ./obj/vect3d_rotate_around_axis.o: includes/vect3d/vect3d.h
 ./obj/vect3d_sq_len.o: includes/vect3d/vect3d.h
+./obj/validate_camera.o: srcs/parser/parser_private.h
+./obj/validate_camera.o: includes/light/light.h
+./obj/validate_camera.o: includes/light/point_light.h
+./obj/validate_camera.o: includes/vect3d/vect3d.h
+./obj/validate_camera.o: includes/light/directional_light.h
+./obj/validate_camera.o: includes/light/spotlight_light.h
+./obj/validate_camera.o: includes/scene/scene.h
+./obj/validate_camera.o: includes/camera/camera.h
+./obj/validate_camera.o: includes/basis/basis.h
+./obj/validate_camera.o: includes/array_object/array_object.h
+./obj/validate_camera.o: includes/object/object.h
+./obj/validate_camera.o: includes/shape/shape.h
+./obj/validate_camera.o: includes/primitive/primitive.h
+./obj/validate_camera.o: includes/primitive/sphere.h
+./obj/validate_camera.o: includes/raytracing/ray.h
+./obj/validate_camera.o: includes/primitive/cylinder.h
+./obj/validate_camera.o: includes/primitive/cone.h
+./obj/validate_camera.o: includes/primitive/plane.h
+./obj/validate_camera.o: includes/primitive/torus.h
+./obj/validate_camera.o: includes/primitive/paraboloid.h
+./obj/validate_camera.o: includes/primitive/rect.h
+./obj/validate_camera.o: includes/primitive/disk.h
+./obj/validate_camera.o: includes/primitive/cuboid.h
+./obj/validate_camera.o: includes/material/material.h
+./obj/validate_camera.o: includes/texture/texture.h
+./obj/validate_camera.o: includes/array_light/array_light.h
+./obj/validate_camera.o: srcs/parser/parser_values_limits.h

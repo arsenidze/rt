@@ -6,7 +6,7 @@
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/02 16:46:37 by snikitin          #+#    #+#             */
-/*   Updated: 2018/09/08 16:46:40 by snikitin         ###   ########.fr       */
+/*   Updated: 2018/09/17 17:18:59 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,11 @@
 # define PARS_TORUS_INNER_RADIUS_MAX FLT_MAX
 # define PARS_TORUS_OUTER_RADIUS_MIN 0
 # define PARS_TORUS_OUTER_RADIUS_MAX FLT_MAX
+
+/*
+** Position
+*/
+# define PARS_POSITION_MIN -FLT_MAX
+# define PARS_POSITION_MAX FLT_MAX
 
 #endif

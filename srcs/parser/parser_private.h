@@ -6,7 +6,7 @@
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 13:57:00 by snikitin          #+#    #+#             */
-/*   Updated: 2018/09/08 22:25:48 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/09/17 17:05:39 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -198,6 +198,8 @@ int			validate_light_ads(struct s_p_light *light);
 int			validate_light_type_num(struct s_p_light *light);
 int			validate_lights(struct s_p_light *lights,
 			unsigned int lights_count);
+
+int			validate_camera(struct s_p_camera *camera);
 
 int			validate_parsed_values(struct s_p_scene *p_scene);
 

@@ -6,7 +6,7 @@
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 14:30:32 by snikitin          #+#    #+#             */
-/*   Updated: 2018/09/02 16:55:59 by snikitin         ###   ########.fr       */
+/*   Updated: 2018/09/17 18:12:11 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,9 @@ int		validate_light_spot(struct s_p_spotlight *spotlight)
 		parser_put_error_mapping("cut off");
 	else if ((error_code = validate_direction(spotlight->direction)))
 		parser_put_error_mapping("direction");
+	else if ((error_code = validate_vector_float(spotlight->position,
+		PARS_POSITION_MIN, PARS_POSITION_MAX)))
+		parser_put_error_mapping("position");
 	return (error_code);
 }
 
@@ -56,5 +59,8 @@ int		validate_light_point(struct s_p_point *point)
 	else if ((error_code = validate_value_float(point->quadratic,
 		PARS_QUADRATIC_MIN, PARS_QUADRATIC_MAX)))
 		parser_put_error_mapping("quadratic");
+	else if ((error_code = validate_vector_float(point->position,
+		PARS_POSITION_MIN, PARS_POSITION_MAX)))
+		parser_put_error_mapping("position");
 	return (error_code);
 }

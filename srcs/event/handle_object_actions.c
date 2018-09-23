@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 12:39:59 by amelihov          #+#    #+#             */
-/*   Updated: 2018/09/06 22:28:19 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/09/23 16:26:22 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,12 @@ static short	handle_object_texutre_parameters(int key, t_object *obj)
 	else if (key == KEY_OBJ_TEXTURE_OFFSET_Y_DOWN)
 		ADD_AND_CLAMP(obj->texture.offset[1], TEXTURE_OFFSET_STEP,
 			0, obj->texture.h - 1);
+	else if (key == KEY_OBJ_TEXTURE_SCALE_UP)
+		ADD_AND_CLAMP(obj->texture.scale, TEXTURE_SCALE_STEP,
+			TEXTURE_SCALE_MIN, TEXTURE_SCALE_MAX);
+	else if (key == KEY_OBJ_TEXTURE_SCALE_DOWN)
+		ADD_AND_CLAMP(obj->texture.scale, -TEXTURE_SCALE_STEP,
+			TEXTURE_SCALE_MIN, TEXTURE_SCALE_MAX);
 	else
 		return (!NEED_REDRAW);
 	return (NEED_REDRAW);

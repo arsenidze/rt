@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/21 20:00:12 by amelihov          #+#    #+#             */
-/*   Updated: 2018/09/06 22:26:21 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/09/23 17:00:44 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,9 @@
 # define CAMERA_MOVE_STEP 	10
 
 # define TEXTURE_OFFSET_STEP	10
+
+# define TEXTURE_SCALE_STEP	0.1
+# define TEXTURE_SCALE_MIN	0.1
+# define TEXTURE_SCALE_MAX	1.0
 
 #endif

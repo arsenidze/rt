@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 12:55:54 by amelihov          #+#    #+#             */
-/*   Updated: 2018/09/06 22:25:52 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/09/23 16:26:59 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,7 @@
 # define KEY_OBJ_TEXTURE_OFFSET_X_DOWN	SDL_SCANCODE_X
 # define KEY_OBJ_TEXTURE_OFFSET_Y_UP	SDL_SCANCODE_C
 # define KEY_OBJ_TEXTURE_OFFSET_Y_DOWN	SDL_SCANCODE_V
+# define KEY_OBJ_TEXTURE_SCALE_UP		SDL_SCANCODE_B
+# define KEY_OBJ_TEXTURE_SCALE_DOWN		SDL_SCANCODE_N
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/02 13:22:49 by amelihov          #+#    #+#             */
-/*   Updated: 2018/09/17 17:10:14 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/09/23 16:24:09 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct			s_texture
 	t_uint	bpp;
 	void	*pixels;
 	int		offset[2];
+	float	scale;
 }						t_texture;
 
 short					texture_load(t_texture *tex, const char *tex_name);

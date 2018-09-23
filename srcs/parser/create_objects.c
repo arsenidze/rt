@@ -6,7 +6,7 @@
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 19:20:07 by snikitin          #+#    #+#             */
-/*   Updated: 2018/09/08 16:34:28 by snikitin         ###   ########.fr       */
+/*   Updated: 2018/09/23 16:50:38 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	init_material(struct s_p_material *p_material,
 static void	init_figure(struct s_p_object *p_obj, t_object *obj)
 {
 	if (p_obj->plane)
-		obj->shape = SHAPE(plane);
+		obj->shape = SHAPE(plane, p_obj->plane->texture_scale);
 	if (p_obj->sphere)
 		obj->shape = SHAPE(sphere, p_obj->sphere->radius);
 	if (p_obj->cylinder)

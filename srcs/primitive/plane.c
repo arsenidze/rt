@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 10:52:52 by amelihov          #+#    #+#             */
-/*   Updated: 2018/08/21 13:49:02 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/09/23 16:48:21 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 #include "mmath.h"
 #include <math.h>
 
-t_plane			plane_create(void)
+t_plane			plane_create(double tex_scale)
 {
 	t_plane	plane;
 
-	plane.tex_scale = 500;
+	plane.tex_scale = tex_scale;
 	return (plane);
 }
 

@@ -6,7 +6,7 @@
 /*   By: amelihov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/19 10:43:41 by amelihov          #+#    #+#             */
-/*   Updated: 2018/08/21 19:50:58 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/09/23 16:48:40 by amelihov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ typedef struct	s_plane
 	double	tex_scale;
 }				t_plane;
 
-t_plane			plane_create(void);
+t_plane			plane_create(double tex_scale);
 short			plane_intersection(t_primitive primitive, t_basis basis,
 				t_ray ray, t_vect3d *intersect_point);
 t_vect3d		plane_get_normal(t_primitive primitive, t_basis basis,

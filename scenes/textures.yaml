@@ -3,6 +3,34 @@ camera:
     rotation: [0, 0, 0]
 
 objects:
+    #  - position: [-300, -400, 0] 
+    #    sphere:
+    #        radius: 100 
+    #    rotation: [45, 45, 45]
+    #    material:
+    #       shininess: 200 
+    #       transparency: 0
+    #       reflection: 0
+    #       refraction: 1.5
+    #       ambient: [0.0, 0.0, 0.0]
+    #       diffuse: [0.3, 0.3, 0.3]
+    #       specular: [0.0, 0.0, 0.0]
+
+  - position: [-300, -500, 0] 
+    disk:
+        radius: 300 
+    rotation: [45, 45, 45]
+    material:
+       shininess: 200 
+       transparency: 0
+       reflection: 0
+       refraction: 1.5
+       ambient: [0.0, 0.4, 0.4]
+       diffuse: [0.4, 0.0, 0.4]
+       specular: [0.4, 0.4, 0.0]
+       texture:
+           path: "res/textures/pointillist.bmp"
+
   - position: [0, 0, 0]
     sphere:
         radius: 100

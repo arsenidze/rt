@@ -30,6 +30,9 @@ objects:
         X -: z
         Y +: v
         Y -: c
+    texture scale:
+        increase: b
+        decrease: n
     moving:
         forward: q
         backward: a

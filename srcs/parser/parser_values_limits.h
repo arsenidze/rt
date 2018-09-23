@@ -6,7 +6,7 @@
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/02 16:46:37 by snikitin          #+#    #+#             */
-/*   Updated: 2018/09/17 17:18:59 by snikitin         ###   ########.fr       */
+/*   Updated: 2018/09/23 17:20:44 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,10 @@
 */
 # define PARS_POSITION_MIN -FLT_MAX
 # define PARS_POSITION_MAX FLT_MAX
+
+/*
+** Default texture scale value
+*/
+# define PARS_TEX_SCALE_DEFAULT 1
 
 #endif

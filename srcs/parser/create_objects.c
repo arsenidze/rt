@@ -6,7 +6,7 @@
 /*   By: snikitin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/16 19:20:07 by snikitin          #+#    #+#             */
-/*   Updated: 2018/09/23 16:50:38 by amelihov         ###   ########.fr       */
+/*   Updated: 2018/09/23 17:19:19 by snikitin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "basis.h"
 #include "scene.h"
 #include "parser_private.h"
+#include "parser_values_limits.h"
 #include "array_object.h"
 #include "object.h"
 #include "libft.h"
@@ -77,6 +78,7 @@ static int	init_texture(struct s_p_texture *p_texture, t_texture *texture)
 		}
 		texture->offset[0] = p_texture->x_offset;
 		texture->offset[1] = p_texture->y_offset;
+		texture->scale = PARS_TEX_SCALE_DEFAULT;
 	}
 	return (0);
 }
